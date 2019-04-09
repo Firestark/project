@@ -1,0 +1,38 @@
+{
+    "name": "firestark/app",
+    "version": "0.0.1",
+    "description": "",
+    "keywords": [ ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aron Wouters",
+            "email": "aron@qbil.com",
+            "role": "Developer"
+        }
+    ],
+    "require" : {
+
+    },
+    "require-dev": {
+        "firestark/testing": "*",
+        "psy/psysh": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "app/agreements"
+        },
+        "classmap": [
+
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "minimum-stability": "dev"
+}

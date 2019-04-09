@@ -1,0 +1,50 @@
+{
+	"name": "firestark/project",
+	"type": "project",
+	"version": "0.0.1",
+	"description": "",
+	"keywords": [ ],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Aron Wouters",
+			"email": "aron@qbil.nl",
+			"role": "Developer"
+		}
+	],
+	"require" : {
+        "firestark/ioc": "*",
+		"firestark/http": "*",
+		"firestark/support": "*",
+		"jenssegers/blade": "*"
+	},
+	"require-dev": {
+        "firestark/testing": "*",
+		"wikimedia/composer-merge-plugin": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"": [ "app/facades", "services" ],
+			"firestark\\": "app"
+ 	 	},
+        "files": [
+            "app/readability.php"
+        ]
+	},
+	"autoload-dev": {
+		"psr-4": {
+
+		}
+	},
+	"config": {
+		"preferred-install": "dist"
+	},
+	"minimum-stability": "dev",
+	"extra": {
+		"merge-plugin": {
+	      	"require": [
+	          	"../composer.json"
+	      	]
+  		}
+	}
+}
