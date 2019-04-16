@@ -1,6 +1,6 @@
 # Firestark
 
-Firestark is a **non mvc PHP7 framework: Firestark**.
+Firestark is a **non mvc PHP7 framework**.
 An example project can be found [here](https://github.com/firestark/goalstark)
 
 
