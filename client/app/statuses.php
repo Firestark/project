@@ -9,24 +9,41 @@ class statuses
 {
     private $matched = [ ];
 
-    public function match ( int $status ) : closure
+    public function match ( $status ) : closure
     {
-        if ( ! $this->matches ( $status ) )
-            throw new \runtimeException ( "The status code: $status has not been matched." );
+        $key = $this->encode ( $status );
+        
+        if ( ! $this->matches ( $key ) )
+            throw new \runtimeException ( "The status code: {$this->toString($status)} has not been matched." );
 
-        return $this->matched [ $status ];
+        return $this->matched [ $key ];
     }
 
-    public function matching ( int $status, closure $callback )
+    public function matching ( $status, closure $callback )
     {
-        if ( $this->matches ( $status ) )
-            throw new \runtimeException ( "The status code: $status has already been matched." );
+        $key = $this->encode ( $status );
+        
+        if ( $this->matches ( $key ) )
+            throw new \runtimeException ( "The status code: {$this->toString($status)} has already been matched." );
 
-        $this->matched [ $status ] = $callback;
+        $this->matched [ $key ] = $callback;
     }
 
-    public function matches ( int $status ) : bool
+    public function matches ( $key ) : bool
     {
-        return ( array_key_exists ( $status, $this->matched ) ) ;
+        return ( array_key_exists ( $key, $this->matched ) ) ;
+    }
+
+    private function encode ( $status ) : string
+    {
+        return serialize ( $status );
+    }
+
+    private function toString ( $status ) : string
+    {
+        if ( is_array ( $status ) )
+            return '[ ' . implode ( ', ', $status ) . ' ]';
+        
+        return ( string ) $status;
     }
 }
