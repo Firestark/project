@@ -15,11 +15,9 @@
 	"require" : {
         "firestark/ioc": "*",
 		"firestark/http": "*",
-		"firestark/support": "*",
-		"jenssegers/blade": "*"
+		"firestark/support": "*"
 	},
 	"require-dev": {
-        "firestark/testing": "*",
 		"wikimedia/composer-merge-plugin": "*"
 	},
 	"autoload": {
