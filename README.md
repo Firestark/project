@@ -6,7 +6,9 @@ Firestark is a **non mvc PHP7 framework** which separates business logic from im
 
 
 An example project can be found [here](https://github.com/firestark/goalstark)
-
+<br>
+<br>
+<br>
 ```php
 when ( 'i want to add a todo', then ( apply ( a ( 
     
