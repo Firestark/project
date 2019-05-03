@@ -10,6 +10,10 @@ An example project can be found [here](https://github.com/firestark/goalstark)
 <br>
 <br>
 ```php
+<?php
+
+use function compact as with;
+
 when ( 'i want to add a todo', then ( apply ( a ( 
     
 function ( todo $todo, todoManager $todoManager )
