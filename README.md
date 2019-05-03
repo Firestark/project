@@ -7,6 +7,20 @@ Firestark is a **non mvc PHP7 framework** which separates business logic from im
 
 An example project can be found [here](https://github.com/firestark/goalstark)
 
+```php
+when ( 'i want to add a todo', then ( apply ( a ( 
+    
+function ( todo $todo, todoManager $todoManager )
+{
+    if ( $todoManager->has ( $todo ) )
+        return [ 2000, with ( 'todo' ) ];
+
+    $todoManager->add ( $todo );
+    return [ 1000, with ( 'todo' ) ];
+} ) ) ) );
+```
+> Firestark's business logic code example
+
 
 ## Getting started
 
@@ -48,4 +62,4 @@ Firestark is very small by default and uses the following components:
 - small HTTP layer
 - Http router
 
-With these components firestark provides you a basic architecture to built well structured, business driven applications. The architecture is built in such a way that you can easily extend it with your own favourite components. 
+With these components firestark provides you a basic architecture to built well structured, business driven applications. The architecture is built in such a way that you can easily extend it with your own favourite components.
