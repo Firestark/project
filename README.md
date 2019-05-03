@@ -40,3 +40,12 @@ server {
 }
 ```
 
+## Out the box
+
+Firestark is very small by default and uses the following components:
+
+- IOC container
+- small HTTP layer
+- Http router
+
+With these components firestark provides you a basic architecture to built well structured, business driven applications. The architecture is built in such a way that you can easily extend it with your own favourite components. 
