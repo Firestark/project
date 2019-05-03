@@ -13,7 +13,8 @@ An example project can be found [here](https://github.com/firestark/goalstark)
 1. Setup a virtual host pointing to the index.php inside the client directory.
 2. In client/config.php correct the BASE URL.
 3. Make sure the app can write inside the client/storage directory.
-3. Run composer install inside the client directory.
+4. Run composer install inside the client directory.
+
 
 
 ### Example nginx vhost
@@ -38,3 +39,4 @@ server {
     }
 }
 ```
+
