@@ -6,9 +6,11 @@ Firestark is a **non mvc PHP7 framework** which separates business logic from im
 
 
 An example project can be found [here](https://github.com/firestark/goalstark)
+
 <br>
 <br>
 <br>
+
 ```php
 <?php
 
@@ -27,6 +29,8 @@ function ( todo $todo, todoManager $todoManager )
 ```
 > Firestark's business logic code example
 
+<br>
+<br>
 
 ## Firestark's propositions
 
@@ -52,6 +56,8 @@ With these components firestark provides you a basic architecture to built well 
 
 Because firestark does not include any unnecessary code building fast and robust applications with firestark is easy.
 
+<br>
+<br>
 
 ## Getting started
 
