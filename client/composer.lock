@@ -79,12 +79,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/firestark/http.git",
-                "reference": "cedfcee22040100cd4ef221e704400da9afd1b08"
+                "reference": "73a9cdfa11cd5f23a9218558c9517931aff2e489"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firestark/http/zipball/cedfcee22040100cd4ef221e704400da9afd1b08",
-                "reference": "cedfcee22040100cd4ef221e704400da9afd1b08",
+                "url": "https://api.github.com/repos/firestark/http/zipball/73a9cdfa11cd5f23a9218558c9517931aff2e489",
+                "reference": "73a9cdfa11cd5f23a9218558c9517931aff2e489",
                 "shasum": ""
             },
             "require": {
@@ -127,7 +127,7 @@
                 "library",
                 "lionar"
             ],
-            "time": "2019-04-26T09:50:35+00:00"
+            "time": "2019-05-06T14:28:17+00:00"
         },
         {
             "name": "firestark/ioc",
@@ -280,12 +280,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "88e9530028e506d5d290c1eeded4ca8e85b24b41"
+                "reference": "f2eef632ab5a61cdd6653aac1c1056410de115f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/88e9530028e506d5d290c1eeded4ca8e85b24b41",
-                "reference": "88e9530028e506d5d290c1eeded4ca8e85b24b41",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/f2eef632ab5a61cdd6653aac1c1056410de115f4",
+                "reference": "f2eef632ab5a61cdd6653aac1c1056410de115f4",
                 "shasum": ""
             },
             "require": {
@@ -316,7 +316,7 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2019-04-22T18:42:02+00:00"
+            "time": "2019-05-05T01:12:20+00:00"
         },
         {
             "name": "illuminate/support",
