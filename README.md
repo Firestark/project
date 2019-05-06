@@ -2,7 +2,7 @@
 <br>
 
 
-Firestark is a **non mvc PHP7 framework** which separates business logic from implementation logic. Firestark achieves this separation by giving you a special architecture that completely rids the business logic from outside dependencies. Instead the implementation logic is responsible for dependencies and speaks with the businnes logic to make a working application. This way the business logic becomes a very simple and readable layer to work in.
+Firestark is a **non mvc PHP7 framework** which separates business logic from implementation logic. Firestark achieves this separation by giving you a special architecture that completely rids the business logic from outside dependencies. Instead the implementation logic is responsible for dependencies and speaks with the businnes logic to make a working application. This way the business logic is a very simple and readable layer to work in.
 
 
 An example project can be found [here](https://github.com/firestark/goalstark)
@@ -26,6 +26,31 @@ function ( todo $todo, todoManager $todoManager )
 } ) ) ) );
 ```
 > Firestark's business logic code example
+
+
+## Firestark's propositions
+
+### Business driven architecture
+
+Firestark puts business logic first. At the highest level you will immediately see what the application is meant to do. Technical implementations can be found at lower levels.
+
+### You ain't gonna need it
+
+Firestark is built with [YAGNI](https://martinfowler.com/bliki/Yagni.html) in mind. Adding more code adds more complexity, often in vain. Firestark provides just the functionality you need and not a line of code more.
+
+### Flexibility
+
+Firestark is very small by default and uses the following components:
+
+- IOC container
+- small HTTP layer
+- Http router
+
+With these components firestark provides you a basic architecture to built well structured, business driven applications. The architecture is built in such a way that you can easily extend it with your own favourite components.
+
+### Fast
+
+Because firestark does not include any unnecessary code building fast and robust applications with firestark is easy.
 
 
 ## Getting started
@@ -59,13 +84,3 @@ server {
     }
 }
 ```
-
-## Out the box
-
-Firestark is very small by default and uses the following components:
-
-- IOC container
-- small HTTP layer
-- Http router
-
-With these components firestark provides you a basic architecture to built well structured, business driven applications. The architecture is built in such a way that you can easily extend it with your own favourite components.
