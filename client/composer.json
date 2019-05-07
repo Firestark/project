@@ -7,10 +7,11 @@
 	"license": "MIT",
 	"authors": [
 		{
-			"name": "Aron Wouters",
-			"email": "aron@qbil.nl",
-			"role": "Developer"
-		}
+            "name": "Aron Wouters",
+            "email": "lionar@mail.com",
+            "role": "Developer",
+            "homepage": "https://eyedouble.nl/"
+        }
 	],
 	"require" : {
         "firestark/ioc": "*",

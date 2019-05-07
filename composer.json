@@ -7,15 +7,15 @@
     "authors": [
         {
             "name": "Aron Wouters",
-            "email": "aron@qbil.com",
-            "role": "Developer"
+            "email": "lionar@mail.com",
+            "role": "Developer",
+            "homepage": "https://eyedouble.nl/"
         }
     ],
     "require" : {
 
     },
     "require-dev": {
-        "firestark/testing": "*"
     },
     "autoload": {
         "psr-4": {
