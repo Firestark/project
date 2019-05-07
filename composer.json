@@ -3,7 +3,12 @@
     "type": "project",
     "version": "0.0.1",
     "description": "PHP7+ NON-MVC framework focused on business the logic.",
-    "keywords": [ "PHP7+", "NON-MVC", "Framework", "Business logic" ],
+    "keywords": [
+        "framework",
+    	"non-mvc",
+        "business logic",
+	"firestark"
+    ],
     "license": "MIT",
     "authors": [
         {
