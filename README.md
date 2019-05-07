@@ -59,11 +59,13 @@ Because firestark does not include any unnecessary code building fast and robust
 <br>
 <br>
 
-## Server Requirements
+## Getting started
+
+### Server Requirements
 
 - PHP >= 7.1.3
 
-## Getting started
+### Setup
 
 1. In client/config.php correct the BASE URL.
 2. Make sure the app can write inside the client/storage directory.
