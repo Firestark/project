@@ -65,6 +65,8 @@ Because firestark does not include any unnecessary code building fast and robust
 2. Make sure the app can write inside the client/storage directory.
 3. Run composer install inside the client directory.
 
+<br>
+<br>
 
 ## Directory structure
 
