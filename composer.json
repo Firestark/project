@@ -15,8 +15,7 @@
 
     },
     "require-dev": {
-        "firestark/testing": "*",
-        "psy/psysh": "*"
+        "firestark/testing": "*"
     },
     "autoload": {
         "psr-4": {
