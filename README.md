@@ -64,3 +64,17 @@ Because firestark does not include any unnecessary code building fast and robust
 1. In client/config.php correct the BASE URL.
 2. Make sure the app can write inside the client/storage directory.
 3. Run composer install inside the client directory.
+
+
+## Directory structure
+
+| Directory         | Description                   |
+| -------------     |-------------------------------|
+| /app              | Business logic                |
+| /app/procedures   | Business logic procedures     |
+| /app/agreements   | Business logic entities       |
+| /client           | Technical layer               |
+| /client/services  | Implementation of agreements  |
+| /client/bindings  | App implementations bindings  |
+| /client/routes    | Http routes                   |
+| /client/statuses  | Business status matchers      |
