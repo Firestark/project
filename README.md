@@ -59,6 +59,10 @@ Because firestark does not include any unnecessary code building fast and robust
 <br>
 <br>
 
+## Server Requirements
+
+- PHP >= 7.1.3
+
 ## Getting started
 
 1. In client/config.php correct the BASE URL.
