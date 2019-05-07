@@ -19,11 +19,11 @@
 		"firestark/support": "*"
 	},
 	"require-dev": {
-		"wikimedia/composer-merge-plugin": "*"
+		"firestark/testing": "*"
 	},
 	"autoload": {
 		"psr-4": {
-			"": [ "app/facades", "services" ],
+			"": [ "../app/agreements", "app/facades", "services" ],
 			"firestark\\": "app"
  	 	},
         "files": [
@@ -38,12 +38,5 @@
 	"config": {
 		"preferred-install": "dist"
 	},
-	"minimum-stability": "dev",
-	"extra": {
-		"merge-plugin": {
-	      	"require": [
-	          	"../composer.json"
-	      	]
-  		}
-	}
+	"minimum-stability": "dev"
 }
