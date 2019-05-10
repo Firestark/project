@@ -91,6 +91,13 @@ Because firestark does not include any unnecessary code building fast and robust
 
 ## Inspirations
 
-> A good architecture allows for major decisions to be defered
+### Years of lost architecture
 
-Robert C. Martin
+[Good software architecture explanation](https://www.youtube.com/watch?v=WpkDN78P884)
+
+#### key takeaways
+> A good Architecture immediately shows it's intent
+> A good architecture allows for major decisions to be defered
+> The database is a detail
+
+By Robert C. Martin
