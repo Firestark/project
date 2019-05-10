@@ -97,7 +97,9 @@ Because firestark does not include any unnecessary code building fast and robust
 
 #### key takeaways
 > A good Architecture immediately shows it's intent
+
 > A good architecture allows for major decisions to be defered
+
 > The database is a detail
 
 By Robert C. Martin
