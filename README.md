@@ -92,4 +92,5 @@ Because firestark does not include any unnecessary code building fast and robust
 ## Inspirations
 
 > A good architecture allows for major decisions to be defered
+
 Robert C. Martin
