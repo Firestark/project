@@ -86,3 +86,20 @@ Because firestark does not include any unnecessary code building fast and robust
 | /client/bindings  | App implementations bindings  |
 | /client/routes    | Http routes                   |
 | /client/statuses  | Business status matchers      |
+
+
+
+## Inspirations
+
+### Years of lost architecture
+
+[Good software architecture explanation](https://www.youtube.com/watch?v=WpkDN78P884)
+
+#### key takeaways
+> A good Architecture immediately shows it's intent
+
+> A good architecture allows for major decisions to be defered
+
+> The database is a detail
+
+By Robert C. Martin
