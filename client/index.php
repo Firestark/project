@@ -11,7 +11,6 @@ $app->instance ( 'request', firestark\request::capture ( ) );
 $app->instance ( 'response', new http\response\factory ( firestark\response::class ) );
 $app->instance ( 'redirector', new firestark\redirector ( BASEURL, $app [ 'session' ]->get ( 'uri', '/' ) ) );
 $app->instance ( 'router', new firestark\router );
-$app [ 'session' ]->flash ( 'uri', $app [ 'request' ]->uri );
 
 facade::setFacadeApplication ( $app );
 
@@ -26,3 +25,4 @@ $kernel = new firestark\kernel ( $dispatcher );
 $response = $kernel->handle ( $app [ 'request' ] );
 
 $response->send ( );
+$app [ 'session' ]->flash ( 'uri', $app [ 'request' ]->uri );
