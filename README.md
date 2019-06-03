@@ -5,7 +5,7 @@
 Firestark is a **non mvc PHP7 framework** which separates business logic from implementation logic. Firestark achieves this separation by giving you a special architecture that completely rids the business logic from outside dependencies. Instead the implementation logic is responsible for dependencies and speaks with the businnes logic to make a working application. This way the business logic is a very simple and readable layer to work in.
 
 
-A simple todo app example can be found [here] (https://github.com/firestark/todo) <br>
+A simple todo app example can be found [here](https://github.com/firestark/todo) <br>
 An example project can be found [here](https://github.com/firestark/goalstark)
 
 <br>
