@@ -104,3 +104,64 @@ Because firestark does not include any unnecessary code building fast and robust
 > The database is a detail
 
 By Robert C. Martin
+
+
+## The general idea
+
+The general idea is that we split up the entire application into 2 layers:
+- The business logic
+- The implementation logic
+
+### The business logic
+
+The business logic is the part of your application where business rules are enforced. This layer is split up into two different section:
+- Agreements
+- Procedures
+
+#### Procedures
+
+Procedures apply rules decided by the business to the application. The following are examples of such rules:
+- A todo with given description may only occur once.
+- A person with a bronze account has 10% price reduction on his total buyings.
+- Booking a flight in holiday seasons adds an additional 15% cost on the base price.
+
+Next to applying these rules the procedure usually calls some methods to create, read, update or delete some entities in the system. In the end a procedure returns a status, based on the result of the applied rules with optionally some data relevant to that status.
+
+#### Agreements
+
+Agreements are plain php objects. An agreement can be an entity which describes all the properties that belong to that entity or a business service that interacts with entities.
+
+##### Entity
+
+An example of an entity is a: todo. That todo entity describes all the data that belongs to a todo. A todo could for example exist of a description, a flag to see whether it’s completed and a due date.
+
+
+##### Business service
+
+An example of a service is a todo manager. The todo manager is an access point to the todos, like a repository. The todo manager describes all the things that can be done with todo’s. For example a todo can be retrieved, added, updated or deleted. The important part here is that this business service **must not depend** on concrete implementations. This means this business service does not know about the underlying used persistence mechanism (eg. database, flatfile). This business service simply describes what can and may be done with a todo.
+
+
+### The implementation logic
+
+The implementation logic is responsible to implement all the things the business logic needs to create a working application. The following things reside in this layer:
+- Services: Implementations of business services
+- Container bindings
+- Status matchers: To respond on statuses returned by the business logic
+- Http Routing
+- Views
+- Facades
+
+
+#### Services
+
+A service is an implementation of a business service. The business service states some functionality that the service needs to implement. For example: A service that implements the todomanager could be a flatfiletodomanager. The flatfiletodomanager implements all functionality the todomanager in the business logic states and stores the results in a flat file.
+
+
+#### Bindings
+
+A binding binds a service to a business service in the application. This way we can choose what implementation to use in our application. For example if i want to use a flatfiletodomanager as the used todomanager in my application i would use a binding to do that.
+
+
+#### Status matchers
+
+A status matcher matches a particular status returned by the business logic. In this status matcher we can do some final calculations before sending back a response to the client.
