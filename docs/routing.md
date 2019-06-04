@@ -47,8 +47,6 @@ route::get ( '/{id}/{name}', function ( $name, $id )
 
 Watch out: The order of provided parameters is maintained. For the example above this means the {id} part is assigned to $name and the {name} part is assigned to $id.
 
-<br>
-<br>
 
 ## Input
 
