@@ -66,11 +66,10 @@ Because firestark does not include any unnecessary code building fast and robust
 
 - PHP >= 7.1.3
 
-### Setup
+### Installation
 
-1. In client/config.php correct the BASE URL.
+1. composer create-project firestark/project
 2. Make sure the app can write inside the client/storage directory.
-3. Run composer install inside the root directory.
 
 <br>
 <br>
