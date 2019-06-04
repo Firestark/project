@@ -1,3 +1,3 @@
 <?php
 
-define ( 'BASEURL', 'http://firestark-project' );
+define ( 'BASEURL', 'http://project' );
