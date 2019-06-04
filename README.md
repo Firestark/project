@@ -65,6 +65,7 @@ Because firestark does not include any unnecessary code building fast and robust
 ### Server Requirements
 
 - PHP >= 7.1.3
+- Host pointing to / (for example: virtual host)
 
 ### Installation
 
