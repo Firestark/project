@@ -20,7 +20,7 @@ route::get ( '/{id}', function ( $id )
 ```
 
 
-All files inside the ``/client/routes`` directory are automatically included. This means you can create as many files as you want inside this ``/client/routes`` directory to define your routes.
+All files inside the ``/client/routes`` directory are automatically included. This means you can create as many php files as you want inside this ``/client/routes`` directory to define your routes.
 
 ## Route parameters
 
