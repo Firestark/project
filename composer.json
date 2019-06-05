@@ -27,7 +27,7 @@
     },
     "autoload": {
 		"psr-4": {
-			"": [ "app/agreements", "client/app/facades", "client/services" ],
+			"": [ "app/agreements", "client/facades", "client/services" ],
 			"firestark\\": "client/app"
  	 	},
         "files": [
