@@ -13,10 +13,10 @@ $app->instance ( 'router', new firestark\router );
 
 facade::setFacadeApplication ( $app );
 
-requiring ( __DIR__ . '/routes' );
-requiring ( __DIR__ . '/bindings' );
-requiring ( __DIR__ . '/statuses' );
-requiring ( __DIR__ . '/../app/procedures' );
+including ( __DIR__ . '/routes' );
+including ( __DIR__ . '/bindings' );
+including ( __DIR__ . '/statuses' );
+including ( __DIR__ . '/../app/procedures' );
 
 
 $dispatcher = new http\dispatcher ( $app [ 'router' ]->routes, $app [ 'router' ]->groups );
