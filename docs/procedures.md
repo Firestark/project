@@ -56,3 +56,18 @@ If the ``todo\manager`` instance  has a todo with given description we return a 
 
 
 Procedures are located inside the /app/procedures directory. Any .php file inside this directory and nested directories is automatically included inside your project.
+
+
+
+## Running a procedure
+
+Procedures are stored under a name inside the application. To run a procedure we call the fulfill method with the given name on the application instance.
+
+
+```php
+
+app::fulfill ( 'i want to add a todo' );
+
+```
+
+The code above is an example of the running the procedure we have defined above. the dependencies of that procedure are automatically resolved by the application. The status returned by the procedure gets matched by the application and the bound status matcher will run.
