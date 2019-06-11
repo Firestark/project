@@ -70,4 +70,4 @@ app::fulfill ( 'i want to add a todo' );
 
 ```
 
-The code above is an example of running the procedure: ``'i want to add a todo'`` we have defined in the examples above. the dependencies of that procedure are automatically resolved and injected by the application. As a result of running a procedure, the status returned by that procedure gets matched by the application and the connected status matcher will run.
+The code above is an example of running the procedure: ``'i want to add a todo'`` that we have defined in the examples above. the dependencies of that procedure are automatically resolved and injected by the application. As a result of running a procedure, the status returned by that procedure gets matched by the application and the connected status matcher will run.
