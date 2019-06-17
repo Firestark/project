@@ -39,15 +39,27 @@ Another recommendation is to split status code up in different ranges for differ
 ## Examples
 
 ```php
-
 status::matching ( 1000, function ( array $goals )
 {
     // return http response
 } );
-
 ```
 
 > Example 1
 
-In example 1 we match the status 1000 and receive an array of goals from the procedure. 
+In example 1 we match the status 1000 and receive an array of goals from the procedure.
 
+### Matching multiple statuses
+
+Sometimes we need data from multiple procedures. In this case we need to match multiple statuses as shown in the following example:
+
+```php
+status::matching ( [ 1009, 7009 ], function ( goal $goal, int $protein )
+{
+	// return http response
+} );
+```
+
+> Example 2
+
+In example 2 we match the status 1009 and 7009 coming from 2 different procedures. This status only runs when both status codes gets matched.

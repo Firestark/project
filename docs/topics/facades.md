@@ -1,6 +1,6 @@
 # Facades
 
-A facade is a class that provides easy access to an object inside the application. All facades are located inside the ``/client/facades`` directory.
+A facade is a class that provides easy access to an object inside the application. All facades are located inside the ``/client/facades`` directory and automatically loaded into the global namespace by composer.
 
 ```php
 

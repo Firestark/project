@@ -9,7 +9,7 @@ Next to applying these rules the procedure usually calls some methods to create,
 
 A procedure always returns a status with optionally some data relevant to that status. This status indicates a meaning of the results from the applied business rules. 
 
-Procedures are located inside the `/app/procedures` directory. Any `.php` file inside this directory and nested directories is automatically included inside your project and therefor automatically available inside the application.
+Procedures are located inside the `/app/procedures` directory. Any `.php` file inside this directory and nested directories is automatically included inside your project and therefor automatically available inside the application. This means you can name your procedure files anyway you like as long as it is placed under the `/app/procedures` directory or any nested directory inside there and the file has the `.php` suffix.
 
 ## Examples
 
@@ -77,6 +77,8 @@ status::matching ( [ 1009, 7009 ], function ( goal $goal, int $protein )
 {
 	//
 } );
-
 ```
 
+## Recommendations
+
+A recommended way of naming procedure files is to use the procedure name as the filename. For example for a procedure named: `'i want to add a todo'` you would name the file: `i want to add a todo.php`. 
