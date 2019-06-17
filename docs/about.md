@@ -53,7 +53,7 @@ The implementation logic consists of routing, services, facades, status matchers
 
 Agreements inside the business logic may know nothing about technical details. Because of this the agreements can not directly talk to a database. To still be able to store changes in a database we create a service inside the implementation layer that extends or implements the agreement. This service can talk to a database to store changes.
 
-### Bindings
+### IOC bindings
 
 Bindings are a map of key, value pairs we register inside the application. The key can be any string you like. The value is a closure that returns any value you want. Whenever you 'resolve' the key from the application you will get the value that the closure returns. 
 
@@ -61,6 +61,14 @@ One of the major use cases of bindings are resolving the procedure parameters in
 
 ### Status matchers
 
-A status matcher is a map of key, value pairs we register inside the application. The key can be any number you like. The value must be a closure which returns a HTTP response.
+A status matcher is a map of key, value pairs we register inside the application. The key can be any integer you like. The value must be a closure which returns a HTTP response.
 
-Status matchers are used to match a status returned by the procedures inside the business logic. 
+Status matchers are used to match a status returned by the procedures inside the business logic.
+
+### Facades
+
+Facades give static access to technical components and are used inside the implementation layer only. With a facade we don't need an instance of a component but instead use the facade with a static call directly.
+
+### Routes
+
+Routes are a map of key, value pairs. The key is a http uri. The value is a closure which either calls a business procedure and returns that result or returns an http response.
