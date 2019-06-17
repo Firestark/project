@@ -70,3 +70,20 @@ Facades give static access to technical components and are used inside the imple
 ### Routes
 
 Routes are a map of key, value pairs. The key is a http uri. The value is a closure which either calls a business procedure and returns that result or returns an http response.
+
+
+
+## Directory structure
+
+| Directory        | Description                  |
+| ---------------- | ---------------------------- |
+| /app             | Business logic               |
+| /app/procedures  | Business logic procedures    |
+| /app/agreements  | Business logic entities      |
+| /client          | Technical layer              |
+| /client/services | Implementation of agreements |
+| /client/bindings | App implementations bindings |
+| /client/routes   | Http routes                  |
+| /client/statuses | Business status matchers     |
+| /client/facades  | Technical facades            |
+

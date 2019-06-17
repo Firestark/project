@@ -1,16 +1,10 @@
 <img src="./logo.svg" width="250" align="center" vertical-align="top">
-<br>
 
 
 Firestark is a **non mvc PHP7 framework** which separates business logic from implementation logic. Firestark achieves this separation by giving you a special architecture that completely rids the business logic from outside dependencies. Instead the implementation logic is responsible for dependencies and speaks with the businnes logic to make a working application. This way the business logic is a very simple and readable layer to work in.
 
-
-A simple todo app example can be found [here](https://github.com/firestark/todo) <br>
-An example project can be found [here](https://github.com/firestark/goalstark)
-
-<br>
-<br>
-<br>
+- A simple todo app example can be found [here](https://github.com/firestark/todo)
+- An example project can be found [here](https://github.com/firestark/goalstark)
 
 ```php
 <?php
@@ -19,19 +13,17 @@ use function compact as with;
 
 when ( 'i want to add a todo', then ( apply ( a ( 
     
-function ( todo $todo, todoManager $todoManager )
+function ( todo $todo, todo\manager $manager )
 {
-    if ( $todoManager->has ( $todo ) )
+    if ( $manager->has ( $todo ) )
         return [ 2000, with ( 'todo' ) ];
 
-    $todoManager->add ( $todo );
+    $manager->add ( $todo );
     return [ 1000, with ( 'todo' ) ];
 } ) ) ) );
 ```
 > Firestark's business logic code example
 
-<br>
-<br>
 
 ## Firestark's propositions
 
@@ -57,8 +49,6 @@ With these components firestark provides you a basic architecture to built well 
 
 Because firestark does not include any unnecessary code building fast and robust applications with firestark is easy.
 
-<br>
-<br>
 
 ## Getting started
 
@@ -72,23 +62,19 @@ Because firestark does not include any unnecessary code building fast and robust
 1. composer create-project firestark/project
 2. Make sure the app can write inside the client/storage directory.
 
-<br>
-<br>
-
 ## Directory structure
 
-| Directory         | Description                   |
-| -------------     |-------------------------------|
-| /app              | Business logic                |
-| /app/procedures   | Business logic procedures     |
-| /app/agreements   | Business logic entities       |
-| /client           | Technical layer               |
-| /client/services  | Implementation of agreements  |
-| /client/bindings  | App implementations bindings  |
-| /client/routes    | Http routes                   |
-| /client/statuses  | Business status matchers      |
-
-
+| Directory        | Description                  |
+| ---------------- | ---------------------------- |
+| /app             | Business logic               |
+| /app/procedures  | Business logic procedures    |
+| /app/agreements  | Business logic entities      |
+| /client          | Technical layer              |
+| /client/services | Implementation of agreements |
+| /client/bindings | App implementations bindings |
+| /client/routes   | Http routes                  |
+| /client/statuses | Business status matchers     |
+| /client/facades  | Technical facades            |
 
 ## Inspirations
 
@@ -165,3 +151,7 @@ A binding binds a service to a business service in the application. This way we 
 #### Status matchers
 
 A status matcher matches a particular status returned by the business logic. In this status matcher we can do some final calculations before sending back a response to the client.
+
+## Contributions
+
+Contributions and feedback are very appreciated, feel free to [place an issue](https://github.com/firestark/project/issues).

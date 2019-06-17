@@ -21,12 +21,16 @@ class todo
     function __construct ( $id, string $description )
     {
         $this->id = $id;
-        $this->description = $description;
+        $this->description = substr ( $description, 0, 30 );
     }
 }
 ```
 
 > Example 1
+
+Example 1 models a todo and describes all the data that belongs to a todo. As an example for business logic it crops the string to a max of 30 characters.
+
+
 
 ```php
 <?php
