@@ -21,8 +21,6 @@ function ( todo $todo, todo\manager $manager )
 } ) ) ) );
 ```
 
-
-
 > Example 1. A business procedure example
 
 
@@ -35,7 +33,7 @@ Your application is split up into two layers. One layer is the business logic la
 
 ## The business logic
 
-The business logic layer is split up in *agreements* and *procedures*. Agreements consist of **self contained** classes, abstract classes and interfaces. These agreements can contain some *non application specific business rules* that always have to be enforced. An example of that could be: A person has to be above the age of 18 to be allowed to buy x-product. If this rule needs to be enforced for the entire business and not just this application it is a good idea to put that rule in an agreement. 
+The business logic layer is split up in *agreements* and *procedures*. Agreements consist of **self contained** classes, abstract classes and interfaces. These agreements may contain some *non application specific business rules* that always have to be enforced. An example of that could be: A person has to be above the age of 18 to be allowed to buy products in our store. If this rule needs to be enforced for the entire business and not just this application it is a good idea to put that rule in an agreement. 
 
 procedures are small functions that use agreements to enforce *application specific business rules*. A procedure always returns a status code. That status code is an integer and is up to the developer to decide what integer to return based on the results of the applied business rules. **Example 1 above ** is an example of a procedure.
 
