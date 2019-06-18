@@ -51,13 +51,11 @@ One of the major use cases of bindings are resolving the procedure parameters in
 
 ### Status matchers
 
-A status matcher is a map of key, value pairs we register inside the application. The key can be any integer you like. The value must be a closure which returns a HTTP response.
-
-Status matchers are used to match a status returned by the procedures inside the business logic.
+With a status code the business logic communicates an arbitrary meaning to the implementation layer. It's the responsibility of the status matcher to match that status code and turn that arbitrary meaning into a HTTP response.
 
 ### Facades
 
-Facades give static access to technical components and are used inside the implementation layer only. With a facade we don't need an instance of a component but instead use the facade with a static call directly.
+Facades give static access to technical components and are used inside the implementation layer only. With a facade we don't need an instance of a component but instead use the facade with a static call directly. Facades are really useful in situations where we want access to technical components but don't really want to inject them as function arguments.
 
 ### Routes
 

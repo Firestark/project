@@ -32,3 +32,5 @@ In example 1 we bind the `\todo\manager` class to return a `flatfileTodoManager`
 
 
 
+## Resolving bindings
+
