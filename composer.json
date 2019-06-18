@@ -20,7 +20,8 @@
     "require" : {
         "firestark/ioc": "*",
 		"firestark/http": "*",
-		"firestark/support": "*"
+        "firestark/support": "*",
+        "php": "^7.1.3"
 	},
     "require-dev": {
         "firestark/testing": "*"
