@@ -2,9 +2,7 @@
 
 
 
-Firestark is a **non mvc PHP7 framework** which separates business logic from implementation logic. Firestark achieves this separation by giving you a special architecture that completely rids the business logic from outside dependencies. Instead the implementation logic is responsible for dependencies and speaks with the businnes logic to make a working application. This way the business logic is a very simple and readable layer to work in.
-
-
+Firestark is a **non MVC PHP7 framework** which separates business logic from implementation logic. Firestark achieves this separation by giving you a special architecture that completely rids the business logic from outside dependencies. Instead the implementation logic is responsible for dependencies and speaks with the businesses logic to make a working application. This way the business logic is a very simple and readable layer to work in.
 
 ```php
 <?php
@@ -29,8 +27,6 @@ function ( todo $todo, todo\manager $manager )
 
 Your application is split up into two layers. One layer is the business logic layer. This layer is responsible for enforcing business rules and returning a status code. The other layer is the implementation layer. This layer is responsible for implementing the business logic layer to create a working application.
 
-
-
 ## The business logic
 
 The business logic layer is split up in *agreements* and *procedures*. Agreements consist of **self contained** classes, abstract classes and interfaces. These agreements may contain some *non application specific business rules* that always have to be enforced. An example of that could be: A person has to be above the age of 18 to be allowed to buy products in our store. If this rule needs to be enforced for the entire business and not just this application it is a good idea to put that rule in an agreement. 
@@ -39,13 +35,9 @@ procedures are small functions that use agreements to enforce *application speci
 
 The most important thing to understand here is that this layer may know nothing about implementation details. This means that this layer knows nothing about what database is used or how it is delivered to the client (HTML, JSON).  
 
-
-
 ## The implementation logic
 
 The implementation logic consists of routing, services, facades, status matchers and IOC bindings. These are the technical components we use to create a working application.
-
-
 
 ### Services
 
@@ -69,9 +61,7 @@ Facades give static access to technical components and are used inside the imple
 
 ### Routes
 
-Routes are a map of key, value pairs. The key is a http uri. The value is a closure which either calls a business procedure and returns that result or returns an http response.
-
-
+Routes are a map of key, value pairs. The key is a HTTP URI. The value is a closure which either calls a business procedure and returns that result or returns an HTTP response.
 
 ## Directory structure
 
@@ -88,8 +78,6 @@ Routes are a map of key, value pairs. The key is a http uri. The value is a clos
 | /client/facades  | Technical facades            |
 
 
-
-
 ## Getting started
 
 ### Server requirements
@@ -100,4 +88,4 @@ Routes are a map of key, value pairs. The key is a http uri. The value is a clos
 ### Installation
 
 1. `composer create-project firestark/project`
-2. Make sure the app can write inside the client/storage directory
+2. Make sure the application can write inside the client/storage directory

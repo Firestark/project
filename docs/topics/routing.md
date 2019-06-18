@@ -20,7 +20,7 @@ route::get ( '/{id}', function ( $id )
 ```
 
 
-All files inside the ``/client/routes`` directory are automatically included. This means you can create as many php files as you want inside this ``/client/routes`` directory to define your routes.
+All files inside the ``/client/routes`` directory are automatically included. This means you can create as many `.php` files as you want inside this ``/client/routes`` and nested directories to define your routes.
 
 ## Route parameters
 
@@ -59,5 +59,5 @@ route::get ( '/{id}', function ( $id )
 
 ```
 
-Route parameters are automatically made available as request input. With the route defined in above example and a request with uri GET /my-id 
-Means input::get ( 'id' ) === "my-id".
+Route parameters are automatically made available as request input. With the route defined in above example and a request with URI `GET /my-id` means `input::get ( 'id' ) === "my-id"`.
+

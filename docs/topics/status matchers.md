@@ -11,31 +11,6 @@ The status matcher possibly receives some data from the procedure it can use to 
 
 Status matchers are located inside the `/client/statuses` directory and are automatically included inside your application. You can name your status files any way you like and nest them in as many directories as you like as long as you place them inside the `/client/statuses` directory and give the filenames the `.php` suffix. 
 
-### Recommendations
-
-A recommended way of naming status files is: `status number  meaning.php` for example:
-
-- 1000 Found goals.php
-- 1001 Added a goal.php
-- 1002 Updated a goal.php
-- 2000 A goal with given description already exists.php
-
-
-
-Another recommendation is to split status code up in different ranges for different categories inside your application and group them in directories like so:
-
-[directory] 1000 - 2999 goals
-
-​		Using 1000 to 1999 for successful goal statuses
-
-​		Using 2000 to 2999 for failure goal statuses 
-
-[directory] 3000 - 4999 tasks
-
-​		Using 3000 to 3999 for successful task statuses
-
-​		Using 4000 to 4999 for failure task statuses 
-
 ## Examples
 
 ```php
@@ -63,3 +38,28 @@ status::matching ( [ 1009, 7009 ], function ( goal $goal, int $protein )
 > Example 2
 
 In example 2 we match the status 1009 and 7009 coming from 2 different procedures. This status only runs when both status codes gets matched.
+
+### Recommendations
+
+A recommended way of naming status files is: `status number  meaning.php` for example:
+
+- 1000 Found goals.php
+- 1001 Added a goal.php
+- 1002 Updated a goal.php
+- 2000 A goal with given description already exists.php
+
+
+
+Another recommendation is to split status code up in different ranges for different categories inside your application and group them in directories like so:
+
+[directory] 1000 - 2999 goals
+
+​		Using 1000 to 1999 for successful goal statuses
+
+​		Using 2000 to 2999 for failure goal statuses 
+
+[directory] 3000 - 4999 tasks
+
+​		Using 3000 to 3999 for successful task statuses
+
+​		Using 4000 to 4999 for failure task statuses
