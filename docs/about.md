@@ -87,3 +87,17 @@ Routes are a map of key, value pairs. The key is a http uri. The value is a clos
 | /client/statuses | Business status matchers     |
 | /client/facades  | Technical facades            |
 
+
+
+
+## Getting started
+
+### Server requirements
+
+- PHP >= 7.1.3
+- Host pointing to / (for example: virtual host)
+
+### Installation
+
+1. `composer create-project firestark/project`
+2. Make sure the app can write inside the client/storage directory
