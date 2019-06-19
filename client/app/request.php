@@ -8,4 +8,9 @@ class request extends \http\request
     {
         return $this->uri;
     }
+
+    public function method ( )
+    {
+        return $this->method;
+    }
 }
