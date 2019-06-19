@@ -1,5 +1,13 @@
 # HTTP
 
+## Request
+
+To get the current request URI you can use the uri method on the request facade like so:
+
+```php
+request::uri ( );
+```
+
 ## Response
 
 ### Creating a HTTP response
