@@ -11,7 +11,102 @@ In this article we are going to use a PHP JWT package in combination with the se
 
 
 
-## Abstraction
+## User with credentials
+
+The first thing we need is a model of the user with it's credentials. We are going to create the credentials and user classes now.
+
+
+
+Create the file `/client/app/user/credentials.php` with the following contents:
+
+```php
+<?php
+
+namespace firestark\user;
+
+class credentials
+{
+    public $username, $password;
+
+    function __construct ( string $username, string $password )
+    {
+        $this->username = $username;
+        $this->password = hash ( 'sha256', $password );
+    }
+}
+```
+
+
+
+Create the file `/client/app/user.php` with the following contents: 
+
+```php
+<?php
+
+namespace firestark;
+
+use firestark\user\credentials;
+
+class user
+{
+    public $credentials = null;
+    public $avatar = '';
+
+    function __construct ( credentials $credentials, string $avatar )
+    {
+        $this->credentials = $credentials;
+        $this->avatar = $avatar;
+    }
+}
+```
+
+
+
+### Bindings
+
+Create the file `/client/bindings/user/credentials.php` with the following contents:
+
+```php
+<?php
+
+use firestark\user\credentials;
+
+app::bind ( credentials::class, function ( $app ) : credentials
+{
+    if ( guard::stamped ( ) )
+        return guard::current ( );
+
+    return new credentials (
+        input::get ( 'username', '' ),
+        input::get ( 'password', '' )
+    );
+} );
+
+```
+
+
+
+Create the file `/client/bindings/user.php` with the following contents:
+
+```php
+<?php
+
+use firestark\user;
+use firestark\user\credentials;
+
+app::bind ( user::class, function ( $app )
+{
+    return new user ( $app [ credentials::class ], '' );
+} );
+```
+
+
+
+
+
+## Guard
+
+### Abstraction
 
 First of all we are going to create an abstraction class to encapsulate some methods and properties around the authentication process.
 
@@ -71,7 +166,7 @@ abstract class guard
 
 
 
-## The JWT package
+### The JWT package
 
 We are going to install a JWT package with composer. This JWT package generates and checks tokens by which we are going to authenticate a user.
 
@@ -85,7 +180,7 @@ composer require firebase/php-jwt
 
 
 
-## Implementation
+### Implementation
 
 Now that the JWT package is installed we need to use this package to create an implementation of the abstraction that we created earlier.
 
