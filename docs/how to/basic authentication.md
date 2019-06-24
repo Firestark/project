@@ -11,13 +11,13 @@ In this article we are going to use a PHP JWT package in combination with the se
 
 
 
-## User with credentials
+## Model
 
-The first thing we need is a model of the user with it's credentials. We are going to create the credentials and user classes now.
+We will model the authentication process by checking user credentials via a user manager. On login the **user manager** checks if it has the given user-name and checks if it's given hashed password is correct. If the credentials are correct we will pass the credentials through to the **guard**. The guard 'stamps' the credentials and generates a **token** which the guard will remember. On subsequent requests this token is available and therefor the user is logged-in. On logout the guard will invalidate the token.
 
+### Users with credentials
 
-
-Create the file `/client/app/user/credentials.php` with the following contents:
+The first thing we need is to create a user with credentials. First we will create the credentials class. Create the directory `/client/app/user/`,  then create the file `/client/app/user/credentials.php` and add the following code:
 
 ```php
 <?php
@@ -50,65 +50,107 @@ use firestark\user\credentials;
 class user
 {
     public $credentials = null;
-    public $avatar = '';
 
-    function __construct ( credentials $credentials, string $avatar )
+    function __construct ( credentials $credentials )
     {
         $this->credentials = $credentials;
-        $this->avatar = $avatar;
     }
 }
 ```
 
 
 
-### Bindings
+### User manager
 
-Create the file `/client/bindings/user/credentials.php` with the following contents:
+Now we will create the user manager which keeps a list of users and exposes some methods to see whether we know a given user and if their credentials are correct.
+
+
+
+##### Abstraction
+
+create the file `/client/app/user/manager.php` with the following code:
 
 ```php
 <?php
 
-use firestark\user\credentials;
+namespace firestark\user;
 
-app::bind ( credentials::class, function ( $app ) : credentials
+use firestark\user;
+
+interface manager
 {
-    if ( guard::stamped ( ) )
-        return guard::current ( );
+    function register ( user $user );
 
-    return new credentials (
-        input::get ( 'username', '' ),
-        input::get ( 'password', '' )
-    );
-} );
+    /**
+     * Checks if the username and user credentials exist.
+     */
+    function has ( user $user ) : bool;
 
+    function registered ( string $username ) : bool;
+}
 ```
 
 
 
-Create the file `/client/bindings/user.php` with the following contents:
+##### Implementation
+
+We will create create a flat-file implementation of the user manager we created above. This flat-file implementation stores users in a file as serialized data.
+
+Create the file `/client/services/flatfileUserManager.php` with the following code:
 
 ```php
 <?php
 
 use firestark\user;
-use firestark\user\credentials;
+use firestark\user\manager;
 
-app::bind ( user::class, function ( $app )
+class flatfileUserManager implements manager
 {
-    return new user ( $app [ credentials::class ], '' );
-} );
+    private $users = [ ];
+    private $file = '';
+
+    function __construct ( string $file, array $users )
+    {
+        $this->file = $file;
+        $this->users = $users;
+    }
+
+    function register ( user $user )
+    {        
+        $this->users [ $user->credentials->username ] = $user;
+        $this->write ( );
+    }
+
+    function has ( user $user ) : bool
+    {
+        return ( 
+            isset ( $this->users [ $user->credentials->username ] ) && 
+            $this->users [ $user->credentials->username ]->credentials->password 
+            	=== $user->credentials->password
+        );
+    }
+
+    function registered ( string $username ) : bool
+    {
+        return isset ( $this->users [ $username ] );
+    }
+
+    private function write ( )
+	{
+		file_put_contents ( $this->file, serialize ( $this->users ) );
+    }
+}
 ```
 
 
 
+### Guard
 
+The guard is responsible for taking user credentials and producing a token with which the user can authenticate himself. The guard must then remember this token so that the user is logged-in. 
 
-## Guard
+#### Abstraction
 
-### Abstraction
-
-First of all we are going to create an abstraction class to encapsulate some methods and properties around the authentication process.
+First we are going to create an abstraction class to encapsulate some methods and properties of the guard. 
 
 Create the file `/client/app/guard.php` with the following contents:
 
@@ -166,7 +208,9 @@ abstract class guard
 
 
 
-### The JWT package
+#### Implementation
+
+##### The JWT package
 
 We are going to install a JWT package with composer. This JWT package generates and checks tokens by which we are going to authenticate a user.
 
@@ -180,7 +224,7 @@ composer require firebase/php-jwt
 
 
 
-### Implementation
+##### Using the JWT package
 
 Now that the JWT package is installed we need to use this package to create an implementation of the abstraction that we created earlier.
 
@@ -256,15 +300,11 @@ class jwtSessionGuard extends guard
 }
 ```
 
+## Bindings
 
+Now it is time to bind our guard, user and credentials. We'll start with the guard. 
 
-This implementation extends the class we created earlier.
-
-
-
-## Bind to the application
-
-Next we are going to bind the guard into the application. Create the file `/client/bindings/guard.php` and add the following contents:
+Create the file `/client/bindings/guard.php` and add the following contents:
 
 ```php
 <?php
@@ -279,9 +319,83 @@ app::share ( guard::class, function ( $app ) : guard
 } );
 ```
 
+Here we have bound the `jwtSessionGuard` implementation we created earlier as the guard class to our application. If we ever want to change from using the `jwtSessionGuard` to another implementation we can do that here.
 
 
-## The guard facade
+
+Next create the directory `/client/bindings/user/` then create the file `/client/bindings/user/credentials.php` with the following code:
+
+```php
+<?php
+
+use firestark\user\credentials;
+
+app::bind ( credentials::class, function ( $app ) : credentials
+{
+    // Using the guard facade here
+    // We will create that facade later in the Facades section.
+    
+    if ( guard::stamped ( ) )
+        return guard::current ( );
+
+    return new credentials (
+        input::get ( 'username', '' ),
+        input::get ( 'password', '' )
+    );
+} );
+
+```
+
+Here we check if the guard already has credentials stored and if so return it. Else we will create new credentials using the input provided by the user. 
+
+
+
+Now we need to bind the user class. Create the file `/client/bindings/user.php` with the following contents:
+
+```php
+<?php
+
+use firestark\user;
+use firestark\user\credentials;
+
+app::bind ( user::class, function ( $app )
+{
+    return new user ( $app [ credentials::class ] );
+} );
+```
+
+We use the credentials we have bound above.
+
+
+
+The final binding we need is the user manager binding. Create the file `/client/bindings/user_manager.php` with the following code:
+
+```php
+<?php
+
+use firestark\user\manager;
+
+app::share ( manager::class, function ( $app )
+{
+    // We need to create this file, we'll do that next:
+    $file = __DIR__ . '/../storage/db/files/users.data';
+    $users = unserialize ( file_get_contents ( $file ) );
+
+	if ( ! is_array ( $users ) )
+		$users = [ ];
+    
+    return new flatfileUserManager (
+        $file,
+        $users 
+    );
+} );
+```
+
+We need to create the file `/client/storage/db/files/users.data`.  Create the directories and that file now. The `users.data` file must be left empty. 
+
+Here we have bound the `flatfileUserManager` we created earlier as the user manager in our application. If we ever want to change from using the `flatfileUserManager` to another implementation, for example: `mysqlUserManager`,  we can do that here.
+
+## Facades
 
 For easy access to the guard implementation we create a facade. Add the file `/client/facades/guard.php` and add the following contents:
 
@@ -295,10 +409,28 @@ class guard extends facade
         return firestark\guard::class;
     }
 }
+```
+
+
+
+For easy access to the user manager implementation we create a facade. Add the file `/client/facades/users.php` and add the following contents:
+
+```php
+<?php
+
+use firestark\user\manager;
+
+class users extends facade
+{
+    public static function getFacadeAccessor ( )
+    {
+        return manager::class;
+    }
+}
 
 ```
 
-## Setup the kernel
+## Kernel
 
 Next we need to setup the kernel so it runs the authentication. Open the `/client/app/kernel.php` file and change it's replace all it's content with the following:
 
@@ -356,7 +488,7 @@ We have added the check to see if the guard allows the current request. If not w
 
 ## Routes
 
-The final thing that is left to do is implement the login and registration routes.
+The next thing to do is implement the login and registration routes. These routes tie everything together. By talking to the user manager and the guard these routes register a new user or log an existing user in.
 
 
 
@@ -406,7 +538,7 @@ route::post ( '/login', function ( )
 {
     $user = app::make ( user::class );
     
-    if ( ! app::make ( manager::class )->has ( $user ) )
+    if ( ! users::has ( $user ) )
     {
         session::flash ( 'message', 'Invalid credentials' );
         return redirect::back ( );
@@ -430,18 +562,37 @@ use firestark\user\manager;
 route::post ( '/register', function ( )
 {
     $user = app::make ( user::class );
-    $userManager = app::make ( manager::class );
 
-    if ( $userManager->registered ( $user->credentials->username ) )
+    if ( users::registered ( $user->credentials->username ) )
     {
         session::flash ( 'message', 'Username already exists.' );
         return redirect::back ( );
     }
 
-    $userManager->register ( $user );
+    users::register ( $user );
 
     guard::stamp ( $user->credentials );
     return redirect::to ( '/' );
 } );
 ```
 
+
+
+## View
+
+The final thing that is left to do is create the login and registration views with inputs for `username` and `password`. Make sure that the name attribute for the input fields match the keys we used in our credentials binding we created in the binding section. This means we need an input with name: `username` and an input with name `password` for both the login and registration pages.
+
+
+
+```php
+return new credentials (
+    input::get ( 'username', '' ),
+    input::get ( 'password', '' )
+);
+```
+
+> Code from the credentials binding
+
+## Conclusion
+
+With this setup you have
