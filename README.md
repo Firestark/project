@@ -152,6 +152,10 @@ A binding binds a service to a business service in the application. This way we 
 
 A status matcher matches a particular status returned by the business logic. In this status matcher we can do some final calculations before sending back a response to the client.
 
+## More information
+
+More information can be found [here](https://github.com/firestark/project/tree/master/docs).
+
 ## Contributions
 
 Contributions and feedback are very appreciated, feel free to [place an issue](https://github.com/firestark/project/issues).
