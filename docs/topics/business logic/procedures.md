@@ -11,7 +11,11 @@ A procedure always returns a status with optionally some data relevant to that s
 
 
 
+### Filenames
+
 Procedures are located inside the `/app/procedures` directory. Any `.php` file inside this directory and nested directories is automatically included inside your project and therefor automatically available inside the application. This means you can name your procedure files anyway you like as long as it is placed under the `/app/procedures` directory or any nested directory inside there and the file has the `.php` suffix.
+
+The freedom of filename and placing in nested directories of procedures is a very important part for the business logic of our application. When we name our procedures with descriptive names that make sense for the business logic of our application, then when we look into the procedures directory we can immediately see what the application can do.
 
 ## Examples
 
