@@ -44,7 +44,7 @@ status::matching ( [ 1009, 7009 ], function ( goal $goal, int $protein )
 
 In example 2 we match the status 1009 and 7009 coming from 2 different procedures. This status only runs when both status codes gets matched.
 
-### Recommendations
+## Recommendations
 
 A recommended way of naming status files is: `status number  meaning.php` for example:
 

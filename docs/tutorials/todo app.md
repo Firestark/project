@@ -62,7 +62,7 @@ function ( todo $todo, todo\manager $manager )
 
 #### A word about filenames
 
-Let's talk about the filename. The filename is: `i want to add a todo.php`. As you can see this is a filename that describes what we are going to do inside the file. You can name this file anyway you like and place it in nested directories if you wish as long as the file end in the `.php` extension. This is a very important part for the business logic of our application. When we name our procedures with descriptive names that make sense for the business logic of our application, then when we look into the procedures directory we can immediately see what the application can do.
+Let's talk about the filename. The filename is: `i want to add a todo.php`. As you can see this is a filename that describes what we are going to do inside the file. You can name this file anyway you like and place it in nested directories if you wish as long as the file end in the `.php` extension. This is a very important feature for the business logic of our application. When we name our procedures with descriptive names that make sense for the business logic of our application, then when we look into the procedures directory we can immediately see what the application can do. In other words the application clearly shows it's intent. 
 
 
 
@@ -74,15 +74,15 @@ In the procedure above you can see a business rule that is enforced namely:  `A 
 $manager->hasTodoWithDescription ( $todo->description )
 ```
 
-In this case we don't add the todo but return the status `2000`. Only if it passes this business rule will we add the todo to the manager and return the status `1000`.
+In the case that a todo with description already exists we don't add the todo but return the status `2000`. If the todo description does not yet exist we add the todo to the manager and return the status `1000`.
 
 
 
 #### Follow-up
 
-Now that we have created this procedure we can see a few things we need to create next. First of all this procedure takes 2 parameters of type: `\todo` and `\todo\manager`. These 2 parameters are agreements we need to create. Inside the procedure we can already see that these agreements need some properties and methods. For the `\todo`  we need the property description. For the `\todo\manager` we need the methods `hasTodoWithDescription ( $description )` and `add ( \todo $todo )`. 
+Now that we have created the procedure we can see a few things we need to create next. The first thing we can see is that this procedure takes 2 parameters of type: `\todo` and `\todo\manager`. These 2 parameters are agreements we need to create. Inside the procedure we can see that these agreements need some properties and methods. For the `\todo`  we need the property description. For the `\todo\manager` we need the methods `hasTodoWithDescription ( $description )` and `add ( \todo $todo )`. 
 
-Next to the agreements we need to create we can also see that we need to create the status codes `2000 and 1000` which you can tell by the numbers in the returned array . We can guess from here that status `2000` is the status for when a todo with given description already exists. The status `1000`  would be the status for when a todo has successfully been added.
+The second thing we can see is that we have chosen to use 2 status codes. These are the status codes `2000` and `1000`. The status codes number and their meanings are entirely up to us to decide. In this case we have chosen the status `2000` to represent the status for when a todo with given description already exists. The status `1000`  is the status for when a todo has successfully been added.
 
 
 
@@ -110,7 +110,7 @@ class todo
 
 
 
-Next we will create the `\todo\manager` agreement. Create the directory `/app/agreements/todo` and the Create the file `/app/agreements/todo/manager.php` and add the following code:
+Next we will create the `\todo\manager` agreement. Create the directory `/app/agreements/todo` and the create the file `/app/agreements/todo/manager.php` and add the following code:
 
 ```php
 <?php
@@ -127,7 +127,7 @@ interface manager
 }
 ```
 
-This `\todo\manager` is an interface. This is because the todo manager is going to keep a collection of to-dos and to persist these to-dos it needs to communicate with a persistence mechanism which is a technical detail the business logic may know nothing about. With this interface the business logic tells the technical layer what it expect out of a todo manager. In contrast with the todo agreement we create above, there we simply used a class. This is because the todo agreement simply describes what a todo looks like with pure PHP. Therefor we can just use a class in that case.
+This `\todo\manager` is an interface. It's an interface because the todo manager is going to keep a collection of to-dos and to persist these to-dos it needs to communicate with a persistence mechanism. A persistence mechanism is a technical detail the business logic may know nothing about. With the `\todo\manager` interface the business logic tells the technical layer what it expect out of a todo manager. In contrast with the todo agreement we created above, there we simply used a class. We used a class there because the todo agreement doesn't need to be extended from the technical layer, it is self sufficient.
 
 
 
@@ -193,13 +193,15 @@ class flatfileTodoManager implements todo\manager
 }
 ```
 
-This class is going to store a collection of todos as a serialized array inside a file. 
+> In Firestark this implementation is called a service.
+
+This class is going to store a collection of to-dos as a serialized array inside a file. 
 
 
 
 ### Bindings
 
-With binding we tell the application how to create agreements or how to use a particular service for an agreement. In our case we need to bind the `\todo` and `\todo\manager` agreement.
+With bindings we tell the application how to instantiate agreements or how to use a particular service for an agreement. In our case we need to bind the `\todo` and `\todo\manager` agreement.
 
 First we will create the bindings for the `\todo` agreement. Create the file `/client/bindings/todo.php` and add the following code:
 
@@ -215,7 +217,7 @@ app::bind ( todo::class, function ( $app )
 } );
 ```
 
-This binding tell the application that whenever we ask for a `\todo` we want to run the previous function. That function uses the input facade which checks the incoming request for data under the name of `id` and `description`. If those 2 pieces of data are provided it uses that to instantiate a new todo class. If those 2 pieces of data are not available it uses a default of`uniqid()` and `'' `(empty string)  to create the todo. 
+This binding tell the application that whenever we ask for a `\todo` we want to run the function we have used above to instantiate that todo. The function uses the input facade which checks the incoming request for data under the name of `id` and `description`. If those 2 pieces of data are provided it uses that to instantiate a new todo class. If those 2 pieces of data are not available it uses a default of`uniqid()` and `'' `(empty string)  to create the todo. 
 
 
 
@@ -239,9 +241,23 @@ app::share ( todo\manager::class, function ( $app )
 } );
 ```
 
-This binding expects the file `/client/storage/db/files/todos.data`. Create these directories and the file now.
+This binding tells the application that whenever we ask for a `\todo\manager` we get back the `flatfileTodoManager`.  This binding expects the file `/client/storage/db/files/todos.data`. 
 
 
+
+> Note the difference in the method called on app. In the `\todo` binding we created before we used the `app::bind` method. Now we are using the `app::share` method. `Bind` runs on every single request for the instance. This means that `bind` creates a new instance every single time. On the other hand `share` only runs once and 'caches' the result. This means that  `share`  gives back the same `flatfileTodoManager` instance every single time we request for it.
+
+
+
+Create the directories:
+
+- `/client/storage`
+- `/client/storage/db`
+- `/client/storage/db/files`
+
+
+
+Then create the file: `/client/storage/db/files/todos.data`. This file must be left empty and will be filed by the `flatfileTodoManager` service.
 
 
 
