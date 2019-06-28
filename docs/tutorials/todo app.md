@@ -60,9 +60,9 @@ function ( todo $todo, todo\manager $manager )
 
 
 
-#### A word about filenames
+#### A word about procedure filenames
 
-Let's talk about the filename. The filename is: `i want to add a todo.php`. As you can see this is a filename that describes what we are going to do inside the file. You can name this file anyway you like and place it in nested directories if you wish as long as the file end in the `.php` extension. This is a very important feature for the business logic of our application. When we name our procedures with descriptive names that make sense for the business logic of our application, then when we look into the procedures directory we can immediately see what the application can do. In other words the application clearly shows it's intent. 
+Let's talk about the filename of the previously created procedure. The filename is: `i want to add a todo.php`. As you can see this is a filename that describes what we are going to do inside the file. You can name this file any way you like and place it in nested directories if you wish as long as the filename end in the `.php` extension and it's placed under the `/app/procedures` directory. This freedom of naming and nesting in sub-directories is a very important feature for the business logic of our application. When we name our procedures with descriptive names that make sense for the business logic of our application, then when we look into the procedures directory we can immediately see what the application can do. In other words the application clearly shows it's intent. 
 
 
 
@@ -245,7 +245,7 @@ This binding tells the application that whenever we ask for a `\todo\manager` we
 
 
 
-> Note the difference in the method called on app. In the `\todo` binding we created before we used the `app::bind` method. Now we are using the `app::share` method. `Bind` runs on every single request for the instance. This means that `bind` creates a new instance every single time. On the other hand `share` only runs once and 'caches' the result. This means that  `share`  gives back the same `flatfileTodoManager` instance every single time we request for it.
+> Note the different method usage: `app::bind` and `app::share`. In the `\todo` binding we created before we used the `app::bind` method. Now we are using the `app::share` method. `Bind` runs on every single request for the instance. This means that `bind` creates a new instance every single time we ask for it. On the other hand `share` only runs once and 'caches' the result. This means that  `share`  gives back the same `flatfileTodoManager` instance every single time we request for it.
 
 
 
@@ -258,6 +258,64 @@ Create the directories:
 
 
 Then create the file: `/client/storage/db/files/todos.data`. This file must be left empty and will be filed by the `flatfileTodoManager` service.
+
+
+
+### Statuses
+
+With statuses the business logic communicates an arbitrary meaning to the implementation logic. We have used the status codes `2000 `and `1000` in the procedure we created in the business logic section above. We need to create the status matchers for these 2 status codes. Let's create the status matcher for code `1000` first. Create the file `/client/statuses/1000 Added a todo.php` and add the following contents:
+
+```php
+<?php
+
+status::matching ( 1000, function ( )
+{
+    session::flash ( 'message', 'Todo added.' );
+    return redirect::to ( '/' );
+} );
+```
+
+Whenever a business procedure returns a status with code `1000` we run this status matcher. This status matcher flashes a message to the session and then simply redirects us back to the `/` URI.
+
+
+
+Next we'll create the status matcher for status code `2000`. Create the file `/client/statuses/2000 Todo with description already exists.php` and add the following contents:
+
+```php
+<?php
+
+status::matching ( 2000, function ( )
+{
+	session::flash ( 'message', 'Todo description already exists.' );
+    return redirect::to ( '/' );
+} );
+```
+
+Whenever a business procedure returns a status with code `2000` we run this status matcher. This status matcher flashes a message to the session and then simply redirects us back to the `/` URI.
+
+
+
+#### Status-matcher filenames
+
+Let's talk about the filename of the previously created status-matchers. The filenames are descriptive as to what situation the status-matcher matches. You can name these files any way you like and place it in nested directories if you wish as long as the filename end in the `.php` extension and it's placed under the `/client/statuses` directory. 
+
+
+
+### Routes
+
+...
+
+
+
+
+
+
+
+
+
+> We started by creating the logic to add a new todo. Normally this might be a weird place to start because usually you begin with the index action which most of the times shows a list of the resource. However we started from the mindset of the business logic and not from the mindset of the implementation logic. From business logic perspective it made perfect sense to start with the 'add a todo' functionality because there resides the biggest part of our business rules.
+
+
 
 
 
