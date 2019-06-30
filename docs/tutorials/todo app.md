@@ -353,8 +353,8 @@ $app->instance ( 'session', new firestark\session );
 $app->instance ( 'statuses', new firestark\statuses );
 $app->instance ( 'request', firestark\request::capture ( ) );
 $app->instance ( 'response', new http\response\factory ( firestark\response::class ) );
-$app->instance ( 'redirector', new firestark\redirector ( 
-    BASEURL, $app [ 'session' ]->get ( 'uri', '/' ) ) );
+$app->instance ( 'redirector', new firestark\redirector ( '', 
+	$app [ 'session' ]->get ( 'uri', '/' ) ) );
 $app->instance ( 'router', new firestark\router );
 
 // ADD THIS LINE ----------------------------------------------------------------------------
@@ -384,13 +384,26 @@ class view extends facade
 
 
 
+### The views
+
+Now that we have our view helper in place we need to create the views. Create the file `/client/views/todo/add.php` and add the following code:
+
+```php+HTML
+<form action="/" method="POST">
+    <textarea name="description" cols="30" rows="10" placeholder="description"></textarea>
+    <input type="submit">
+</form>
+```
+
+
+
 ### Routes
 
-Next we need to create an HTTP route to run our procedure from.
+Next we need to create a route for showing the todo add view and a route for the POST request for adding the view.
 
 
 
-Create the file `/client/routes/GET -add.php` with the following code:
+Create the file `/client/routes/GET @add.php` with the following code:
 
 ```php
 <?php
@@ -403,7 +416,7 @@ route::get ( '/add', function ( )
 
 
 
-Create the file `/client/routes/POST -.php` with the following code:
+Create the file `/client/routes/POST @.php` with the following code:
 
 ```php
 <?php
