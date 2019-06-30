@@ -261,7 +261,7 @@ Then create the file: `/client/storage/db/files/todos.data`. This file must be l
 
 
 
-### Statuses
+### Status matchers
 
 With statuses the business logic communicates an arbitrary meaning to the implementation logic. We have used the status codes `2000 `and `1000` in the procedure we created in the business logic section above. We need to create the status matchers for these 2 status codes. Let's create the status matcher for code `1000` first. Create the file `/client/statuses/1000 Added a todo.php` and add the following contents:
 
@@ -301,17 +301,126 @@ Let's talk about the filename of the previously created status-matchers. The fil
 
 
 
+## View
+
+Firestark doesn't include a template engine by default. Instead it allows you to easily use your own template engine. In this tutorial we will use pure PHP. We will setup a small 'helper' class to turn our views into HTTP responses.
+
+
+
+### The helper class
+
+The helper class is going to use firestark's HTTP response factory to turn PHP views into HTTP responses. 
+
+Create the `/client/app/view.php` and add the following code:
+
+```php
+<?php
+
+namespace firestark;
+
+use http\response\factory;
+use http\response;
+
+class view
+{
+    private $response = null;
+    private $basedir = '';
+    
+    function __construct ( factory $response, string $basedir )
+    {
+        $this->response = $response;
+        $this->basedir = $basedir;
+    }
+
+    function make ( string $view ) : response
+    {
+        return $this->response->ok ( 
+            file_get_contents ( $this->basedir . '/' . $view . '.php' ) );
+    }
+}
+```
+
+
+
+### Binding
+
+Next we need to add a binding to bind the view helper class we created above to the application. We will do this in the `/client/index.php`. Open `/client/index.php` and add the last line of the following code block:
+
+```php
+$app = new firestark\app;
+$app->instance ( 'app', $app );
+$app->instance ( 'session', new firestark\session );
+$app->instance ( 'statuses', new firestark\statuses );
+$app->instance ( 'request', firestark\request::capture ( ) );
+$app->instance ( 'response', new http\response\factory ( firestark\response::class ) );
+$app->instance ( 'redirector', new firestark\redirector ( 
+    BASEURL, $app [ 'session' ]->get ( 'uri', '/' ) ) );
+$app->instance ( 'router', new firestark\router );
+
+// ADD THIS LINE ----------------------------------------------------------------------------
+$app->instance ( 'view', new firestark\view ( $app [ 'response' ], __DIR__ . '/views' ) );
+// ------------------------------------------------------------------------------------------
+```
+
+
+
+To make this binding work we need to create the `/client/views` directory. Create that directory now.
+
+### Facade
+
+Now we are going to create the view facade. Add the file `/client/facades/view.php` and add the following code:
+
+```php
+<?php
+
+class view extends facade
+{
+    public static function getFacadeAccessor ( )
+    {
+        return 'view';
+    }
+}
+```
+
+
+
 ### Routes
 
-...
+Next we need to create an HTTP route to run our procedure from.
+
+
+
+Create the file `/client/routes/GET -add.php` with the following code:
+
+```php
+<?php
+
+route::get ( '/add', function ( )
+{
+    return view::make ( 'todos.add' );
+} );
+```
+
+
+
+Create the file `/client/routes/POST -.php` with the following code:
+
+```php
+<?php
+
+route::post ( '/', function ( )
+{
+    return app::fulfill ( 'i want to add a todo' );
+} );
+```
+
+Whenever we receive a POST request to the URI `/` we run the procedure `i want to add a todo` that we have created in the business logic section above.
 
 
 
 
 
-
-
-
+## Notes
 
 > We started by creating the logic to add a new todo. Normally this might be a weird place to start because usually you begin with the index action which most of the times shows a list of the resource. However we started from the mindset of the business logic and not from the mindset of the implementation logic. From business logic perspective it made perfect sense to start with the 'add a todo' functionality because there resides the biggest part of our business rules.
 
