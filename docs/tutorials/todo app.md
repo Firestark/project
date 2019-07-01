@@ -431,9 +431,15 @@ Whenever we receive a POST request to the URI `/` we run the procedure `i want t
 
 
 
+#### Route filenames
 
+Every route file placed inside the `/client/routes` directory and nested directory is automatically included. This means you can name your route files any way you like as long as it has the `.php` suffix and is placed inside the `/client/routes` or any nested directories.
 
-## Notes
+## Progress so far
+
+Right now we have created the functionality to add a new todo. Whenever we go to the `GET /add` URI we will see a form where we need to fill in the todo description. If we submit the form the `POST /` route runs. That route tells our application to run the procedure `i want to add a todo`. When the application runs the procedure it sees that it needs to supply an instance of a `\todo` and `\todo\manager` to that procedure. To get those instances the application looks for it's bindings under the class names with the `::class` notation. The todo is instantiated using the description we have provided in the form with the `input::get ( 'description', '' )` method calls. The id and completed properties are filled in with defaults.  The `\todo\manager` instance resolves to the `flatFileTodoManager` instance. When we use a description that already exists the procedure returns the status 2000. With this status the todo is not added to the todo manager and we redirect to the `GET /` URI with a failure message. If the description does not already exists the status 1000 is returned. The todo has been added, we redirect to the `GET /` URI with a success message. 
+
+### Notes
 
 > We started by creating the logic to add a new todo. Normally this might be a weird place to start because usually you begin with the index action which most of the times shows a list of the resource. However we started from the mindset of the business logic and not from the mindset of the implementation logic. From business logic perspective it made perfect sense to start with the 'add a todo' functionality because there resides the biggest part of our business rules.
 
