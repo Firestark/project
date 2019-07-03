@@ -332,10 +332,12 @@ class view
         $this->basedir = $basedir;
     }
 
-    function make ( string $view ) : response
+    function make ( string $view, array $parameters = [ ] ) : response
     {
-        return $this->response->ok ( 
-            file_get_contents ( $this->basedir . '/' . $view . '.php' ) );
+        extract ( $parameters );
+        ob_start ( );
+        require $this->basedir . '/' . $view . '.php';
+        return $this->response->ok ( ob_get_clean ( ) );
     }
 }
 ```
@@ -390,7 +392,7 @@ Now that we have our view helper in place we need to create the views. Create th
 
 ```php+HTML
 <form action="/" method="POST">
-    <textarea name="description" cols="30" rows="10" placeholder="description"></textarea>
+    <textarea name="description" cols="30" rows="10" placeholder="description" required></textarea>
     <input type="submit">
 </form>
 ```
@@ -437,7 +439,7 @@ Every route file placed inside the `/client/routes` directory and nested directo
 
 ## Progress so far
 
-Right now we have created the functionality to add a new todo. Whenever we go to the `GET /add` URI we will see a form where we need to fill in the todo description. If we submit the form the `POST /` route runs. That route tells our application to run the procedure `i want to add a todo`. When the application runs the procedure it sees that it needs to supply an instance of a `\todo` and `\todo\manager` to that procedure. To get those instances the application looks for it's bindings under the class names with the `::class` notation. The todo is instantiated using the description we have provided in the form with the `input::get ( 'description', '' )` method calls. The id and completed properties are filled in with defaults.  The `\todo\manager` instance resolves to the `flatFileTodoManager` instance. When we use a description that already exists the procedure returns the status 2000. With this status the todo is not added to the todo manager and we redirect to the `GET /` URI with a failure message. If the description does not already exists the status 1000 is returned. The todo has been added, we redirect to the `GET /` URI with a success message. 
+Right now we have created the functionality to add a new todo. Whenever we go to the `GET /add` URI we will see a form where we need to fill in the todo description. If we submit the form the `POST /` route runs. That route tells our application to run the procedure `i want to add a todo`. When the application runs the procedure it sees that it needs to supply an instance of a `\todo` and `\todo\manager` to that procedure. To get those instances the application looks for it's bindings under the class names. We registered these bindings with the `::class` notation. The todo is instantiated using the description we have provided in the form with the `input::get ( 'description', '' )` method call. The id and completed properties are filled in with defaults.  The `\todo\manager` instance resolves to the `flatFileTodoManager` instance. When we use a description that already exists the procedure returns the status 2000. With this status the todo is not added to the todo manager and we redirect to the `GET /` URI with a failure message. If the description does not already exists the status 1000 is returned. The todo has been added, we redirect to the `GET /` URI with a success message. 
 
 ### Notes
 
@@ -445,6 +447,81 @@ Right now we have created the functionality to add a new todo. Whenever we go to
 
 
 
+## Listing to-dos
+
+Now we are going to make the functionality to show a list of to-dos.
 
 
-... Work in progress
+
+### Business logic 
+
+#### Business procedure
+
+Let's create the procedure to show all our open to-dos.
+
+
+
+Create the file `/app/procedures/i want to see my to-dos.php` and add the following code:
+
+```php
+<?php
+
+when ( 'i want to see my to-dos', then ( apply ( a ( 
+    
+function ( todo\manager $manager )
+{
+    return [ 1001, [ 'todos' => $manager->all ( ) ] ];
+} ) ) ) );
+```
+
+There's one difference in the returned status in the procedure compared with the previous procedure we created. In this procedure we provide some data to the status matcher. We provide the status matcher with an array of all to-dos.
+
+
+
+#### Update the agreement
+
+In the procedure we created in the previous section we see that we need to add a new method to our `\todo\manager`. We need to add the `all ( )` method. Open the file `/app/agreements/todo/manager.php` and add the following method to the interface:
+
+```php
+function all ( ) : array;
+```
+
+
+
+### Implementation logic
+
+#### Service
+
+In the previous section we added a method to the `\todo\manager` agreement. Now we need to implement that method inside our `flatfileTodoManager` class. Open the file `/client/services/flatfileTodoManager.php` and add the following method:
+
+```php
+function all ( ) : array
+{
+    return $this->todos;
+}
+```
+
+
+
+#### Status matcher
+
+The `i want to see my to-dos` procedure always returns the status code `1001`. Let's create the status matcher for that. Create the file `/client/statuses/1001. Found todos.php` and add the following code:
+
+```php
+<?php
+
+use function compact as with;
+
+status::matching ( 1001, function ( array $todos )
+{
+    return view::make ( 'todos.list', with ( 'todos' ) );
+} );
+```
+
+As you can see here the array of to-dos we passed down from the procedure above is taken as function parameter. we use that array to pass it down to our view so our view can list the todos.
+
+
+
+#### Route
+
+Now we need to create a route to run the procedure `i want to see my to-dos` and show the to-dos.
