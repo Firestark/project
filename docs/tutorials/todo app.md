@@ -640,6 +640,34 @@ function has ( todo $todo ) : bool
 
 
 
+#### Status matchers
+
+The procedure above uses 2 status codes. The status code `2001` and the status code `1007`. Let's start by creating the status matcher for the code `1007`.  Create the file `/client/statuses/1007 Updated todo.php` and add the following code:
+
+```php
+<?php
+
+status::matching ( 1007, function ( )
+{
+    session::flash ( 'message', 'Updated todo.' );
+    return redirect::to ( '/' );
+} );
+```
+
+
+
+Next create the file `/client/statuses/2001. todo with id not found.php` and add the following code:
+
+```php
+<?php
+
+status::matching ( 2001, function ( )
+{
+    session::flash ( 'message', 'Todo not found.' );
+    return redirect::back ( );
+} );
+```
+
 #### Route
 
 Now we need to setup a route for when we want to update a todo with a particular id. Create the file `/client/routes/POST @{id}.php` and add the following code:
