@@ -35,7 +35,11 @@ php -S localhost:8000
 
 
 
-## The business logic
+## Adding a todo
+
+### The business logic
+
+#### Procedures
 
 It's most logical to start with a procedure in the business logic. Let's start by creating the procedure to add a new todo.
 
@@ -60,13 +64,13 @@ function ( todo $todo, todo\manager $manager )
 
 
 
-#### A word about procedure filenames
+##### A word about procedure filenames
 
 Let's talk about the filename of the previously created procedure. The filename is: `i want to add a todo.php`. As you can see this is a filename that describes what we are going to do inside the file. You can name this file any way you like and place it in nested directories if you wish as long as the filename end in the `.php` extension and it's placed under the `/app/procedures` directory. This freedom of naming and nesting in sub-directories is a very important feature for the business logic of our application. When we name our procedures with descriptive names that make sense for the business logic of our application, then when we look into the procedures directory we can immediately see what the application can do. In other words the application clearly shows it's intent. 
 
 
 
-#### Business rules
+##### Business rules
 
 In the procedure above you can see a business rule that is enforced namely:  `A todo description may only occur once`. This is enforced with the: 
 
@@ -78,7 +82,7 @@ In the case that a todo with description already exists we don't add the todo bu
 
 
 
-#### Follow-up
+##### Follow-up
 
 Now that we have created the procedure we can see a few things we need to create next. The first thing we can see is that this procedure takes 2 parameters of type: `\todo` and `\todo\manager`. These 2 parameters are agreements we need to create. Inside the procedure we can see that these agreements need some properties and methods. For the `\todo`  we need the property description. For the `\todo\manager` we need the methods `hasTodoWithDescription ( $description )` and `add ( \todo $todo )`. 
 
@@ -86,7 +90,7 @@ The second thing we can see is that we have chosen to use 2 status codes. These 
 
 
 
-### Agreements
+#### Agreements
 
 Let's create the `\todo` agreement. Create the file `\app\agreements\todo.php` and add the following code:
 
@@ -131,7 +135,7 @@ This `\todo\manager` is an interface. It's an interface because the todo manager
 
 
 
-## The implementation logic
+### The implementation logic
 
 In the previous section we have implemented our business logic by created a procedure and 2 agreements. Now it is time to create the implementation logic so we can create an actual working application. In this section we are going to create:
 
@@ -143,7 +147,7 @@ In the previous section we have implemented our business logic by created a proc
 
 
 
-### Services
+#### Services
 
 In the business logic we created the `\todo\manager` agreement which is an interface. That interface describes what methods we need to implement. In this case we need to implement the following methods:
 
@@ -199,7 +203,7 @@ This class is going to store a collection of to-dos as a serialized array inside
 
 
 
-### Bindings
+#### Bindings
 
 With bindings we tell the application how to instantiate agreements or how to use a particular service for an agreement. In our case we need to bind the `\todo` and `\todo\manager` agreement.
 
@@ -261,7 +265,7 @@ Then create the file: `/client/storage/db/files/todos.data`. This file must be l
 
 
 
-### Status matchers
+#### Status matchers
 
 With statuses the business logic communicates an arbitrary meaning to the implementation logic. We have used the status codes `2000 `and `1000` in the procedure we created in the business logic section above. We need to create the status matchers for these 2 status codes. Let's create the status matcher for code `1000` first. Create the file `/client/statuses/1000 Added a todo.php` and add the following contents:
 
@@ -295,19 +299,19 @@ Whenever a business procedure returns a status with code `2000` we run this stat
 
 
 
-#### Status-matcher filenames
+##### Status-matcher filenames
 
 Let's talk about the filename of the previously created status-matchers. The filenames are descriptive as to what situation the status-matcher matches. You can name these files any way you like and place it in nested directories if you wish as long as the filename end in the `.php` extension and it's placed under the `/client/statuses` directory. 
 
 
 
-## View
+#### View
 
 Firestark doesn't include a template engine by default. Instead it allows you to easily use your own template engine. In this tutorial we will use pure PHP. We will setup a small 'helper' class to turn our views into HTTP responses.
 
 
 
-### The helper class
+##### The helper class
 
 The helper class is going to use firestark's HTTP response factory to turn PHP views into HTTP responses. 
 
@@ -344,7 +348,7 @@ class view
 
 
 
-### Binding
+##### Binding
 
 Next we need to add a binding to bind the view helper class we created above to the application. We will do this in the `/client/index.php`. Open `/client/index.php` and add the last line of the following code block:
 
@@ -368,7 +372,7 @@ $app->instance ( 'view', new firestark\view ( $app [ 'response' ], __DIR__ . '/v
 
 To make this binding work we need to create the `/client/views` directory. Create that directory now.
 
-### Facade
+##### Facade
 
 Now we are going to create the view facade. Add the file `/client/facades/view.php` and add the following code:
 
@@ -386,7 +390,7 @@ class view extends facade
 
 
 
-### The views
+#### The views
 
 Now that we have our view helper in place we need to create the views. Create the file `/client/views/todo/add.php` and add the following code:
 
@@ -399,7 +403,7 @@ Now that we have our view helper in place we need to create the views. Create th
 
 
 
-### Routes
+#### Routes
 
 Next we need to create a route for showing the todo add view and a route for the POST request for adding the view.
 
@@ -433,9 +437,15 @@ Whenever we receive a POST request to the URI `/` we run the procedure `i want t
 
 
 
-#### Route filenames
+##### Route filenames
 
 Every route file placed inside the `/client/routes` directory and nested directory is automatically included. This means you can name your route files any way you like as long as it has the `.php` suffix and is placed inside the `/client/routes` or any nested directories.
+
+
+
+
+
+
 
 ## Progress so far
 
@@ -444,6 +454,10 @@ Right now we have created the functionality to add a new todo. Whenever we go to
 ### Notes
 
 > We started by creating the logic to add a new todo. Normally this might be a weird place to start because usually you begin with the index action which most of the times shows a list of the resource. However we started from the mindset of the business logic and not from the mindset of the implementation logic. From business logic perspective it made perfect sense to start with the 'add a todo' functionality because there resides the biggest part of our business rules.
+
+
+
+
 
 
 
@@ -457,7 +471,7 @@ Now we are going to make the functionality to show a list of to-dos.
 
 #### Business procedure
 
-Let's create the procedure to show all our open to-dos.
+Let's create the procedure to show all our to-dos.
 
 
 
@@ -524,4 +538,118 @@ As you can see here the array of to-dos we passed down from the procedure above 
 
 #### Route
 
-Now we need to create a route to run the procedure `i want to see my to-dos` and show the to-dos.
+Now we need to create a route to run the procedure `i want to see my to-dos`. Create the file `/client/routes/GET @.php` with the following code:
+
+```php
+<?php
+
+route::get ( '/', function ( )
+{
+    return app::fulfill ( 'i want to see my to-dos' );
+} );
+```
+
+
+
+#### View
+
+The final thing we need to create to show our list of to-dos is the view. Create the file `/client/views/todo/list.php` and add the following code:
+
+```php+HTML
+<h1>Todo list</h1>
+
+<ul>
+    <?php foreach ( $todos as $todo ) : ?>
+        <li><?= $todo->description; ?></li>
+    <?php endforeach; ?>
+</ul>
+
+```
+
+
+
+## Viewing a todo
+
+....
+
+
+
+
+
+## Updating a todo
+
+Now we will add the functionality to view and edit a todo.
+
+### Business logic
+
+#### Procedure
+
+Create the file `/app/procedures/i want to update a todo.php` and add the following code:
+
+```php
+<?php
+
+when ( 'i want to update a todo', then ( apply ( a ( 
+    
+function ( todo $todo, todo\manager $manager )
+{
+    if ( ! $manager->has ( $todo ) )
+        return [ 2001, [ ] ];
+
+    $manager->update ( $todo );
+    return [ 1007, [ ] ];
+} ) ) ) );
+```
+
+
+
+### Ageements
+
+In the procedure above we can see we need to add 2 methods to our `\todo\manager`. These are the following two methods:
+
+```php
+function has ( todo $todo ) : bool;
+
+function update ( todo $todo );
+```
+
+
+
+Open the file `/app/agreements/todo/manager.php` and add the two methods from the code above to the interface.
+
+
+
+### Implementation logic
+
+#### Service
+
+Now that our `\todo\manager` agreement has 2 new methods we need to implement them in our `flatfileTodoManager`. Open the file `/client/services/flatfileTodoManager.php` and add the following methods to the class:
+
+```php
+function update ( todo $todo )
+{
+    $this->todos [ $todo->id ] = $todo;
+    $this->write ( );
+}
+
+function has ( todo $todo ) : bool
+{
+    return isset ( $this->todos [ $todo->id ] );
+}
+```
+
+
+
+#### Route
+
+Now we need to setup a route for when we want to update a todo with a particular id. Create the file `/client/routes/POST @{id}.php` and add the following code:
+
+```php
+<?php
+
+route::post ( '/{id}', function ( )
+{
+    return app::fulfill ( 'i want to update a todo' );
+} );
+```
+
