@@ -528,7 +528,7 @@ use function compact as with;
 
 status::matching ( 1001, function ( array $todos )
 {
-    return view::make ( 'todos.list', with ( 'todos' ) );
+    return view::make ( 'todo/list', with ( 'todos' ) );
 } );
 ```
 
@@ -572,7 +572,126 @@ The final thing we need to create to show our list of to-dos is the view. Create
 
 ....
 
+### Business logic
 
+#### Procedure
+
+Create the file `app/procedures/i want to see a todo.php` and add the following code:
+
+```php
+<?php
+
+use function compact as with;
+
+when ( 'i want to see a todo', then ( apply ( a ( 
+    
+function ( todo $todo, todo\manager $manager )
+{
+    if ( ! $manager->has ( $todo ) )
+        return [ 2001, [ ] ];
+
+    $todo = $manager->find ( $todo );
+    return [ 1002, with ( 'todo' ) ];
+} ) ) ) );
+```
+
+
+
+#### Agreement
+
+In the procedure above we can see we need to add 2 methods to our `\todo\manager`. These are the following two methods:
+
+```php
+function has ( todo $todo ) : bool;
+
+function find ( todo $todo ) : todo;
+```
+
+Open the file `/app/agreements/todo/manager.php` and add the 2 methods as seen in the code above to the interface.
+
+
+
+### Implementation logic
+
+#### Service
+
+Now that our `\todo\manager` agreement has 2 new methods we need to implement them in our `flatfileTodoManager`. Open the file `/client/services/flatfileTodoManager.php` and add the following methods to the class:
+
+```php
+function find ( todo $todo ) : todo
+{
+    return $this->todos [ $todo->id ];
+}
+
+function has ( todo $todo ) : bool
+{
+    return isset ( $this->todos [ $todo->id ] );
+}
+```
+
+
+
+#### Routes
+
+Now we need to setup a route for when we want to see a todo with a particular id. Create the file `/client/routes/GET @{id}.php` and add the following code:
+
+```php
+<?php
+
+route::get ( '/{id}', function ( )
+{
+    return app::fulfill ( 'i want to see a todo' );
+} );
+```
+
+This route uses an important concept. The concept this route uses is that the route's parameters are automatically available as input parameters. In this case the `{id}` part gets translated to the input. This is important for our binding which needs the id to instantiate the correct `\todo`.
+
+
+
+#### Status matchers
+
+The procedure above uses 2 status codes. The status code `2001` and the status code `1002`. Let's start by creating the status matcher for the code `1002`.  Create the file `/client/statuses/1002. Found a todo.php` and add the following code:
+
+```php
+<?php
+
+use function compact as with;
+
+status::matching ( 1002, function ( todo $todo )
+{
+    return view::make ( 'todo/edit', with ( 'todo' ) );
+} );
+```
+
+
+
+Next create the file `/client/statuses/2001. todo with id not found.php` and add the following code:
+
+```php
+<?php
+
+status::matching ( 2001, function ( )
+{
+    session::flash ( 'message', 'Todo not found.' );
+    return redirect::back ( );
+} );
+```
+
+
+
+#### View
+
+Create the file `/client/views/todo/edit.php` and add the following code:
+
+```php+HTML
+<form action="/<?= $todo->id; ?>" method="POST">
+    <textarea 
+    	name="description" 
+         cols="30" rows="10" 
+         placeholder="description" required><?= $todo->description; ?></textarea>
+    <input type="submit">
+</form>
+```
 
 
 
@@ -603,19 +722,17 @@ function ( todo $todo, todo\manager $manager )
 
 
 
-### Ageements
+### Agreements
 
-In the procedure above we can see we need to add 2 methods to our `\todo\manager`. These are the following two methods:
+In the procedure above we can see we need to add a method to our `\todo\manager`. The method we need to add is the following:
 
 ```php
-function has ( todo $todo ) : bool;
-
 function update ( todo $todo );
 ```
 
 
 
-Open the file `/app/agreements/todo/manager.php` and add the two methods from the code above to the interface.
+Open the file `/app/agreements/todo/manager.php` and add the update method from the code above to the interface.
 
 
 
@@ -623,7 +740,7 @@ Open the file `/app/agreements/todo/manager.php` and add the two methods from th
 
 #### Service
 
-Now that our `\todo\manager` agreement has 2 new methods we need to implement them in our `flatfileTodoManager`. Open the file `/client/services/flatfileTodoManager.php` and add the following methods to the class:
+Now that our `\todo\manager` agreement has the new update method we need to implement that method in our `flatfileTodoManager`. Open the file `/client/services/flatfileTodoManager.php` and add the following method to the class:
 
 ```php
 function update ( todo $todo )
@@ -631,18 +748,13 @@ function update ( todo $todo )
     $this->todos [ $todo->id ] = $todo;
     $this->write ( );
 }
-
-function has ( todo $todo ) : bool
-{
-    return isset ( $this->todos [ $todo->id ] );
-}
 ```
 
 
 
 #### Status matchers
 
-The procedure above uses 2 status codes. The status code `2001` and the status code `1007`. Let's start by creating the status matcher for the code `1007`.  Create the file `/client/statuses/1007 Updated todo.php` and add the following code:
+The procedure above uses 2 status codes. The status code `2001` and the status code `1007`. We already created the status matcher for  code `2001` in the previous section. Let's now create the status matcher for code `1007`.  Create the file `/client/statuses/1007 Updated todo.php` and add the following code:
 
 ```php
 <?php
@@ -655,18 +767,6 @@ status::matching ( 1007, function ( )
 ```
 
 
-
-Next create the file `/client/statuses/2001. todo with id not found.php` and add the following code:
-
-```php
-<?php
-
-status::matching ( 2001, function ( )
-{
-    session::flash ( 'message', 'Todo not found.' );
-    return redirect::back ( );
-} );
-```
 
 #### Route
 
