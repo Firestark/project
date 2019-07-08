@@ -570,9 +570,11 @@ The final thing we need to create to show our list of to-dos is the view. Create
 
 ## Viewing a todo
 
-....
+Now we will create the functionality to see a todo.
 
 ### Business logic
+
+Inside the business logic we will check whether the given todo is known by the todo manager. We will do this by checking if the manager has a todo with id that matches the incoming to-do's id. If so we will pick the todo out of the todo manager and pass that with a success status through to our status in the implementation logic. If not we will return an error status code.
 
 #### Procedure
 
@@ -697,7 +699,7 @@ Create the file `/client/views/todo/edit.php` and add the following code:
 
 ## Updating a todo
 
-Now we will add the functionality to view and edit a todo.
+In the previous section we added the ability to show a todo. We made a view where we can see a todo with it's description in a form. Now we will add the functionality for that form submit which will be to update that todo.
 
 ### Business logic
 
@@ -778,6 +780,91 @@ Now we need to setup a route for when we want to update a todo with a particular
 route::post ( '/{id}', function ( )
 {
     return app::fulfill ( 'i want to update a todo' );
+} );
+```
+
+
+
+## Deleting a todo
+
+Now we add the ability to delete a todo.
+
+### Business logic
+
+#### Procedure
+
+Create the file `/app/procedures/i want to remove a todo.php` and add the following code:
+
+```php
+<?php
+
+when ( 'i want to remove a todo', then ( apply ( a ( 
+    
+function ( todo $todo, todo\manager $manager )
+{
+    $manager->remove ( $todo );
+    return [ 1003, [ ] ];
+} ) ) ) );
+```
+
+
+
+#### Agreement
+
+In the procedure above we can see we need to add a method to our `\todo\manager`. The method we need to add is the following:
+
+```php
+function remove ( todo $todo );
+```
+
+
+
+Open the file `/app/agreements/todo/manager.php` and add the `remove` method from the code above to the interface.
+
+
+
+### Implementation logic
+
+#### Service
+
+Now that our `\todo\manager` agreement has the new `remove` method we need to implement that method in our `flatfileTodoManager`. Open the file `/client/services/flatfileTodoManager.php` and add the following method to the class:
+
+```php
+function remove ( todo $todo )
+{
+    unset ( $this->todos [ $todo->id ] );
+    $this->write ( );
+}
+```
+
+
+
+#### Status matchers
+
+The procedure above uses the status code `1003` Let's create the status matcher for that code now. Create the file `/client/statuses/1003. Removed todo.php` and add the following code:
+
+```php
+<?php
+
+status::matching ( 1003, function ( todo $todo )
+{
+    session::flash ( 'message', 'Todo removed.' );
+    return redirect::to ( '/' );
+} );
+```
+
+
+
+#### Route
+
+Now we need to setup a route for when we want to remove a todo with a particular id. Create the file `/client/routes/GET @{id}@remove.php` and add the following code:
+
+```php
+<?php
+
+route::get ( '/{id}/remove', function ( )
+{
+    return app::fulfill ( 'i want to remove a todo' );
 } );
 ```
 
