@@ -1,6 +1,8 @@
 # Todo application
 
-In this tutorial we are going to create a small todo application using firestark. This tutorial is supposed to be a beginner introduction to using firestark and will give you a clear idea of the architecture that firestark uses.
+In this tutorial we are going to create a small todo application using firestark. This tutorial is a beginner introduction to using firestark and will give you a clear idea of the architecture that firestark uses. After following this tutorial you will have a clear idea of what code goes where so that you can build a well architect-ed maintainable application. This tutorial does not show you how to extend firestark with your own chosen components. For an example of how to extend firestark look in the `how to` section for the article `basic authentication`.  A finished version of this tutorial can be found [here](https://github.com/firestark/todo-tutorial)
+
+
 
 ## The application
 
@@ -467,7 +469,7 @@ Now we are going to make the functionality to show a list of to-dos.
 
 
 
-### Business logic 
+### The business logic 
 
 #### Business procedure
 
@@ -502,7 +504,7 @@ function all ( ) : array;
 
 
 
-### Implementation logic
+### The implementation logic
 
 #### Service
 
@@ -558,12 +560,28 @@ The final thing we need to create to show our list of to-dos is the view. Create
 ```php+HTML
 <h1>Todo list</h1>
 
+<a href="/add">
+    <button>Add todo</button>
+</a>
+
 <ul>
     <?php foreach ( $todos as $todo ) : ?>
-        <li><?= $todo->description; ?></li>
+        <li>
+            <a href="/<?= $todo->id; ?>"><?= $todo->description; ?></a>
+            <a href="/<?= $todo->id; ?>/remove">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                </svg>
+            </a>
+        </li>
     <?php endforeach; ?>
 </ul>
 
+
+<?php if ( session::has ( 'message' ) ) : ?>
+    <h2 style="color: blue; position: absolute; bottom: 0;"><?= session::get ( 'message' ); ?></h2>
+<?php endif; ?>
 ```
 
 
@@ -572,7 +590,7 @@ The final thing we need to create to show our list of to-dos is the view. Create
 
 Now we will create the functionality to see a todo.
 
-### Business logic
+### The business logic
 
 Inside the business logic we will check whether the given todo is known by the todo manager. We will do this by checking if the manager has a todo with id that matches the incoming to-do's id. If so we will pick the todo out of the todo manager and pass that with a success status through to our status in the implementation logic. If not we will return an error status code.
 
@@ -613,7 +631,7 @@ Open the file `/app/agreements/todo/manager.php` and add the 2 methods as seen i
 
 
 
-### Implementation logic
+### The implementation logic
 
 #### Service
 
@@ -701,7 +719,7 @@ Create the file `/client/views/todo/edit.php` and add the following code:
 
 In the previous section we added the ability to show a todo. We made a view where we can see a todo with it's description in a form. Now we will add the functionality for that form submit which will be to update that todo.
 
-### Business logic
+### The business logic
 
 #### Procedure
 
@@ -716,6 +734,9 @@ function ( todo $todo, todo\manager $manager )
 {
     if ( ! $manager->has ( $todo ) )
         return [ 2001, [ ] ];
+    
+    if ( $manager->hasTodoWithDescription ( $todo->description ) )
+        return [ 2000, [ ] ];
 
     $manager->update ( $todo );
     return [ 1007, [ ] ];
@@ -738,7 +759,7 @@ Open the file `/app/agreements/todo/manager.php` and add the update method from 
 
 
 
-### Implementation logic
+### The implementation logic
 
 #### Service
 
@@ -789,7 +810,7 @@ route::post ( '/{id}', function ( )
 
 Now we add the ability to delete a todo.
 
-### Business logic
+### The business logic
 
 #### Procedure
 
@@ -823,7 +844,7 @@ Open the file `/app/agreements/todo/manager.php` and add the `remove` method fro
 
 
 
-### Implementation logic
+### The implementation logic
 
 #### Service
 
@@ -868,3 +889,22 @@ route::get ( '/{id}/remove', function ( )
 } );
 ```
 
+
+
+## Running the application
+
+Open a command line in the client directory of your firestark project and run the following command:
+
+```php
+php -S localhost:8000
+```
+
+
+
+Now open the linkhttp://localhost:8000/ in your browser. The application should allow you to add to-dos. When you add a todo with a description that was already added the application does not add the todo and shows a blue message at the bottom of your screen. The same rule applies to updating a todo. You can update a todo unless that new description already exists. Finally you can delete to-dos. 
+
+
+
+## Next steps
+
+Now that you have followed this tutorial you know what firestark provides you out of the box. You have seen the business driven architecture that firestark uses to build maintainable applications. The next step is to learn how to extend firestark with your own chosen packages and components. An example of how to extend firestark can be found in the how to section under the article basic authentication.
