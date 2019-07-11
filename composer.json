@@ -28,11 +28,11 @@
     },
     "autoload": {
 		"psr-4": {
-			"": [ "app/agreements", "client/facades", "client/services" ],
-			"firestark\\": "client/app"
+			"": [ "app/agreements", "facades", "services" ],
+			"firestark\\": "tools"
  	 	},
         "files": [
-            "client/app/readability.php"
+            "tools/readability.php"
         ]
 	},
     "autoload-dev": {
