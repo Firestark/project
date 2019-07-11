@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 $app = new firestark\app;
 $app->instance ( 'app', $app );
@@ -16,11 +16,11 @@ facade::setFacadeApplication ( $app );
 including ( __DIR__ . '/bindings' );
 including ( __DIR__ . '/routes' );
 including ( __DIR__ . '/statuses' );
-including ( __DIR__ . '/../app/procedures' );
+including ( __DIR__ . '/../../app/procedures' );
 
 
 $dispatcher = new http\dispatcher ( $app [ 'router' ]->routes, $app [ 'router' ]->groups );
-$kernel = new firestark\kernel ( $dispatcher );
+$kernel = new firestark\web\kernel ( $dispatcher );
 $response = $kernel->handle ( $app [ 'request' ] );
 
 $response->send ( );
