@@ -25,15 +25,15 @@ function ( todo $todo, todo\manager $manager )
 
 # The architecture
 
-Your application is split up into two layers. One layer is the business logic layer. This layer is responsible for enforcing business rules and returning a status code. The other layer is the implementation layer. This layer is responsible for implementing the business logic layer to create a working application.
+Your application is split up into two layers. One layer is the business logic layer. This layer is responsible for enforcing business rules. The other layer is the implementation layer. This layer is responsible for implementing the requirements of the business logic layer to create a working application.
 
 ## The business logic
 
-The business logic layer is split up in *agreements* and *procedures*. Agreements consist of **self contained** classes, abstract classes and interfaces. These agreements may contain some *non application specific business rules* that always have to be enforced. An example of that could be: A person has to be above the age of 18 to be allowed to buy products in our store. If this rule needs to be enforced for the entire business and not just this application it is a good idea to put that rule in an agreement. 
+The business logic layer is split up in *agreements* and *procedures*. Agreements consist of **self contained** classes, abstract classes and interfaces. These agreements may contain some *non application specific business rules* that have to be enforced for every application. An example of that could be: A person has to be above the age of 18 to be allowed to buy products in our store. If this rule needs to be enforced for the entire business and not just this application it is a good idea to put that rule in an agreement. 
 
 procedures are small functions that use agreements to enforce *application specific business rules*. A procedure always returns a status code. That status code is an integer and is up to the developer to decide what integer to return based on the results of the applied business rules. **Example 1 above ** is an example of a procedure.
 
-The most important thing to understand here is that this layer may know nothing about implementation details. This means that this layer knows nothing about what database is used or how it is delivered to the client (HTML, JSON).  
+The most important thing to understand of the business logic layer is that this layer may know nothing about implementation details. This means that this layer knows nothing about what database is used or how it is delivered to the client (HTML, JSON).  
 
 ## The implementation logic
 
@@ -41,7 +41,7 @@ The implementation logic consists of routing, services, facades, status matchers
 
 ### Services
 
-Agreements inside the business logic may know nothing about technical details. Because of this the agreements can not directly talk to a database. To still be able to store changes in a database we create a service inside the implementation layer that extends or implements the agreement. This service can talk to a database to store changes.
+Agreements inside the business logic may know nothing about technical details. One example of this is that the agreements can not directly talk to a database. To still be able to store changes in a database we create a service inside the implementation layer that extends or implements the agreement. This service can talk to a database to store changes.
 
 ### IOC bindings
 
@@ -51,7 +51,7 @@ One of the major use cases of bindings are resolving the procedure parameters in
 
 ### Status matchers
 
-With a status code the business logic communicates an arbitrary meaning to the implementation layer. It's the responsibility of the status matcher to match that status code and turn that arbitrary meaning into a HTTP response.
+The business logic communicates an arbitrary meaning to the implementation layer with status codes. It's the responsibility of the status matcher to match that status code and turn that arbitrary meaning into a HTTP response.
 
 ### Facades
 
@@ -81,7 +81,7 @@ Routes are a map of key, value pairs. The key is a HTTP URI. The value is a clos
 ### Server requirements
 
 - PHP >= 7.1.3
-- Host pointing to / (for example: virtual host)
+- Host pointing to / (for example: virtual host) (Sub directories are not handled by default)
 
 ### Installation
 
