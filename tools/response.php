@@ -10,7 +10,7 @@ class response extends \http\response
         'Access-Control-Allow-Origin'       => '*',
         'Content-Type'                      => 'text/html',
         'Access-Control-Allow-Headers'      => 'Origin, Accept, Content-Type, Authorization, X-Requested-With, Content-Range, Content-Disposition',
-        'Firestark-Status'                 	=> 0
+        'X-Firestark-Status'                => 0
     ];
 
 	public function __construct ( $content = '', int $status = 200, array $headers = [ ] )
@@ -23,6 +23,6 @@ class response extends \http\response
 
     public function status ( int $number )
 	{
-		$this->headers [ 'Firestark-Status' ] = $number;
+		$this->headers [ 'X-Firestark-Status' ] = $number;
 	}
 }

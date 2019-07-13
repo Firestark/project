@@ -20,7 +20,7 @@ including ( __DIR__ . '/../../app/procedures' );
 
 
 $dispatcher = new http\dispatcher ( $app [ 'router' ]->routes, $app [ 'router' ]->groups );
-$kernel = new firestark\web\kernel ( $dispatcher );
+$kernel = new firestark\kernel ( $dispatcher );
 $response = $kernel->handle ( $app [ 'request' ] );
 
 $response->send ( );

@@ -6,7 +6,7 @@ $app = new firestark\app;
 $app->instance ( 'app', $app );
 $app->instance ( 'statuses', new firestark\statuses );
 $app->instance ( 'request', http\request::capture ( ) );
-$app->instance ( 'response', new http\response\factory ( firestark\response::class ) );
+$app->instance ( 'response', new http\response\factory ( firestark\json\response::class ) );
 $app->instance ( 'router', new firestark\router );
 
 facade::setFacadeApplication ( $app );
