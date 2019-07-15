@@ -12,6 +12,7 @@ $app->instance ( 'router', new firestark\router );
 facade::setFacadeApplication ( $app );
 
 
+including ( __DIR__ . '/../../bindings' );
 including ( __DIR__ . '/bindings' );
 including ( __DIR__ . '/routes' );
 including ( __DIR__ . '/statuses' );
