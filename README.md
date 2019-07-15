@@ -1,10 +1,8 @@
 <img src="./logo.svg" width="250" align="center" vertical-align="top">
 
+Firestark is a **non MVC PHP7 framework** which separates business logic from implementation logic. Firestark achieves this separation by giving you an application architecture that completely rids the business logic from outside dependencies. In firestark's application architecture the implementation logic is responsible for dependencies and speaks with the businesses logic to make a working application. This way the business logic is a very simple and readable layer to work in.
 
-Firestark is a **non MVC PHP7 framework** which separates business logic from implementation logic. Firestark achieves this separation by giving you a special architecture that completely rids the business logic from outside dependencies. Instead the implementation logic is responsible for dependencies and speaks with the businesses logic to make a working application. This way the business logic is a very simple and readable layer to work in.
 
-- A simple todo application example can be found [here](https://github.com/firestark/todo)
-- An example project can be found [here](https://github.com/firestark/goalstark)
 
 ```php
 <?php
@@ -40,14 +38,14 @@ Firestark is built with [YAGNI](https://martinfowler.com/bliki/Yagni.html) in mi
 Firestark is very small by default and uses the following components:
 
 - IOC container
-- small HTTP layer
-- HTTP router
+- small HTTP layer (Request and response models, routes and kernel)
+- Status matchers
 
 With these components firestark provides you a basic architecture to built well structured, business driven applications. The architecture is built in such a way that you can easily extend it with your own favorite components.
 
 ### Fast
 
-Because firestark does not include any unnecessary code building fast and robust applications with firestark is easy.
+Because firestark does not include any unnecessary code it is easy to build fast and robust applications with firestark.
 
 
 ## Getting started
@@ -55,41 +53,31 @@ Because firestark does not include any unnecessary code building fast and robust
 ### Server Requirements
 
 - PHP >= 7.1.3
-- Host pointing to / (for example: virtual host)
+- Host pointing to / (for example: virtual host) (Sub directories are not handled by default)
 
 ### Installation
 
 1. `composer create-project firestark/project`
-2. Make sure the application can write inside the `client/storage` directory.
+2. Make sure the application can write inside the `/storage` directory.
 
 ## Directory structure
 
-| Directory        | Description                  |
-| ---------------- | ---------------------------- |
-| /app             | Business logic               |
-| /app/procedures  | Business logic procedures    |
-| /app/agreements  | Business logic entities      |
-| /client          | Technical layer              |
-| /client/services | Implementation of agreements |
-| /client/bindings | App implementations bindings |
-| /client/routes   | Http routes                  |
-| /client/statuses | Business status matchers     |
-| /client/facades  | Technical facades            |
+| Directory       | Description                            |
+| --------------- | -------------------------------------- |
+| /app            | Business logic                         |
+| /app/procedures | Business logic procedures              |
+| /app/agreements | Business logic entities                |
+| /bindings       | IO channel shared bindings             |
+| /facades        | Easy accessors to technical components |
+| /io             | IO channels                            |
+| /io/*/bindings  | IO specific bindings                   |
+| /io/*/routes    | IO specific HTTP routes                |
+| /io/*/statuses  | IO specific status matchers            |
+| /services       | Agreement implementations              |
+| /storage        | Place to store cache, tmp, files, etc  |
+| /tools          | Core technical  components             |
 
-## Inspirations
 
-### Years of lost architecture
-
-[Good software architecture explanation](https://www.youtube.com/watch?v=WpkDN78P884)
-
-#### key takeaways
-> A good Architecture immediately shows it's intent
-
-> A good architecture allows for major decisions to be defered
-
-> The database is a detail
-
-By Robert C. Martin
 
 
 ## The general idea
@@ -115,16 +103,16 @@ Next to applying these rules the procedure usually calls some methods to create,
 
 #### Agreements
 
-Agreements are plain php objects. An agreement can be an entity which describes all the properties that belong to that entity or a business service that interacts with entities.
+Agreements are plain PHP objects. An agreement can be an entity which describes all the properties that belong to that entity or a business service that interacts with entities.
 
 ##### Entity
 
-An example of an entity is a: todo. That todo entity describes all the data that belongs to a todo. A todo could for example exist of a description, a flag to see whether it’s completed and a due date.
+An example of an entity is a: todo. That todo entity describes all the data that belongs to a todo. A todo could for example exist of a description, completion status and a due date.
 
 
 ##### Business service
 
-An example of a service is a todo manager. The todo manager is an access point to the todos, like a repository. The todo manager describes all the things that can be done with todo’s. For example a todo can be retrieved, added, updated or deleted. The important part here is that this business service **must not depend** on concrete implementations. This means this business service does not know about the underlying used persistence mechanism (eg. database, flatfile). This business service simply describes what can and may be done with a todo.
+An example of a service is a todo manager. The todo manager is an access point to the to-dos, like a repository. The todo manager describes all the things that can be done with to-dos. For example a todo can be retrieved, added, updated or deleted. The important part here is that this business service **must not depend** on concrete implementations. This means this business service does not know about the underlying used persistence mechanism (for example database, flat-file). This business service simply describes what can and may be done with a todo.
 
 
 ### The implementation logic
@@ -140,12 +128,12 @@ The implementation logic is responsible to implement all the things the business
 
 #### Services
 
-A service is an implementation of a business service. The business service states some functionality that the service needs to implement. For example: A service that implements the todomanager could be a flatfiletodomanager. The flatfiletodomanager implements all functionality the todomanager in the business logic states and stores the results in a flat file.
+A service is an implementation of a business service. The business service states some functionality that the service needs to implement. For example: A service that implements the todo-manager could be a flat-file todo-manager. The flat-file todo-manager implements all functionality the todo-manager in the business logic states and stores the results in a flat file.
 
 
 #### Bindings
 
-A binding binds a service to a business service in the application. This way we can choose what implementation to use in our application. For example if i want to use a flatfiletodomanager as the used todomanager in my application i would use a binding to do that.
+A binding binds a service to a business service in the application. This way we can choose what implementation to use in our application. For example if i want to use a flat-file todo-manager as the used todo-manager in my application i would use a binding to do that.
 
 
 #### Status matchers
@@ -155,6 +143,29 @@ A status matcher matches a particular status returned by the business logic. In 
 ## More information
 
 More information can be found [here](https://github.com/firestark/project/tree/master/docs).
+
+### Example applications
+
+- A simple todo application example can be found [here](https://github.com/firestark/todo)
+- An example project can be found [here](https://github.com/firestark/goalstark)
+
+
+
+### Inspirations
+
+#### Years of lost architecture
+
+[Good software architecture explanation](https://www.youtube.com/watch?v=WpkDN78P884)
+
+##### key takeaways
+
+> A good Architecture immediately shows it's intent
+
+> A good architecture allows for major decisions to be deferred
+
+> The database is a detail
+
+By Robert C. Martin
 
 ## Contributions
 
