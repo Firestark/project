@@ -2,13 +2,25 @@
 
 Bindings are a map of key, value pairs we register inside the application. The key can be any string you like. The value is a closure that returns any value you want. Whenever you resolve the key from the application you will get the value that the closure returns. 
 
-One of the major use cases of bindings are resolving the procedure parameters inside the business logic. Whenever the application encounters a type hinted class parameter it will look into it's bindings for a key of that type hinted full class-name. This is the way we provide the procedures the parameters it needs.
+One of the major use-cases of bindings is resolving procedure parameters inside the business logic. Whenever the application encounters a type hinted class parameter it will look into it's bindings for a string key that matches that type hinted class-name. If it finds that class-name in it's bindings it resolves the binding registered with that class-name. With this functionality we provide the procedures the parameters it needs.
 
-Bindings also make it possible to use services for agreements by binding the agreement class name to a service. This makes it so whenever the business logic asks for an instance of an agreement the implementation layer will provide the bound service.
+Bindings also make it possible to use services for agreements by binding the agreement class-name to a service. This makes it so whenever the business logic asks for an instance of an agreement the implementation layer will provide the bound service.
+
+
+
+### Global bindings
+
+Firestark is split up in multiple different IO channels. Global bindings are bindings used for every IO channel. When you place a binding under the `/bindings` directory that binding is used for every IO channel.
+
+### IO specific bindings
+
+Firestark is split up in multiple different IO channels. Each IO channel can have bindings specifically for that channel. Whenever you place a binding under the `/io/*/bindings` directory it will register that binding only for that specific IO channel.
+
+
 
 ## Creating bindings
 
-Bindings are located inside the `/client/bindings` directory and are automatically included inside your application. This means you can name your bindings any way you like as long as they have the `.php` suffix and are placed inside the `/client/bindings` or any nested directory.
+All bindings placed inside the `/bindings` or `/io/*/bindings` directories are automatically included inside your application. This means you can name your bindings any way you like as long as they have the `.php` suffix and are placed inside these directories.
 
 ### Normal binding
 
