@@ -21,7 +21,8 @@
         "firestark/ioc": "*",
 		"firestark/http": "*",
         "firestark/support": "*",
-        "php": "^7.1.3"
+        "php": "^7.1.3",
+        "psy/psysh": "*"
 	},
     "require-dev": {
         "firestark/testing": "*"
