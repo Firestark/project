@@ -1,0 +1,27 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../../vendor/autoload.php';
+
+set_error_handler( function ( $severity, $message, $file, $line ) {
+    if ( $severity & error_reporting ( ) ) {
+        throw new ErrorException ( $message, 0, $severity, $file, $line );
+    }
+} );
+
+$app = new firestark\app;
+$app->instance ( 'app', $app );
+$app->instance ( 'statuses', new firestark\statuses );
+
+facade::setFacadeApplication ( $app );
+
+
+including ( __DIR__ . '/../../bindings' );
+including ( __DIR__ . '/bindings' );
+including ( __DIR__ . '/statuses' );
+including ( __DIR__ . '/../../app/procedures' );
+
+
+
+$shell = new \Psy\Shell;
+$shell->run ( );
