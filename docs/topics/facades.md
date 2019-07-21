@@ -32,8 +32,8 @@ All components are registered under a name inside the application using bindings
 
 ## Creating your own facades
 
-All facades are located inside the ``/client/facades`` directory and are automatically loaded into the global namespace by composer.
+All facades are located inside the ``/facades`` directory and are automatically loaded into the global namespace by composer.
 
 
 
-You create a facade by creating a class inside the `/client/facades` directory and extending the `\facade` class. You then have to implement the `getFacadeAccessor` method which must return a string. That string is the key of the component you want to create a facade to.
+You create a facade by creating a class inside the `/facades` directory and extending the `\facade` class. You then have to implement the `getFacadeAccessor` method which must return a string. That string is the key of the component you want to create a facade to.best
