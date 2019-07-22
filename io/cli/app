@@ -3,12 +3,6 @@
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-set_error_handler( function ( $severity, $message, $file, $line ) {
-    if ( $severity & error_reporting ( ) ) {
-        throw new ErrorException ( $message, 0, $severity, $file, $line );
-    }
-} );
-
 $app = new firestark\app;
 $app->instance ( 'app', $app );
 $app->instance ( 'statuses', new firestark\statuses );
