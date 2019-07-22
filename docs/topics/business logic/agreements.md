@@ -26,9 +26,7 @@ class todo
 }
 ```
 
-> Example 1
-
-Example 1 models a todo and describes all the data that belongs to a todo. As an example for business logic it crops the string to a max of 30 characters.
+> This example models a todo and describes all the data that belongs to a todo. As example business logic it crops the string to a max length of 30 characters.
 
 
 
@@ -51,9 +49,9 @@ interface manager
 }
 ```
 
-> Example 2.
+> This example models a todo manager. It declares some methods to read and manage a todo collection. This todo manager is an interface because it may not know anything about technical details. The implementation layer is responsible for implementing this interface and talking to a persistence mechanism (database, flat-file) using what we call services.  
 
-Example 2 models a todo manager. It declares some methods to read and manage a todo collection. This todo manager is an interface because it may not know anything about technical details. The implementation layer is responsible for implementing this interface and talking to a persistence mechanism (database, flat-file).  
+
 
 
 
@@ -100,6 +98,5 @@ abstract class manager
 }
 ```
 
-> Example 3
+> This example models a goal manager as an abstract class. In this case an abstract class is used because the functionality for `isOverdue, isCompleted and isDraft` are business logic. Also note that this agreement uses another agreement: The `task\manager`. The implementation layer is responsible for implementing the abstract methods in the class and talking to a persistence mechanism (database, flat-file).  
 
-Example 3 shows a somewhat more complex example. It models a goal manager as an abstract class. In this case an abstract class is used because the functionality for `isOverdue, isCompleted and isDraft` are business logic. Also note that this agreement uses another agreement: The `task\manager`. The implementation layer is responsible for implementing the abstract methods in the class and talking to a persistence mechanism (database, flat-file).  

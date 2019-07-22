@@ -20,6 +20,8 @@ class view extends facade
 
 > This example shows a view facade. The `getFacadeAccessor` method resolves a binding under the string key `'view'`. The resolved value should be an instance of a class, in this case presumably a view engine. calling static methods on the view facade delegates them onto the resolved view engine instance. An example in this case is: `view::make ( 'test' )` which resolves to calling the make method on the view engine instance.
 
+
+
 ## Creating your own facades
 
 All facades are located inside the ``/facades`` directory and are automatically loaded into the global namespace by composer. You create a facade by creating a class inside the `/facades` directory and extending the `\facade` class. You have to implement the `getFacadeAccessor` method which must return a string. That string is the key of the binding you want to create a facade for.
