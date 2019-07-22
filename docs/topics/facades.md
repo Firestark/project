@@ -18,7 +18,7 @@ class view extends facade
 }
 ```
 
-> This example shows a view facade. The `getFacadeAccessor` method resolves a binding under the key view. The resolved value should be an instance of a class, in this case presumably a view engine. calling static methods on the view facade delegates them onto the resolved view engine. For example in this case `view::make ( 'test' )` resolves to calling the make method on the view engine instance.
+> This example shows a view facade. The `getFacadeAccessor` method resolves a binding under the string key `'view'`. The resolved value should be an instance of a class, in this case presumably a view engine. calling static methods on the view facade delegates them onto the resolved view engine instance. An example in this case is: `view::make ( 'test' )` which resolves to calling the make method on the view engine instance.
 
 ## Creating your own facades
 
