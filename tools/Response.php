@@ -11,13 +11,14 @@ class Response
     {
         $response = new R;
         $response->getBody()->write($body);
-        return $response->withStatus(200);
+        return $response->withHeader('content-type', 'text/html');
     }
 
     public function notFound(string $body) : ResponseInterface
     {
         $response = new R;
         $response->getBody()->write($body);
+        $response = $response->withHeader('content-type', 'text/html');
         return $response->withStatus(404);
     }
 }
