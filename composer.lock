@@ -965,22 +965,25 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/relayphp/Relay.Relay.git",
-                "reference": "e1ec1bd8878f18ef2188c7ba30bcdd5404fb5fb3"
+                "reference": "b5d2f7e70b74ca5c5d9d459056b2bf46ca77dc3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/relayphp/Relay.Relay/zipball/e1ec1bd8878f18ef2188c7ba30bcdd5404fb5fb3",
-                "reference": "e1ec1bd8878f18ef2188c7ba30bcdd5404fb5fb3",
+                "url": "https://api.github.com/repos/relayphp/Relay.Relay/zipball/b5d2f7e70b74ca5c5d9d459056b2bf46ca77dc3f",
+                "reference": "b5d2f7e70b74ca5c5d9d459056b2bf46ca77dc3f",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1",
                 "psr/http-message": "~1.0",
-                "psr/http-server-handler": "~1.0"
+                "psr/http-server-handler": "~1.0",
+                "psr/http-server-middleware": "^1.0"
+            },
+            "provide": {
+                "psr/http-server-handler-implementation": "1.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "~7.0",
-                "psr/http-server-middleware": "~1.0",
                 "zendframework/zend-diactoros": "~1.0"
             },
             "type": "library",
@@ -1006,7 +1009,7 @@
                 "psr-15",
                 "psr-7"
             ],
-            "time": "2019-07-28T18:05:15+00:00"
+            "time": "2019-07-28T23:50:43+00:00"
         },
         {
             "name": "symfony/console",
@@ -1805,12 +1808,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "c59713fbd4dda58e569d43db9e53f3ba73ffe9e0"
+                "reference": "9ae59b2b73550d86710a08befeeef5e74d9fbdc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/c59713fbd4dda58e569d43db9e53f3ba73ffe9e0",
-                "reference": "c59713fbd4dda58e569d43db9e53f3ba73ffe9e0",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/9ae59b2b73550d86710a08befeeef5e74d9fbdc9",
+                "reference": "9ae59b2b73550d86710a08befeeef5e74d9fbdc9",
                 "shasum": ""
             },
             "require": {
@@ -1848,7 +1851,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2019-07-25T06:29:25+00:00"
+            "time": "2019-07-29T03:04:46+00:00"
         }
     ],
     "aliases": [],
