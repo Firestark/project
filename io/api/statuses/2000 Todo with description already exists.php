@@ -5,5 +5,5 @@ use Zend\Diactoros\Response\JsonResponse;
 
 Status::matching(2000, function (): ResponseInterface
 {
-	return new JsonResponse(['status' => 2000, 'body' => []]);
+	return Response::conflict(2000);
 });
