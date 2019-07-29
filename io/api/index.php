@@ -19,7 +19,6 @@ $app->instance('response', new Firestark\Response);
 $app->instance('view', new Firestark\View($app['response'], __DIR__ . '/views'));
 $app->instance('statuses', new Firestark\Statuses);
 $app->instance('session', new Firestark\Session);
-$app->instance('input', new Firestark\Input);
 $app->instance('redirector', new Firestark\Redirector($app['session']->get('previous-uri', '/')));
 
 including(__DIR__ . '/routes');
@@ -29,7 +28,6 @@ including(__DIR__ . '/../../bindings');
 including(__DIR__ . '/../../app/procedures');
 
 $relay = new Relay([
-    $app['input'],
     new Firestark\Route($app['router'])
 ]);
 

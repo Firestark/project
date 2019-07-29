@@ -1,9 +1,9 @@
 <?php
 
-App::bind(Todo::class, function ($app)
+App::bind(Todo::class, function ($app, array $args)
 {
     return new Todo(
-        Input::get('id', uniqid()),
-        Input::get('description', '')
+        $args['id'] ?? uniqid(),
+        $args['description'] ?? ''
     );
 });
