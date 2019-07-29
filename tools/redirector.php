@@ -1,13 +1,26 @@
 <?php
 
-namespace firestark;
+namespace Firestark;
 
-class redirector extends \http\redirector
+use Psr\Http\Message\ResponseInterface;
+use Zend\Diactoros\Response\RedirectResponse;
+
+class Redirector
 {
-	protected function respond ( string $url, int $status ) : \http\response
+    private $previous = '/';
+
+    public function __construct(string $previous)
     {
-        $response = new response ( 'Redirecting', $status );
-        $response [ 'Location' ] = $url;
-        return $response;
+        $this->previous = $previous;
+    }
+
+    public function to(string $uri): ResponseInterface
+    {
+        return new RedirectResponse($uri);
+    }
+
+    public function back(): ResponseInterface
+    {
+        return new RedirectResponse($this->previous);
     }
 }

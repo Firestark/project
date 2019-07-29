@@ -1,49 +1,48 @@
 <?php
 
-namespace firestark;
+namespace Firestark;
 
 use closure;
 
-
-class statuses
+class Statuses
 {
-    private $matched = [ ];
+    private $matched = [];
 
-    public function match ( $status ) : closure
+    public function match($status): closure
     {
-        $key = $this->encode ( $status );
+        $key = $this->encode($status);
         
-        if ( ! $this->matches ( $key ) )
-            throw new \runtimeException ( "The status code: {$this->toString($status)} has not been matched." );
+        if (! $this->matches($key))
+            throw new \runtimeException("The status code: {$this->toString($status)} has not been matched.");
 
-        return $this->matched [ $key ];
+        return $this->matched[$key];
     }
 
-    public function matching ( $status, closure $callback )
+    public function matching($status, closure $callback)
     {
-        $key = $this->encode ( $status );
+        $key = $this->encode($status);
         
-        if ( $this->matches ( $key ) )
-            throw new \runtimeException ( "The status code: {$this->toString($status)} has already been matched." );
+        if ($this->matches($key))
+            throw new \runtimeException("The status code: {$this->toString($status)} has already been matched.");
 
-        $this->matched [ $key ] = $callback;
+        $this->matched[$key] = $callback;
     }
 
-    public function matches ( $key ) : bool
+    public function matches($key): bool
     {
-        return ( array_key_exists ( $key, $this->matched ) ) ;
+        return array_key_exists($key, $this->matched);
     }
 
-    private function encode ( $status ) : string
+    private function encode($status): string
     {
-        return serialize ( $status );
+        return serialize($status);
     }
 
-    private function toString ( $status ) : string
+    private function toString($status): string
     {
-        if ( is_array ( $status ) )
-            return '[ ' . implode ( ', ', $status ) . ' ]';
+        if (is_array($status))
+            return '[' . implode(', ', $status) . ']';
         
-        return ( string ) $status;
+        return (string) $status;
     }
 }

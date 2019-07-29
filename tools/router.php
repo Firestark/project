@@ -1,30 +1,25 @@
 <?php
 
-namespace firestark;
+namespace Firestark;
 
-use closure;
-use http\route;
+use League\Route\Route;
+use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 
-
-class router extends \http\router
+class Router extends \League\Route\Router
 {
-    public function get ( string $uri, closure $task )
+    public function dispatch(ServerRequestInterface $request): ResponseInterface
     {
-        $this->add ( new route ( 'GET ' . $uri, $task ) );
+        $this->routes = $this->sort($this->routes);
+        return parent::dispatch($request);
     }
 
-    public function post ( string $uri, closure $task )
-    {
-        $this->add ( new route ( 'POST ' . $uri, $task ) );
-    }
-
-    public function put ( string $uri, closure $task )
-    {
-        $this->add ( new route ( 'PUT ' . $uri, $task ) );
-    }
-
-    public function delete ( string $uri, closure $task )
-    {
-        $this->add ( new route ( 'DELETE '. $uri, $task ) );
-    }
+    private function sort(array $routes): array
+	{
+		usort($routes, function (Route $a, Route $b)
+		{
+			return strcasecmp($a->getPath() , $b->getPath()); 
+		} );
+		
+		return $routes;
+	}
 }

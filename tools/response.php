@@ -1,28 +1,23 @@
 <?php
 
-namespace firestark;
+namespace Firestark;
 
+use Psr\Http\Message\ResponseInterface;
+use Zend\Diactoros\Response as R;
 
-class response extends \http\response
+class Response
 {
-	protected $headers =
-    [
-        'Access-Control-Allow-Origin'       => '*',
-        'Content-Type'                      => 'text/html',
-        'Access-Control-Allow-Headers'      => 'Origin, Accept, Content-Type, Authorization, X-Requested-With, Content-Range, Content-Disposition',
-        'X-Firestark-Status'                => 0
-    ];
-
-	public function __construct ( $content = '', int $status = 200, array $headers = [ ] )
-	{
-		$this->content = $content;
-		$this->status = $status;
-
-		$this->headers = array_merge ( $this->headers, $headers );
+    public function ok(string $body) : ResponseInterface
+    {
+        $response = new R;
+        $response->getBody()->write($body);
+        return $response->withStatus(200);
     }
 
-    public function status ( int $number )
-	{
-		$this->headers [ 'X-Firestark-Status' ] = $number;
-	}
+    public function notFound(string $body) : ResponseInterface
+    {
+        $response = new R;
+        $response->getBody()->write($body);
+        return $response->withStatus(404);
+    }
 }

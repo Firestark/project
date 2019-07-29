@@ -17,22 +17,28 @@
             "homepage": "https://eyedouble.nl/"
         }
     ],
-    "require" : {
-        "firestark/ioc": "*",
-		"firestark/http": "*",
-        "firestark/support": "*",
+    "require": {
         "php": "^7.1.3",
-        "psy/psysh": "*"
-	},
+        "zendframework/zend-diactoros": "^2.1",
+        "relay/relay": "2.x-dev",
+        "psr/http-server-middleware": "~1.0",
+        "league/route": "dev-master",
+        "zendframework/zend-httphandlerrunner": "^1.1@dev",
+        "illuminate/container": "@stable",
+        "psy/psysh": "@stable"
+    },
+    "minimum-stability": "dev",
     "require-dev": {
-        "firestark/testing": "*"
+        "firestark/testing": "dev-master",
+        "squizlabs/php_codesniffer": "*"
     },
     "autoload": {
 		"psr-4": {
 			"": [ "app/agreements", "facades", "services" ],
-			"firestark\\": "tools"
+			"Firestark\\": "tools"
  	 	},
         "files": [
+            "./tools/functions.php",
             "./tools/readability.php"
         ]
 	},
@@ -40,9 +46,5 @@
         "psr-4": {
 
         }
-    },
-    "config": {
-        "preferred-install": "dist"
-    },
-    "minimum-stability": "dev"
+    }
 }

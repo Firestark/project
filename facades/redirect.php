@@ -1,8 +1,8 @@
 <?php
 
-class redirect extends facade
+class Redirect extends Facade
 {
-    public static function getFacadeAccessor ( )
+    public static function getFacadeAccessor()
     {
         return 'redirector';
     }

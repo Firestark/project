@@ -1,9 +1,9 @@
 <?php
 
-class input extends facade
+class Input extends Facade
 {
-    public static function getFacadeAccessor ( )
+    public static function getFacadeAccessor()
     {
-        return 'request';
+        return 'input';
     }
 }
