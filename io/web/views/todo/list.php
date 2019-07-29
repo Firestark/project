@@ -3,7 +3,7 @@
 <a href="/add">Add todo</a>
 
 <ul>
-    <?php foreach ( $todos as $todo ) : ?>
+    <?php foreach ($todos as $todo) : ?>
         <li>
             <a href="/<?= $todo->id; ?>"><?= $todo->description; ?></a>
             <a href="/<?= $todo->id; ?>/remove">
