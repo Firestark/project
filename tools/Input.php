@@ -27,4 +27,4 @@ class Input implements Middleware
     {
         return $this->data;
     }
-}   
+}

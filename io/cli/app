@@ -3,11 +3,11 @@
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-$app = new firestark\app;
-$app->instance ( 'app', $app );
-$app->instance ( 'statuses', new firestark\statuses );
+$app = new Firestark\App;
+$app->instance('app', $app);
+$app->instance('statuses', new Firestark\Statuses);
 
-facade::setFacadeApplication ( $app );
+Facade::setFacadeApplication($app);
 
 
 including ( __DIR__ . '/../../bindings' );
