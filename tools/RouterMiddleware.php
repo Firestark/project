@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
 use Psr\Http\Server\MiddlewareInterface as Middleware;
 
-class Route implements Middleware
+class RouterMiddleware implements Middleware
 {
     private $router = null;
     
@@ -21,4 +21,4 @@ class Route implements Middleware
     {
         return $this->router->dispatch($request);
     }
-}   
+}

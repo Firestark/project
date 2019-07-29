@@ -28,7 +28,7 @@ including(__DIR__ . '/../../bindings');
 including(__DIR__ . '/../../app/procedures');
 
 $relay = new Relay([
-    new Firestark\Route($app['router'])
+    new Firestark\RouterMiddleware($app['router'])
 ]);
 
 $request = Request::fromGlobals();
