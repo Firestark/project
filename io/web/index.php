@@ -28,6 +28,7 @@ including(__DIR__ . '/../../bindings');
 including(__DIR__ . '/../../app/procedures');
 
 $relay = new Relay([
+    (new Middlewares\Debugbar())->inline(),
     new Firestark\RouterMiddleware($app['router'])
 ]);
 
