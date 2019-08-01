@@ -25,11 +25,11 @@
         "league/route": "dev-master",
         "zendframework/zend-httphandlerrunner": "^1.1@dev",
         "illuminate/container": "@stable",
-        "psy/psysh": "@stable"
+        "psy/psysh": "@stable",
+        "middlewares/whoops": "dev-master"
     },
     "minimum-stability": "dev",
     "require-dev": {
-        "firestark/testing": "dev-master",
         "squizlabs/php_codesniffer": "*"
     },
     "autoload": {
