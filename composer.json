@@ -26,11 +26,11 @@
         "zendframework/zend-httphandlerrunner": "^1.1@dev",
         "illuminate/container": "@stable",
         "psy/psysh": "@stable",
-        "middlewares/debugbar": "dev-master"
+        "middlewares/debugbar": "dev-master",
+        "middlewares/whoops": "dev-master"
     },
     "minimum-stability": "dev",
     "require-dev": {
-        "firestark/testing": "dev-master",
         "squizlabs/php_codesniffer": "*"
     },
     "autoload": {

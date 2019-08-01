@@ -29,7 +29,8 @@ including(__DIR__ . '/../../app/procedures');
 
 $relay = new Relay([
     (new Middlewares\Debugbar())->inline(),
-    new Firestark\RouterMiddleware($app['router'])
+    new Middlewares\Whoops,
+    new Firestark\RouterMiddleware($app['router'], $app['response'], $app['view']->asString('404'))
 ]);
 
 $request = Request::fromGlobals();

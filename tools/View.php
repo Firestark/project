@@ -22,4 +22,12 @@ class View
         require $this->basedir . '/' . $view . '.php';
         return $this->response->ok(ob_get_clean());
     }
+
+    public function asString(string $view, array $parameters = []): string
+    {
+        extract($parameters);
+        ob_start();
+        require $this->basedir . '/' . $view . '.php';
+        return ob_get_clean();
+    }
 }
