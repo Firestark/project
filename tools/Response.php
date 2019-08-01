@@ -2,10 +2,11 @@
 
 namespace Firestark;
 
+use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Zend\Diactoros\Response as R;
 
-class Response
+class Response implements ResponseFactoryInterface
 {
     public function ok(string $body) : ResponseInterface
     {
@@ -20,5 +21,11 @@ class Response
         $response->getBody()->write($body);
         $response = $response->withHeader('content-type', 'text/html');
         return $response->withStatus(404);
+    }
+
+    public function createResponse(int $code = 200, string $reasonPhrase = ''): ResponseInterface
+    {
+        $response = new R;
+        return $response->withStatus(404, $reasonPhrase);
     }
 }
