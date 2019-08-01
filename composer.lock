@@ -1338,12 +1338,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "57ab13d235ac80337ff082a473937b656a449aa3"
+                "reference": "876c3f5e0572ff571fdbe67b68a94895dc2a7f26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/57ab13d235ac80337ff082a473937b656a449aa3",
-                "reference": "57ab13d235ac80337ff082a473937b656a449aa3",
+                "url": "https://api.github.com/repos/symfony/console/zipball/876c3f5e0572ff571fdbe67b68a94895dc2a7f26",
+                "reference": "876c3f5e0572ff571fdbe67b68a94895dc2a7f26",
                 "shasum": ""
             },
             "require": {
@@ -1405,7 +1405,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-08-01T11:51:38+00:00"
+            "time": "2019-08-01T21:16:36+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1643,12 +1643,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "f3175dff62499a40e398af5b25c5ae21e5bdaed9"
+                "reference": "470c35933e65ec152e6c85ed42028da3e7004ad8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/f3175dff62499a40e398af5b25c5ae21e5bdaed9",
-                "reference": "f3175dff62499a40e398af5b25c5ae21e5bdaed9",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/470c35933e65ec152e6c85ed42028da3e7004ad8",
+                "reference": "470c35933e65ec152e6c85ed42028da3e7004ad8",
                 "shasum": ""
             },
             "require": {
@@ -1711,7 +1711,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2019-08-01T11:51:38+00:00"
+            "time": "2019-08-01T21:16:36+00:00"
         },
         {
             "name": "symfony/translation-contracts",
