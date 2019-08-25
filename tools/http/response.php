@@ -37,22 +37,23 @@ class response extends responseFactory
 	
 	function ok ( int $appStatus, $content ) : responseInterface
 	{
-		$class = $this->response;
-		$response = new $class ( $content, 200, $this->headers );
-		return $response->withHeader ( 'X-Firestark-Status', $appStatus );
+		return $this->respond ( 200, $appStatus, $content );
 	}
 
 	function conflict ( int $appStatus, $content ) : responseInterface
 	{
-		$class = $this->response;
-		$response = new $class ( $content, 409, $this->headers );
-		return $response->withHeader ( 'X-Firestark-Status', $appStatus );
+		return $this->respond ( 409, $appStatus, $content );
 	}
 
 	function unauthorized ( int $appStatus, $content = '' ) : responseInterface
 	{
+		return $this->respond ( 401, $appStatus, $content );
+	}
+
+	protected function respond ( int $status, int $appStatus, $content ) : responseInterface
+	{
 		$class = $this->response;
-		$response = new $class ( $content, 401, $this->headers );
+		$response = new $class ( $content, $status, $this->headers );
 		return $response->withHeader ( 'X-Firestark-Status', $appStatus );
 	}
 }
