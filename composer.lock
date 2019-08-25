@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e20c1ee626c23fd901d4a2db24749a1d",
+    "content-hash": "b8e6af03a61fd69df89dc852d85cc58a",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -107,42 +107,74 @@
             "time": "2018-06-15T19:03:38+00:00"
         },
         {
-            "name": "filp/whoops",
-            "version": "2.4.1",
+            "name": "firebase/php-jwt",
+            "version": "v5.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/filp/whoops.git",
-                "reference": "6fb502c23885701a991b0bba974b1a8eb6673577"
+                "url": "https://github.com/firebase/php-jwt.git",
+                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/6fb502c23885701a991b0bba974b1a8eb6673577",
-                "reference": "6fb502c23885701a991b0bba974b1a8eb6673577",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
+                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5.9 || ^7.0",
-                "psr/log": "^1.0.1"
+                "php": ">=5.3.0"
             },
             "require-dev": {
-                "mockery/mockery": "^0.9 || ^1.0",
-                "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "symfony/var-dumper": "^2.6 || ^3.0 || ^4.0"
-            },
-            "suggest": {
-                "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
-                "whoops/soap": "Formats errors as SOAP responses"
+                "phpunit/phpunit": " 4.8.35"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.2-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
-                    "Whoops\\": "src/Whoops/"
+                    "Firebase\\JWT\\": "src"
                 }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Neuman Vong",
+                    "role": "Developer",
+                    "email": "neuman+pear@twilio.com"
+                },
+                {
+                    "name": "Anant Narayanan",
+                    "role": "Developer",
+                    "email": "anant@php.net"
+                }
+            ],
+            "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
+            "homepage": "https://github.com/firebase/php-jwt",
+            "time": "2017-06-27T22:17:23+00:00"
+        },
+        {
+            "name": "firestark/ioc",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/firestark/ioc.git",
+                "reference": "bafb2d51b97397091afffcfd29582ec7a7730e5a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/firestark/ioc/zipball/bafb2d51b97397091afffcfd29582ec7a7730e5a",
+                "reference": "bafb2d51b97397091afffcfd29582ec7a7730e5a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/container": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ioc\\": "source"
+                },
+                "files": []
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -150,47 +182,100 @@
             ],
             "authors": [
                 {
-                    "name": "Filipe Dobreira",
-                    "homepage": "https://github.com/filp",
+                    "name": "Aron Wouters",
+                    "email": "firestark@mail.com",
                     "role": "Developer"
                 }
             ],
-            "description": "php error handling for cool kids",
-            "homepage": "https://filp.github.io/whoops/",
+            "description": "Small wrapper around illuminate ioc container.",
             "keywords": [
-                "error",
-                "exception",
-                "handling",
-                "library",
-                "throwable",
-                "whoops"
+                "ioc"
             ],
-            "time": "2019-07-04T09:00:00+00:00"
+            "time": "2017-11-01T14:21:56+00:00"
         },
         {
-            "name": "illuminate/container",
-            "version": "v5.8.30",
+            "name": "firestark/support",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/illuminate/container.git",
-                "reference": "7afee1ef2cb53190a98d727ea77096b6a610c05e"
+                "url": "https://github.com/firestark/support.git",
+                "reference": "68f9fce2f789d773f14101e787f8b67b57c4932d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/container/zipball/7afee1ef2cb53190a98d727ea77096b6a610c05e",
-                "reference": "7afee1ef2cb53190a98d727ea77096b6a610c05e",
+                "url": "https://api.github.com/repos/firestark/support/zipball/68f9fce2f789d773f14101e787f8b67b57c4932d",
+                "reference": "68f9fce2f789d773f14101e787f8b67b57c4932d",
+                "shasum": ""
+            },
+            "require-dev": {
+                "firestark/testing": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "": "source/accessibility",
+                    "is\\": "source/is"
+                },
+                "files": [
+                    "source/helpers/array.php",
+                    "source/helpers/checks.php",
+                    "source/helpers/classes.php",
+                    "source/helpers/misc.php",
+                    "source/helpers/text.php"
+                ],
+                "classmap": [
+                    "source/facade.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aron Wouters",
+                    "role": "Developer",
+                    "email": "lionar@mail.com"
+                },
+                {
+                    "name": "Irsan van Wel",
+                    "role": "Developer",
+                    "email": "vanwel@eyedouble.nl"
+                }
+            ],
+            "description": "Supporting tools.",
+            "keywords": [
+                "Eyedouble",
+                "firestark",
+                "lionar",
+                "support"
+            ],
+            "time": "2019-06-06T09:09:47+00:00"
+        },
+        {
+            "name": "illuminate/container",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/container.git",
+                "reference": "99604c2f12e5d0da71153e94d54a1e9737c5a8ec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/99604c2f12e5d0da71153e94d54a1e9737c5a8ec",
+                "reference": "99604c2f12e5d0da71153e94d54a1e9737c5a8ec",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "5.8.*",
-                "illuminate/support": "5.8.*",
-                "php": "^7.1.3",
+                "illuminate/contracts": "^7.0",
+                "illuminate/support": "^7.0",
+                "php": "^7.2",
                 "psr/container": "^1.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.8-dev"
+                    "dev-master": "7.0-dev"
                 }
             },
             "autoload": {
@@ -210,31 +295,31 @@
             ],
             "description": "The Illuminate Container package.",
             "homepage": "https://laravel.com",
-            "time": "2019-07-16T13:14:16+00:00"
+            "time": "2019-08-23T13:52:19+00:00"
         },
         {
             "name": "illuminate/contracts",
-            "version": "5.8.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "00fc6afee788fa07c311b0650ad276585f8aef96"
+                "reference": "b331894e77c6841507d798bb363137ca5cc0d26b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/00fc6afee788fa07c311b0650ad276585f8aef96",
-                "reference": "00fc6afee788fa07c311b0650ad276585f8aef96",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/b331894e77c6841507d798bb363137ca5cc0d26b",
+                "reference": "b331894e77c6841507d798bb363137ca5cc0d26b",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3",
+                "php": "^7.2",
                 "psr/container": "^1.0",
                 "psr/simple-cache": "^1.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.8-dev"
+                    "dev-master": "7.0-dev"
                 }
             },
             "autoload": {
@@ -254,45 +339,45 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2019-07-30T13:57:21+00:00"
+            "time": "2019-08-20T14:07:30+00:00"
         },
         {
             "name": "illuminate/support",
-            "version": "5.8.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "1d82de27c37ee6e8493dac0521cbda5b9456626c"
+                "reference": "4db18ada61eb588be9a5bd110f3be9fd458be3af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/1d82de27c37ee6e8493dac0521cbda5b9456626c",
-                "reference": "1d82de27c37ee6e8493dac0521cbda5b9456626c",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/4db18ada61eb588be9a5bd110f3be9fd458be3af",
+                "reference": "4db18ada61eb588be9a5bd110f3be9fd458be3af",
                 "shasum": ""
             },
             "require": {
                 "doctrine/inflector": "^1.1",
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "illuminate/contracts": "5.8.*",
-                "nesbot/carbon": "^1.26.3 || ^2.0",
-                "php": "^7.1.3"
+                "illuminate/contracts": "^7.0",
+                "nesbot/carbon": "^2.0",
+                "php": "^7.2"
             },
             "conflict": {
                 "tightenco/collect": "<5.5.33"
             },
             "suggest": {
-                "illuminate/filesystem": "Required to use the composer class (5.8.*).",
+                "illuminate/filesystem": "Required to use the composer class (^7.0).",
                 "moontoast/math": "Required to use ordered UUIDs (^1.1).",
                 "ramsey/uuid": "Required to use Str::uuid() (^3.7).",
-                "symfony/process": "Required to use the composer class (^4.2).",
-                "symfony/var-dumper": "Required to use the dd function (^4.2).",
-                "vlucas/phpdotenv": "Required to use the env helper (^3.3)."
+                "symfony/process": "Required to use the composer class (^4.3).",
+                "symfony/var-dumper": "Required to use the dd function (^4.3).",
+                "vlucas/phpdotenv": "Required to use the Env class and env helper (^3.3)."
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.8-dev"
+                    "dev-master": "7.0-dev"
                 }
             },
             "autoload": {
@@ -315,7 +400,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2019-07-26T06:46:07+00:00"
+            "time": "2019-08-23T15:13:11+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -406,302 +491,17 @@
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
-            "name": "league/route",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/route.git",
-                "reference": "e9ca722dc52d6652057e6fc448572a765b294f24"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/route/zipball/e9ca722dc52d6652057e6fc448572a765b294f24",
-                "reference": "e9ca722dc52d6652057e6fc448572a765b294f24",
-                "shasum": ""
-            },
-            "require": {
-                "nikic/fast-route": "^1.0",
-                "php": ">=7.1",
-                "psr/container": "^1.0",
-                "psr/http-factory": "^1.0",
-                "psr/http-message": "^1.0",
-                "psr/http-server-handler": "^1.0",
-                "psr/http-server-middleware": "^1.0"
-            },
-            "replace": {
-                "orno/http": "~1.0",
-                "orno/route": "~1.0"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^0.10.3",
-                "phpstan/phpstan-phpunit": "^0.10.0",
-                "phpunit/phpunit": "^7.0",
-                "squizlabs/php_codesniffer": "^3.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-4.x": "4.x-dev",
-                    "dev-3.x": "3.x-dev",
-                    "dev-2.x": "2.x-dev",
-                    "dev-1.x": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\Route\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Phil Bennett",
-                    "email": "philipobenito@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Fast routing and dispatch component including PSR-15 middleware, built on top of FastRoute.",
-            "homepage": "https://github.com/thephpleague/route",
-            "keywords": [
-                "dispatcher",
-                "league",
-                "psr-15",
-                "psr-7",
-                "psr15",
-                "psr7",
-                "route",
-                "router"
-            ],
-            "time": "2019-07-01T19:36:07+00:00"
-        },
-        {
-            "name": "maximebf/debugbar",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/maximebf/php-debugbar.git",
-                "reference": "5d44b5e5bc27779438ccb9d5691d4716d396c326"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/5d44b5e5bc27779438ccb9d5691d4716d396c326",
-                "reference": "5d44b5e5bc27779438ccb9d5691d4716d396c326",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6",
-                "psr/log": "^1.0",
-                "symfony/var-dumper": "^2.6|^3|^4"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5"
-            },
-            "suggest": {
-                "kriswallsmith/assetic": "The best way to manage assets",
-                "monolog/monolog": "Log using Monolog",
-                "predis/predis": "Redis storage"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.15-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "DebugBar\\": "src/DebugBar/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Maxime Bouroumeau-Fuseau",
-                    "email": "maxime.bouroumeau@gmail.com",
-                    "homepage": "http://maximebf.com"
-                },
-                {
-                    "name": "Barry vd. Heuvel",
-                    "email": "barryvdh@gmail.com"
-                }
-            ],
-            "description": "Debug bar in the browser for php application",
-            "homepage": "https://github.com/maximebf/php-debugbar",
-            "keywords": [
-                "debug",
-                "debugbar"
-            ],
-            "time": "2019-03-22T19:37:57+00:00"
-        },
-        {
-            "name": "middlewares/debugbar",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/middlewares/debugbar.git",
-                "reference": "8e0de02958cb138fc9e29a59e362128eaeb1127c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/middlewares/debugbar/zipball/8e0de02958cb138fc9e29a59e362128eaeb1127c",
-                "reference": "8e0de02958cb138fc9e29a59e362128eaeb1127c",
-                "shasum": ""
-            },
-            "require": {
-                "maximebf/debugbar": "^1.13",
-                "middlewares/utils": "^2.1",
-                "php": "^7.0",
-                "psr/http-server-middleware": "^1.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.0",
-                "phpstan/phpstan": "^0.9.2|^0.10.3",
-                "phpunit/phpunit": "^6.0|^7.0",
-                "squizlabs/php_codesniffer": "^3.0",
-                "zendframework/zend-diactoros": "^1.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Middlewares\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Middleware to insert PHP DebugBar automatically in html responses",
-            "homepage": "https://github.com/middlewares/debugbar",
-            "keywords": [
-                "debugbar",
-                "http",
-                "middleware",
-                "psr-15",
-                "psr-7",
-                "server"
-            ],
-            "time": "2018-10-12T11:40:23+00:00"
-        },
-        {
-            "name": "middlewares/utils",
-            "version": "v2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/middlewares/utils.git",
-                "reference": "7dc49454b4fbf249226023c7b77658b6068abfbc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/middlewares/utils/zipball/7dc49454b4fbf249226023c7b77658b6068abfbc",
-                "reference": "7dc49454b4fbf249226023c7b77658b6068abfbc",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.0",
-                "psr/container": "^1.0",
-                "psr/http-factory": "^1.0",
-                "psr/http-message": "^1.0",
-                "psr/http-server-middleware": "^1.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.0",
-                "guzzlehttp/psr7": "^1.3",
-                "phpunit/phpunit": "^6.0|^7.0",
-                "slim/http": "^0.3",
-                "squizlabs/php_codesniffer": "^3.0",
-                "zendframework/zend-diactoros": "^1.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Middlewares\\Utils\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Common utils to create PSR-15 middleware packages",
-            "homepage": "https://github.com/middlewares/utils",
-            "keywords": [
-                "PSR-11",
-                "http",
-                "middleware",
-                "psr-15",
-                "psr-17",
-                "psr-7"
-            ],
-            "time": "2019-03-05T22:06:37+00:00"
-        },
-        {
-            "name": "middlewares/whoops",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/middlewares/whoops.git",
-                "reference": "ade2f457a0e619a70d70dd8a7082d77c2ea5567c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/middlewares/whoops/zipball/ade2f457a0e619a70d70dd8a7082d77c2ea5567c",
-                "reference": "ade2f457a0e619a70d70dd8a7082d77c2ea5567c",
-                "shasum": ""
-            },
-            "require": {
-                "filp/whoops": "^2.1",
-                "middlewares/utils": "^2.1",
-                "php": "^7.0",
-                "psr/container": "^1.0",
-                "psr/http-server-middleware": "^1.0"
-            },
-            "require-dev": {
-                "eloquent/phony-phpunit": "^3.0|^4.0",
-                "friendsofphp/php-cs-fixer": "^2.0",
-                "phpstan/phpstan": "^0.9.2|^0.10.3",
-                "phpunit/phpunit": "^6.0|^7.0",
-                "squizlabs/php_codesniffer": "^3.0",
-                "zendframework/zend-diactoros": "^1.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Middlewares\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Middleware to use Whoops as error handler",
-            "homepage": "https://github.com/middlewares/whoops",
-            "keywords": [
-                "error",
-                "http",
-                "middleware",
-                "psr-15",
-                "psr-7",
-                "server",
-                "whoops"
-            ],
-            "time": "2018-10-12T11:42:23+00:00"
-        },
-        {
             "name": "nesbot/carbon",
-            "version": "2.22.0",
+            "version": "2.24.0-beta.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "1a0e48b5f656065ba3c265b058b25d36c2162a5e"
+                "reference": "c4bf16abadc2a7df9f7231e59acda304f5170748"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/1a0e48b5f656065ba3c265b058b25d36c2162a5e",
-                "reference": "1a0e48b5f656065ba3c265b058b25d36c2162a5e",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/c4bf16abadc2a7df9f7231e59acda304f5170748",
+                "reference": "c4bf16abadc2a7df9f7231e59acda304f5170748",
                 "shasum": ""
             },
             "require": {
@@ -748,27 +548,27 @@
                     "homepage": "http://github.com/kylekatarnls"
                 }
             ],
-            "description": "A simple API extension for DateTime.",
+            "description": "A API extension for DateTime that supports 281 different languages.",
             "homepage": "http://carbon.nesbot.com",
             "keywords": [
                 "date",
                 "datetime",
                 "time"
             ],
-            "time": "2019-07-28T09:02:12+00:00"
+            "time": "2019-08-23T06:11:49+00:00"
         },
         {
             "name": "nikic/fast-route",
-            "version": "v1.x-dev",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/FastRoute.git",
-                "reference": "dd929b38a127ca763f9dc4896320ebeb0c1fdc08"
+                "reference": "181d480e08d9476e61381e04a71b34dc0432e812"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/dd929b38a127ca763f9dc4896320ebeb0c1fdc08",
-                "reference": "dd929b38a127ca763f9dc4896320ebeb0c1fdc08",
+                "url": "https://api.github.com/repos/nikic/FastRoute/zipball/181d480e08d9476e61381e04a71b34dc0432e812",
+                "reference": "181d480e08d9476e61381e04a71b34dc0432e812",
                 "shasum": ""
             },
             "require": {
@@ -801,7 +601,7 @@
                 "router",
                 "routing"
             ],
-            "time": "2018-08-19T11:46:04+00:00"
+            "time": "2018-02-13T20:26:39+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -809,12 +609,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "a1f72690ef18a21b168f19e45bd921aa7c394007"
+                "reference": "e612609022e935f3d0337c1295176505b41188c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/a1f72690ef18a21b168f19e45bd921aa7c394007",
-                "reference": "a1f72690ef18a21b168f19e45bd921aa7c394007",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/e612609022e935f3d0337c1295176505b41188c8",
+                "reference": "e612609022e935f3d0337c1295176505b41188c8",
                 "shasum": ""
             },
             "require": {
@@ -852,7 +652,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2019-07-23T10:32:37+00:00"
+            "time": "2019-08-12T20:17:41+00:00"
         },
         {
             "name": "psr/container",
@@ -1112,53 +912,6 @@
             "time": "2019-05-23T18:10:42+00:00"
         },
         {
-            "name": "psr/log",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/log.git",
-                "reference": "c4421fcac1edd5a324fda73e589a5cf96e52ffd0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/c4421fcac1edd5a324fda73e589a5cf96e52ffd0",
-                "reference": "c4421fcac1edd5a324fda73e589a5cf96e52ffd0",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Log\\": "Psr/Log/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for logging libraries",
-            "homepage": "https://github.com/php-fig/log",
-            "keywords": [
-                "log",
-                "psr",
-                "psr-3"
-            ],
-            "time": "2018-11-21T13:42:00+00:00"
-        },
-        {
             "name": "psr/simple-cache",
             "version": "dev-master",
             "source": {
@@ -1208,7 +961,7 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.9.9",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
@@ -1338,12 +1091,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "876c3f5e0572ff571fdbe67b68a94895dc2a7f26"
+                "reference": "e2bcf63620378f81f32012338014fc3d1ef72292"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/876c3f5e0572ff571fdbe67b68a94895dc2a7f26",
-                "reference": "876c3f5e0572ff571fdbe67b68a94895dc2a7f26",
+                "url": "https://api.github.com/repos/symfony/console/zipball/e2bcf63620378f81f32012338014fc3d1ef72292",
+                "reference": "e2bcf63620378f81f32012338014fc3d1ef72292",
                 "shasum": ""
             },
             "require": {
@@ -1355,6 +1108,7 @@
             "conflict": {
                 "symfony/dependency-injection": "<3.4",
                 "symfony/event-dispatcher": "<4.3|>=5",
+                "symfony/lock": "<4.4",
                 "symfony/process": "<3.3"
             },
             "provide": {
@@ -1405,7 +1159,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-08-01T21:16:36+00:00"
+            "time": "2019-08-23T12:16:45+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1413,12 +1167,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "626bb16c799983996863d1243eadf5bcb2cbb5bd"
+                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/626bb16c799983996863d1243eadf5bcb2cbb5bd",
-                "reference": "626bb16c799983996863d1243eadf5bcb2cbb5bd",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/b42a2f66e8f1b15ccf25652c3424265923eb4f17",
+                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17",
                 "shasum": ""
             },
             "require": {
@@ -1430,7 +1184,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.12-dev"
                 }
             },
             "autoload": {
@@ -1464,7 +1218,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-01T10:49:16+00:00"
+            "time": "2019-08-06T08:03:45+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
@@ -1472,12 +1226,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
-                "reference": "ab50dcf166d5f577978419edd37aa2bb8eabce0c"
+                "reference": "04ce3335667451138df4307d6a9b61565560199e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/ab50dcf166d5f577978419edd37aa2bb8eabce0c",
-                "reference": "ab50dcf166d5f577978419edd37aa2bb8eabce0c",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/04ce3335667451138df4307d6a9b61565560199e",
+                "reference": "04ce3335667451138df4307d6a9b61565560199e",
                 "shasum": ""
             },
             "require": {
@@ -1486,7 +1240,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.12-dev"
                 }
             },
             "autoload": {
@@ -1519,7 +1273,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-02-06T07:57:58+00:00"
+            "time": "2019-08-06T08:03:45+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
@@ -1527,12 +1281,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "639cc79605c22d3404d4082dd3af0fec66e0e975"
+                "reference": "2ceb49eaccb9352bff54d22570276bb75ba4a188"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/639cc79605c22d3404d4082dd3af0fec66e0e975",
-                "reference": "639cc79605c22d3404d4082dd3af0fec66e0e975",
+                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/2ceb49eaccb9352bff54d22570276bb75ba4a188",
+                "reference": "2ceb49eaccb9352bff54d22570276bb75ba4a188",
                 "shasum": ""
             },
             "require": {
@@ -1541,7 +1295,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.12-dev"
                 }
             },
             "autoload": {
@@ -1577,7 +1331,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-06-29T06:17:32+00:00"
+            "time": "2019-08-06T08:03:45+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -1585,12 +1339,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "80e2979498474772ebb59018b1176a7bcb123669"
+                "reference": "ea7263d6b6d5f798b56a45a5b8d686725f2719a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/80e2979498474772ebb59018b1176a7bcb123669",
-                "reference": "80e2979498474772ebb59018b1176a7bcb123669",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/ea7263d6b6d5f798b56a45a5b8d686725f2719a3",
+                "reference": "ea7263d6b6d5f798b56a45a5b8d686725f2719a3",
                 "shasum": ""
             },
             "require": {
@@ -1635,7 +1389,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-06-13T06:16:15+00:00"
+            "time": "2019-08-20T14:44:19+00:00"
         },
         {
             "name": "symfony/translation",
@@ -1643,18 +1397,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "470c35933e65ec152e6c85ed42028da3e7004ad8"
+                "reference": "0aeed94d8a7a6f995b853d840dbdd83d14563585"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/470c35933e65ec152e6c85ed42028da3e7004ad8",
-                "reference": "470c35933e65ec152e6c85ed42028da3e7004ad8",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/0aeed94d8a7a6f995b853d840dbdd83d14563585",
+                "reference": "0aeed94d8a7a6f995b853d840dbdd83d14563585",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1.3",
                 "symfony/polyfill-mbstring": "~1.0",
-                "symfony/translation-contracts": "^1.1.2"
+                "symfony/translation-contracts": "^1.1.6"
             },
             "conflict": {
                 "symfony/config": "<3.4",
@@ -1711,7 +1465,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2019-08-01T21:16:36+00:00"
+            "time": "2019-08-22T13:18:41+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -1719,12 +1473,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation-contracts.git",
-                "reference": "f5f199764546d6e6908d9c3d3ccfe8bc10d91fab"
+                "reference": "325b17c24f3ee23cbecfa63ba809c6d89b5fa04a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/f5f199764546d6e6908d9c3d3ccfe8bc10d91fab",
-                "reference": "f5f199764546d6e6908d9c3d3ccfe8bc10d91fab",
+                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/325b17c24f3ee23cbecfa63ba809c6d89b5fa04a",
+                "reference": "325b17c24f3ee23cbecfa63ba809c6d89b5fa04a",
                 "shasum": ""
             },
             "require": {
@@ -1768,7 +1522,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-06-13T11:01:17+00:00"
+            "time": "2019-08-02T12:15:04+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -1776,12 +1530,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "0f82d78dd09c35eeb858672ca3ab1ac02847c79e"
+                "reference": "160c545e985edd27b7d134809c6308f599226e92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/0f82d78dd09c35eeb858672ca3ab1ac02847c79e",
-                "reference": "0f82d78dd09c35eeb858672ca3ab1ac02847c79e",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/160c545e985edd27b7d134809c6308f599226e92",
+                "reference": "160c545e985edd27b7d134809c6308f599226e92",
                 "shasum": ""
             },
             "require": {
@@ -1844,7 +1598,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2019-08-01T11:51:38+00:00"
+            "time": "2019-08-23T08:37:16+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -1852,12 +1606,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "345b1116f330007e200251351ba8af8755733d5f"
+                "reference": "7e907d846056ce7fd009e817277df23097c29da2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/345b1116f330007e200251351ba8af8755733d5f",
-                "reference": "345b1116f330007e200251351ba8af8755733d5f",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/7e907d846056ce7fd009e817277df23097c29da2",
+                "reference": "7e907d846056ce7fd009e817277df23097c29da2",
                 "shasum": ""
             },
             "require": {
@@ -1910,20 +1664,20 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2019-07-10T16:21:18+00:00"
+            "time": "2019-08-06T13:30:30+00:00"
         },
         {
             "name": "zendframework/zend-httphandlerrunner",
-            "version": "dev-develop",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-httphandlerrunner.git",
-                "reference": "46df3c8bf1830c38400f96efe302669c76a6c907"
+                "reference": "75fb12751fe9d6e392cce1ee0d687dacae2db787"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-httphandlerrunner/zipball/46df3c8bf1830c38400f96efe302669c76a6c907",
-                "reference": "46df3c8bf1830c38400f96efe302669c76a6c907",
+                "url": "https://api.github.com/repos/zendframework/zend-httphandlerrunner/zipball/75fb12751fe9d6e392cce1ee0d687dacae2db787",
+                "reference": "75fb12751fe9d6e392cce1ee0d687dacae2db787",
                 "shasum": ""
             },
             "require": {
@@ -1965,70 +1719,339 @@
                 "psr-7",
                 "zf"
             ],
-            "time": "2019-02-19T18:21:34+00:00"
+            "time": "2019-02-19T18:20:34+00:00"
         }
     ],
     "packages-dev": [
         {
-            "name": "squizlabs/php_codesniffer",
-            "version": "dev-master",
+            "name": "filp/whoops",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "2fc132709b68c481a4cac74ed30ebb58f406c4f5"
+                "url": "https://github.com/filp/whoops.git",
+                "reference": "cde50e6720a39fdacb240159d3eea6865d51fd96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/2fc132709b68c481a4cac74ed30ebb58f406c4f5",
-                "reference": "2fc132709b68c481a4cac74ed30ebb58f406c4f5",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/cde50e6720a39fdacb240159d3eea6865d51fd96",
+                "reference": "cde50e6720a39fdacb240159d3eea6865d51fd96",
                 "shasum": ""
             },
             "require": {
-                "ext-simplexml": "*",
-                "ext-tokenizer": "*",
-                "ext-xmlwriter": "*",
-                "php": ">=5.4.0"
+                "php": "^5.5.9 || ^7.0",
+                "psr/log": "^1.0.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0"
+                "mockery/mockery": "^0.9 || ^1.0",
+                "phpunit/phpunit": "^4.8.35 || ^5.7",
+                "symfony/var-dumper": "^2.6 || ^3.0 || ^4.0"
             },
-            "bin": [
-                "bin/phpcs",
-                "bin/phpcbf"
-            ],
+            "suggest": {
+                "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
+                "whoops/soap": "Formats errors as SOAP responses"
+            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.x-dev"
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Whoops\\": "src/Whoops/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-3-Clause"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "Greg Sherwood",
-                    "role": "lead"
+                    "name": "Filipe Dobreira",
+                    "role": "Developer",
+                    "homepage": "https://github.com/filp"
                 }
             ],
-            "description": "PHP_CodeSniffer tokenizes PHP, JavaScript and CSS files and detects violations of a defined set of coding standards.",
-            "homepage": "https://github.com/squizlabs/PHP_CodeSniffer",
+            "description": "php error handling for cool kids",
+            "homepage": "https://filp.github.io/whoops/",
             "keywords": [
-                "phpcs",
-                "standards"
+                "error",
+                "exception",
+                "handling",
+                "library",
+                "throwable",
+                "whoops"
             ],
-            "time": "2019-07-31T05:44:44+00:00"
+            "time": "2019-08-07T09:00:00+00:00"
+        },
+        {
+            "name": "maximebf/debugbar",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maximebf/php-debugbar.git",
+                "reference": "e9d3263a1c6352a743c72e57cb5daa2f6d2a5d7d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/e9d3263a1c6352a743c72e57cb5daa2f6d2a5d7d",
+                "reference": "e9d3263a1c6352a743c72e57cb5daa2f6d2a5d7d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6",
+                "psr/log": "^1.0",
+                "symfony/var-dumper": "^2.6|^3|^4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5"
+            },
+            "suggest": {
+                "kriswallsmith/assetic": "The best way to manage assets",
+                "monolog/monolog": "Log using Monolog",
+                "predis/predis": "Redis storage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.15-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DebugBar\\": "src/DebugBar/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxime Bouroumeau-Fuseau",
+                    "email": "maxime.bouroumeau@gmail.com",
+                    "homepage": "http://maximebf.com"
+                },
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "Debug bar in the browser for php application",
+            "homepage": "https://github.com/maximebf/php-debugbar",
+            "keywords": [
+                "debug",
+                "debugbar"
+            ],
+            "time": "2019-08-05T18:50:57+00:00"
+        },
+        {
+            "name": "middlewares/debugbar",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/middlewares/debugbar.git",
+                "reference": "8e0de02958cb138fc9e29a59e362128eaeb1127c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/middlewares/debugbar/zipball/8e0de02958cb138fc9e29a59e362128eaeb1127c",
+                "reference": "8e0de02958cb138fc9e29a59e362128eaeb1127c",
+                "shasum": ""
+            },
+            "require": {
+                "maximebf/debugbar": "^1.13",
+                "middlewares/utils": "^2.1",
+                "php": "^7.0",
+                "psr/http-server-middleware": "^1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "phpstan/phpstan": "^0.9.2|^0.10.3",
+                "phpunit/phpunit": "^6.0|^7.0",
+                "squizlabs/php_codesniffer": "^3.0",
+                "zendframework/zend-diactoros": "^1.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Middlewares\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Middleware to insert PHP DebugBar automatically in html responses",
+            "homepage": "https://github.com/middlewares/debugbar",
+            "keywords": [
+                "debugbar",
+                "http",
+                "middleware",
+                "psr-15",
+                "psr-7",
+                "server"
+            ],
+            "time": "2018-10-12T11:40:23+00:00"
+        },
+        {
+            "name": "middlewares/utils",
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/middlewares/utils.git",
+                "reference": "7dc49454b4fbf249226023c7b77658b6068abfbc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/middlewares/utils/zipball/7dc49454b4fbf249226023c7b77658b6068abfbc",
+                "reference": "7dc49454b4fbf249226023c7b77658b6068abfbc",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0",
+                "psr/container": "^1.0",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^1.0",
+                "psr/http-server-middleware": "^1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "guzzlehttp/psr7": "^1.3",
+                "phpunit/phpunit": "^6.0|^7.0",
+                "slim/http": "^0.3",
+                "squizlabs/php_codesniffer": "^3.0",
+                "zendframework/zend-diactoros": "^1.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Middlewares\\Utils\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Common utils to create PSR-15 middleware packages",
+            "homepage": "https://github.com/middlewares/utils",
+            "keywords": [
+                "PSR-11",
+                "http",
+                "middleware",
+                "psr-15",
+                "psr-17",
+                "psr-7"
+            ],
+            "time": "2019-03-05T22:06:37+00:00"
+        },
+        {
+            "name": "middlewares/whoops",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/middlewares/whoops.git",
+                "reference": "ade2f457a0e619a70d70dd8a7082d77c2ea5567c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/middlewares/whoops/zipball/ade2f457a0e619a70d70dd8a7082d77c2ea5567c",
+                "reference": "ade2f457a0e619a70d70dd8a7082d77c2ea5567c",
+                "shasum": ""
+            },
+            "require": {
+                "filp/whoops": "^2.1",
+                "middlewares/utils": "^2.1",
+                "php": "^7.0",
+                "psr/container": "^1.0",
+                "psr/http-server-middleware": "^1.0"
+            },
+            "require-dev": {
+                "eloquent/phony-phpunit": "^3.0|^4.0",
+                "friendsofphp/php-cs-fixer": "^2.0",
+                "phpstan/phpstan": "^0.9.2|^0.10.3",
+                "phpunit/phpunit": "^6.0|^7.0",
+                "squizlabs/php_codesniffer": "^3.0",
+                "zendframework/zend-diactoros": "^1.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Middlewares\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Middleware to use Whoops as error handler",
+            "homepage": "https://github.com/middlewares/whoops",
+            "keywords": [
+                "error",
+                "http",
+                "middleware",
+                "psr-15",
+                "psr-7",
+                "server",
+                "whoops"
+            ],
+            "time": "2018-10-12T11:42:23+00:00"
+        },
+        {
+            "name": "psr/log",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "c4421fcac1edd5a324fda73e589a5cf96e52ffd0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/c4421fcac1edd5a324fda73e589a5cf96e52ffd0",
+                "reference": "c4421fcac1edd5a324fda73e589a5cf96e52ffd0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2018-11-21T13:42:00+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "firebase/php-jwt": 0,
+        "nikic/fast-route": 0,
         "relay/relay": 20,
-        "league/route": 20,
-        "zendframework/zend-httphandlerrunner": 20,
-        "illuminate/container": 0,
-        "psy/psysh": 0,
+        "zendframework/zend-httphandlerrunner": 0,
         "middlewares/debugbar": 20,
         "middlewares/whoops": 20
     },

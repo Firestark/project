@@ -2,7 +2,7 @@
 
 class request extends facade
 {
-    public static function getFacadeAccessor()
+    public static function getFacadeAccessor ( )
     {
         return 'request';
     }

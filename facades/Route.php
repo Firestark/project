@@ -1,8 +1,8 @@
 <?php
 
-class Route extends facade
+class route extends facade
 {
-    public static function getFacadeAccessor()
+    public static function getFacadeAccessor ( )
     {
         return 'router';
     }

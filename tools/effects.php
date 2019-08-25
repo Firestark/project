@@ -5,7 +5,7 @@ namespace firestark;
 use closure;
 
 
-class statuses
+class effects
 {
     private $matched = [ ];
 

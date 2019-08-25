@@ -1,8 +1,8 @@
 <?php
 
-class Session extends Facade
+class session extends facade
 {
-    public static function getFacadeAccessor()
+    public static function getFacadeAccessor ( )
     {
         return 'session';
     }

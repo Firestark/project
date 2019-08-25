@@ -1,9 +1,9 @@
 <?php
 
-class input extends facade
+class effect extends facade
 {
     public static function getFacadeAccessor ( )
     {
-        return 'input';
+        return 'effects';
     }
 }

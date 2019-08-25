@@ -1,59 +1,69 @@
 <?php
 
-namespace Firestark;
+namespace firestark;
 
-class Session
+class session
 {
-    public function __construct()
+    public function __construct ( )
     {
-        session_start();
-        $this->initiliaze('flash');
-        $this->initiliaze('deprecated');        
-        $this->deprecate();
+        session_start ( );
+        $this->initiliaze ( 'flash' );
+        $this->initiliaze ( 'deprecated' );        
+        $this->deprecate ( );
     }
 
-    public function get(string $key, $default = null)
+    public function get ( string $key, $default = null )
     {
-        return $_SESSION[$key] ??
-            ($_SESSION['flash'][$key] ??
-            ($_SESSION['deprecated'][$key] ?? $default));
+        return $_SESSION [ $key ] ??
+            ( $_SESSION [ 'flash' ] [ $key ] ??
+            ( $_SESSION [ 'deprecated' ] [ $key ] ?? $default ) );
     }
 
-    public function set(string $key, $value)
+    public function set ( string $key, $value )
     {
-        $_SESSION[$key] = $value;
+        $_SESSION [ $key ] = $value;
     }
 
-    public function flash(string $key, $value)
+    public function unset ( string $key )
     {
-        $_SESSION['flash'][$key] = $value;
+        unset ( $_SESSION [ $key ] );
     }
 
-    public function has(string $key): bool
+    public function flash ( string $key, $value )
+    {
+        $_SESSION [ 'flash' ] [ $key ] = $value;
+    }
+
+    public function has ( string $key ) : bool
     {
         return 
-            isset($_SESSION[$key]) || 
-            isset($_SESSION['flash'][$key]) || 
-            isset($_SESSION['deprecated'][$key]);
+            isset ( $_SESSION [ $key ] ) || 
+            isset ( $_SESSION [ 'flash' ] [ $key ] ) || 
+            isset ( $_SESSION [ 'deprecated' ] [ $key ] );
     }
 
-    private function deprecate()
+    public function destroy ( )
+    {
+        session_destroy ( );
+    }
+
+    private function deprecate ( )
     {            
-        foreach ($_SESSION['flash'] as $key => $value)
+        foreach ( $_SESSION [ 'flash' ] as $key => $value )
         {
-            unset($_SESSION['flash'][$key]);
-            $_SESSION['deprecated'][$key] = $value;
+            unset ( $_SESSION [ 'flash' ] [ $key ] );
+            $_SESSION [ 'deprecated' ] [ $key ] = $value;
         }
     }
 
-    private function initiliaze(string $key)
+    private function initiliaze ( string $key )
     {
-        if (! isset($_SESSION [$key]))
-            $_SESSION[$key] = [];
+        if ( ! isset ( $_SESSION [ $key ] ) )
+            $_SESSION [ $key ] = [ ];
     }
 
-    public function __destruct ()
+    public function __destruct ( )
     {
-        unset($_SESSION ['deprecated']);
+        unset ( $_SESSION [ 'deprecated' ] );
     }
 }

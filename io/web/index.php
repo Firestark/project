@@ -1,39 +1,40 @@
 <?php
 
-use Firestark\App;
-use League\Route\Router;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use Relay\Relay;
-use Zend\Diactoros\Response;
-use Zend\Diactoros\ServerRequestFactory as Request;
+use Zend\Diactoros\Response as response;
+use Zend\Diactoros\Response\HtmlResponse as html;
+use Zend\Diactoros\ServerRequestFactory as request;
+use Zend\Diactoros\ResponseFactory as responseFactory;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-$app = new App;
-$app->instance('app', $app);
-Facade::setFacadeApplication($app);
+$app = new firestark\app;
+$app->instance ( 'app', $app );
+$app->instance ( 'session', new firestark\session );
+$app->instance ( 'effects', new firestark\effects );
+$app->instance ( 'statuses', new firestark\statuses );
+$app->instance ( 'request', request::fromGlobals ( ) );
+$app->instance ( 'response', new firestark\http\response ( html::class ) );
+$app->instance ( 'router', new firestark\http\router );
 
-$app->instance('router', new Firestark\Router);
-$app->instance('response', new Firestark\Response);
-$app->instance('view', new Firestark\View($app['response'], __DIR__ . '/views'));
-$app->instance('statuses', new Firestark\Statuses);
-$app->instance('session', new Firestark\Session);
-$app->instance('redirector', new Firestark\Redirector($app['session']->get('previous-uri', '/')));
+facade::setFacadeApplication ( $app );
 
-including(__DIR__ . '/routes');
-including(__DIR__ . '/bindings');
-including(__DIR__ . '/statuses');
-including(__DIR__ . '/../../bindings');
-including(__DIR__ . '/../../app/procedures');
+including ( __DIR__ . '/../../bindings' );
+including ( __DIR__ . '/bindings' );
+including ( __DIR__ . '/routes' );
+including ( __DIR__ . '/../../effects' );
+including ( __DIR__ . '/statuses' );
+including ( __DIR__ . '/../../app/procedures' );
 
-$relay = new Relay([
-    (new Middlewares\Debugbar())->inline(),
-    new Middlewares\Whoops,
-    new Firestark\RouterMiddleware($app['router'], $app['response'], $app['view']->asString('404'))
-]);
+$dispatcher = new firestark\http\dispatcher ( $app [ 'router' ]->routes );
 
-$request = Request::fromGlobals();
-$response = $relay->handle($request);
-(new Zend\HttpHandlerRunner\Emitter\SapiEmitter)->emit($response);
-$app['session']->flash('previous-uri', $request->getUri()->getPath());
+$relay = new Relay ( [
+    ( new Middlewares\Debugbar ( ) )->responseFactory ( $app [ 'response' ] )->inline ( ),
+    ( new Middlewares\Whoops )->responseFactory ( $app [ 'response' ] )->catchErrors ( true ),
+    new \firestark\middlewares\redirect ( $app ),
+    new \firestark\middlewares\input ( $app ),
+    new \firestark\middlewares\requestHandler ( $dispatcher ),
+] );
+
+$response = $relay->handle ( $app [ 'request' ] );
+( new Zend\HttpHandlerRunner\Emitter\SapiEmitter )->emit ( $response );

@@ -1,23 +1,10 @@
 <?php
 
-namespace Firestark;
+namespace firestark;
 
-use Illuminate\Container\Container;
+use ioc\container;
 
-class App extends Container
+class app extends container
 {
-    public function binding(string $abstract, \closure $concrete)
-    {
-        $concrete = function ($container, array $parameters = []) use ($concrete)
-		{
-			return $container->call($concrete, $parameters);
-		};
 
-		$this->bind($abstract, $concrete);
-    }
-
-    public function share(string $abstract, \closure $concrete)
-	{
-		$this->bind($abstract, $concrete, true);
-	}
 }
