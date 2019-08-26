@@ -9,7 +9,7 @@ function ( habit $habit, habit\manager $habitManager, user $user, user\manager $
     if ( ! $userManager->registered ( $user ) )
         return [ 0, with ( 'user' ) ];
 
-    if ( $habitManager->has ( $habit, $user ) )
+    if ( $habitManager->hasTitle ( $habit->title, $user ) )
         return [ 2000, [ ] ];
         
     $habitManager->add ( $habit, $user );

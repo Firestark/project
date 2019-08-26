@@ -26,10 +26,15 @@ class flatfileHabitManager implements habit\manager
         $this->write ( $habits, $user );
     }
 
-    function has ( habit $habit, user $user ) : bool
+    function hasTitle ( string $title, user $user ) : bool
     {
         $habits = $this->allFor ( $user );
-        return isset ( $habits [ $habit->id ] );
+        
+        foreach ( $habits as $habit )
+            if ( $habit->title === $title )
+                return true;
+        
+        return false;
     }
 
     private function write ( array $habits, user $user )

@@ -11,5 +11,5 @@ interface manager
 
     function add ( habit $habit, user $user );
 
-    function has ( habit $habit, user $user ) : bool;
+    function hasTitle ( string $title, user $user ) : bool;
 }
