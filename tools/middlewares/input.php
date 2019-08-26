@@ -19,11 +19,29 @@ class input implements middleware
     
     public function process ( request $request, handler $handler ) : response
     {
+        if ( $request->getHeaderLine ( 'Content-Type' ) === 'application/json' )
+            $data = $this->parseJson ( $request );
+        else
+            $data = $this->parseForm ( $request );
+        
+        $this->app->instance ( 'input', new \firestark\input ( $data ) );
+        return $handler->handle ( $request ); 
+    }
+
+    private function parseForm ( request $request ) : array
+    {
         parse_str ( $request->getUri ( )->getQuery ( ), $query );
         parse_str ( ( string ) $request->getBody ( ), $post );
-        
-        $this->app->instance ( 'input', new \firestark\input ( array_merge ( $query, $post ) ) );
-        return $handler->handle ( $request ); 
+
+        return array_merge ( $post, $query );
+    }
+
+    private function parseJson ( request $request ) : array
+    {
+        $query = ( array ) json_decode ( $request->getUri ( )->getQuery ( ) );
+        $post = ( array ) json_decode ( $request->getBody ( ) );
+
+        return array_merge ( $post, $query );
     }
 }
 

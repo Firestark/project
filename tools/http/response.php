@@ -40,6 +40,11 @@ class response extends responseFactory
 		return $this->respond ( 200, $appStatus, $content );
 	}
 
+	function created ( int $appStatus, $content ) : responseInterface
+	{
+		return $this->respond ( 201, $appStatus, $content );
+	}
+
 	function conflict ( int $appStatus, $content ) : responseInterface
 	{
 		return $this->respond ( 409, $appStatus, $content );
