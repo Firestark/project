@@ -11,7 +11,6 @@ require __DIR__ . '/../../vendor/autoload.php';
 $app = new firestark\app;
 $app->instance ( 'app', $app );
 $app->instance ( 'session', new firestark\session );
-$app->instance ( 'effects', new firestark\effects );
 $app->instance ( 'statuses', new firestark\statuses );
 $app->instance ( 'request', request::fromGlobals ( ) );
 $app->instance ( 'response', new firestark\http\response ( html::class ) );
@@ -22,7 +21,6 @@ facade::setFacadeApplication ( $app );
 including ( __DIR__ . '/../../bindings' );
 including ( __DIR__ . '/bindings' );
 including ( __DIR__ . '/routes' );
-including ( __DIR__ . '/../../effects' );
 including ( __DIR__ . '/statuses' );
 including ( __DIR__ . '/../../app/procedures' );
 

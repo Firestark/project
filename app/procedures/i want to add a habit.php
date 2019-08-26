@@ -4,7 +4,7 @@ use function compact as with;
 
 when ( 'i want to add a habit', then ( apply ( a ( 
     
-function ( habit $habit, habit\manager $habitManager, activeUser $user, user\manager $userManager )
+function ( habit $habit, habit\manager $habitManager, user $user, user\manager $userManager )
 {
     if ( ! $userManager->registered ( $user ) )
         return [ 0, with ( 'user' ) ];

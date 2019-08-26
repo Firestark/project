@@ -1,1 +1,1 @@
-a:1:{s:13:"5d63ae8571e0d";O:5:"habit":3:{s:2:"id";s:13:"5d63ae8571e0d";s:5:"title";s:9:"API habit";s:11:"completions";a:0:{}}}
+a:2:{s:13:"5d63ae8571e0d";O:5:"habit":3:{s:2:"id";s:13:"5d63ae8571e0d";s:5:"title";s:9:"API habit";s:11:"completions";a:0:{}}s:13:"5d63b7f38236f";O:5:"habit":3:{s:2:"id";s:13:"5d63b7f38236f";s:5:"title";s:9:"CLI habit";s:11:"completions";a:0:{}}}
