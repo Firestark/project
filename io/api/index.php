@@ -26,10 +26,10 @@ $dispatcher = new firestark\http\dispatcher ( $app [ 'router' ]->routes );
 $relay = new Relay ( [
     ( new Middlewares\Debugbar ( ) )->responseFactory ( $app [ 'response' ] )->inline ( ),
     ( new Middlewares\Whoops )->responseFactory ( $app [ 'response' ] )->catchErrors ( true ),
-    function ( $request, $handler ) use ( $app ) {
-        $app [ 'request' ] = $request->withHeader ( 'Authorization', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcmVkZW50aWFscyI6Ik86MTY6XCJ1c2VyXFxjcmVkZW50aWFsc1wiOjI6e3M6ODpcInVzZXJuYW1lXCI7czo1OlwiYWRtaW5cIjtzOjg6XCJwYXNzd29yZFwiO3M6NjQ6XCI4YzY5NzZlNWI1NDEwNDE1YmRlOTA4YmQ0ZGVlMTVkZmIxNjdhOWM4NzNmYzRiYjhhODFmNmYyYWI0NDhhOTE4XCI7fSJ9.L7-3oTxyqvQHlxD3W5oRaTFkgR92JbQRUOsFY6mDNrY' );
-        return $handler->handle ( $app [ 'request' ] );
-    },
+    // function ( $request, $handler ) use ( $app ) {
+    //     $app [ 'request' ] = $request->withHeader ( 'Authorization', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcmVkZW50aWFscyI6Ik86MTY6XCJ1c2VyXFxjcmVkZW50aWFsc1wiOjI6e3M6ODpcInVzZXJuYW1lXCI7czo1OlwiYWRtaW5cIjtzOjg6XCJwYXNzd29yZFwiO3M6NjQ6XCI4YzY5NzZlNWI1NDEwNDE1YmRlOTA4YmQ0ZGVlMTVkZmIxNjdhOWM4NzNmYzRiYjhhODFmNmYyYWI0NDhhOTE4XCI7fSJ9.L7-3oTxyqvQHlxD3W5oRaTFkgR92JbQRUOsFY6mDNrY' );
+    //     return $handler->handle ( $app [ 'request' ] );
+    // },
     new \firestark\middlewares\input ( $app ),
     new \firestark\middlewares\requestHandler ( $dispatcher ),
 ] );
