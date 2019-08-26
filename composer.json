@@ -26,7 +26,9 @@
         "psy/psysh": "*",
         "relay/relay": "2.x-dev",
         "zendframework/zend-httphandlerrunner": "^1.1@stable",
-        "zendframework/zend-diactoros": "^2.1"
+        "zendframework/zend-diactoros": "^2.1",
+        "peridot-php/peridot": "dev-master",
+        "mockery/mockery": "^1.0@dev"
 	},
     "require-dev": {
         "middlewares/debugbar": "dev-master",
