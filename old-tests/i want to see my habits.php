@@ -35,7 +35,7 @@ describe ( 'i want to see my habits', function ( )
 
     it ( 'should return status code 1000, given a valid user is supplied', function ( ) 
     {
-        assert ( $this->status === 1000, 'Expected status: 1000' );
+        assert ( $this->status === 2000, 'Expected status: 1000' );
     } );
 
     it ( 'should return the expected payload', function ( ) 

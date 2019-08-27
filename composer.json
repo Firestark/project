@@ -33,7 +33,7 @@
         "middlewares/debugbar": "dev-master",
         "middlewares/whoops": "dev-master",
         "mockery/mockery": "^1.0@dev",
-        "peridot-php/peridot": "dev-master"
+        "peridot-php/peridot": "@stable"
     },
     "autoload": {
 		"psr-4": {

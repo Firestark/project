@@ -1,7 +1,5 @@
 <?php
 
-// What about only running this file for a specific test
-
 use Mockery as mockery;
 
 $habits = [ mockery::mock ( habit::class ), mockery::mock ( habit::class ) ];
