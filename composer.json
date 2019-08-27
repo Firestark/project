@@ -26,13 +26,14 @@
         "psy/psysh": "*",
         "relay/relay": "2.x-dev",
         "zendframework/zend-httphandlerrunner": "^1.1@stable",
-        "zendframework/zend-diactoros": "^2.1",
-        "peridot-php/peridot": "dev-master",
-        "mockery/mockery": "^1.0@dev"
+        "zendframework/zend-diactoros": "^2.1"
 	},
     "require-dev": {
+        "hamcrest/hamcrest-php": "^2.0@dev",
         "middlewares/debugbar": "dev-master",
-        "middlewares/whoops": "dev-master"
+        "middlewares/whoops": "dev-master",
+        "mockery/mockery": "^1.0@dev",
+        "peridot-php/peridot": "dev-master"
     },
     "autoload": {
 		"psr-4": {

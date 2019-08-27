@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "062b738bdb2e98ba7609d09ee4c17018",
+    "content-hash": "ef8c31cad24479799cb06a0dcb55c9cc",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -105,49 +105,6 @@
                 "string"
             ],
             "time": "2018-06-15T19:03:38+00:00"
-        },
-        {
-            "name": "evenement/evenement",
-            "version": "v3.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/igorw/evenement.git",
-                "reference": "531bfb9d15f8aa57454f5f0285b18bec903b8fb7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/igorw/evenement/zipball/531bfb9d15f8aa57454f5f0285b18bec903b8fb7",
-                "reference": "531bfb9d15f8aa57454f5f0285b18bec903b8fb7",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^6.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Evenement": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Igor Wiedler",
-                    "email": "igor@wiedler.ch"
-                }
-            ],
-            "description": "Événement is a very simple event dispatching library for PHP",
-            "keywords": [
-                "event-dispatcher",
-                "event-emitter"
-            ],
-            "time": "2017-07-23T21:35:13+00:00"
         },
         {
             "name": "firebase/php-jwt",
@@ -296,54 +253,6 @@
             "time": "2019-06-06T09:09:47+00:00"
         },
         {
-            "name": "hamcrest/hamcrest-php",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/hamcrest/hamcrest-php.git",
-                "reference": "c0436bf63689fc334f67ccaa5e17458af9700b42"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/c0436bf63689fc334f67ccaa5e17458af9700b42",
-                "reference": "c0436bf63689fc334f67ccaa5e17458af9700b42",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3|^7.0"
-            },
-            "replace": {
-                "cordoval/hamcrest-php": "*",
-                "davedevelopment/hamcrest-php": "*",
-                "kodova/hamcrest-php": "*"
-            },
-            "require-dev": {
-                "phpunit/php-file-iterator": "^1.4",
-                "phpunit/phpunit": "^4.8.36 || ^5.7 || ^6.5 || ^7.0",
-                "satooshi/php-coveralls": "^1.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "hamcrest"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "This is the PHP port of Hamcrest Matchers",
-            "keywords": [
-                "test"
-            ],
-            "time": "2019-04-18T04:49:30+00:00"
-        },
-        {
             "name": "illuminate/container",
             "version": "dev-master",
             "source": {
@@ -394,12 +303,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "b331894e77c6841507d798bb363137ca5cc0d26b"
+                "reference": "ae73503e2d5e01a0daa078340b98ad49ec3dc34a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/b331894e77c6841507d798bb363137ca5cc0d26b",
-                "reference": "b331894e77c6841507d798bb363137ca5cc0d26b",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/ae73503e2d5e01a0daa078340b98ad49ec3dc34a",
+                "reference": "ae73503e2d5e01a0daa078340b98ad49ec3dc34a",
                 "shasum": ""
             },
             "require": {
@@ -430,7 +339,7 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2019-08-20T14:07:30+00:00"
+            "time": "2019-08-26T13:40:14+00:00"
         },
         {
             "name": "illuminate/support",
@@ -438,12 +347,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "4db18ada61eb588be9a5bd110f3be9fd458be3af"
+                "reference": "a2205e98eec136752e8845ca47ce249a8429fa03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/4db18ada61eb588be9a5bd110f3be9fd458be3af",
-                "reference": "4db18ada61eb588be9a5bd110f3be9fd458be3af",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/a2205e98eec136752e8845ca47ce249a8429fa03",
+                "reference": "a2205e98eec136752e8845ca47ce249a8429fa03",
                 "shasum": ""
             },
             "require": {
@@ -491,7 +400,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2019-08-23T15:13:11+00:00"
+            "time": "2019-08-26T13:40:14+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -580,71 +489,6 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
-        },
-        {
-            "name": "mockery/mockery",
-            "version": "1.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mockery/mockery.git",
-                "reference": "4eff936d83eb809bde2c57a3cea0ee9643769031"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/4eff936d83eb809bde2c57a3cea0ee9643769031",
-                "reference": "4eff936d83eb809bde2c57a3cea0ee9643769031",
-                "shasum": ""
-            },
-            "require": {
-                "hamcrest/hamcrest-php": "~2.0",
-                "lib-pcre": ">=7.0",
-                "php": ">=5.6.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~5.7.10|~6.5|~7.0|~8.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Mockery": "library/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Pádraic Brady",
-                    "email": "padraic.brady@gmail.com",
-                    "homepage": "http://blog.astrumfutura.com"
-                },
-                {
-                    "name": "Dave Marshall",
-                    "email": "dave.marshall@atstsolutions.co.uk",
-                    "homepage": "http://davedevelopment.co.uk"
-                }
-            ],
-            "description": "Mockery is a simple yet flexible PHP mock object framework",
-            "homepage": "https://github.com/mockery/mockery",
-            "keywords": [
-                "BDD",
-                "TDD",
-                "library",
-                "mock",
-                "mock objects",
-                "mockery",
-                "stub",
-                "test",
-                "test double",
-                "testing"
-            ],
-            "time": "2019-08-07T15:01:07+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -809,151 +653,6 @@
                 "php"
             ],
             "time": "2019-08-12T20:17:41+00:00"
-        },
-        {
-            "name": "peridot-php/peridot",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/peridot-php/peridot.git",
-                "reference": "7e4f1ffe55226fb353362be99fd33f49befcdd6c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/peridot-php/peridot/zipball/7e4f1ffe55226fb353362be99fd33f49befcdd6c",
-                "reference": "7e4f1ffe55226fb353362be99fd33f49befcdd6c",
-                "shasum": ""
-            },
-            "require": {
-                "evenement/evenement": "^3.0 || ^2.0",
-                "peridot-php/peridot-scope": "^1",
-                "php": ">=7.1",
-                "phpunit/php-timer": "^2",
-                "symfony/console": "^4"
-            },
-            "require-dev": {
-                "consolidation/robo": "^0.4",
-                "phpunit/php-code-coverage": "^6"
-            },
-            "bin": [
-                "bin/peridot"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Peridot\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Austin Morris",
-                    "email": "austin.morris@gmail.com"
-                },
-                {
-                    "name": "Brian Scaturro",
-                    "email": "scaturrob@gmail.com"
-                }
-            ],
-            "description": "Event driven BDD test framework for PHP 7.1+",
-            "keywords": [
-                "BDD",
-                "TDD",
-                "php",
-                "testing"
-            ],
-            "time": "2019-05-17T22:45:01+00:00"
-        },
-        {
-            "name": "peridot-php/peridot-scope",
-            "version": "1.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/peridot-php/peridot-scope.git",
-                "reference": "b5cc7ac35b2116d0f495b326218e7e93a823ab8e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/peridot-php/peridot-scope/zipball/b5cc7ac35b2116d0f495b326218e7e93a823ab8e",
-                "reference": "b5cc7ac35b2116d0f495b326218e7e93a823ab8e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "peridot-php/peridot-jumpstart": "~1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Peridot\\Scope\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Brian Scaturro",
-                    "email": "scaturrob@gmail.com"
-                }
-            ],
-            "description": "Scopes for function binding and mixins",
-            "time": "2016-02-22T13:27:54+00:00"
-        },
-        {
-            "name": "phpunit/php-timer",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "37d2894f3650acccb6e57207e63eb9699c1a82a6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/37d2894f3650acccb6e57207e63eb9699c1a82a6",
-                "reference": "37d2894f3650acccb6e57207e63eb9699c1a82a6",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^7.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
-                }
-            ],
-            "description": "Utility class for timing",
-            "homepage": "https://github.com/sebastianbergmann/php-timer/",
-            "keywords": [
-                "timer"
-            ],
-            "time": "2019-07-02T07:42:03+00:00"
         },
         {
             "name": "psr/container",
@@ -1392,12 +1091,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "e2bcf63620378f81f32012338014fc3d1ef72292"
+                "reference": "8372ce7fd5fdc8a9e90cc47c65085e1fd8128492"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/e2bcf63620378f81f32012338014fc3d1ef72292",
-                "reference": "e2bcf63620378f81f32012338014fc3d1ef72292",
+                "url": "https://api.github.com/repos/symfony/console/zipball/8372ce7fd5fdc8a9e90cc47c65085e1fd8128492",
+                "reference": "8372ce7fd5fdc8a9e90cc47c65085e1fd8128492",
                 "shasum": ""
             },
             "require": {
@@ -1460,7 +1159,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-08-23T12:16:45+00:00"
+            "time": "2019-08-26T09:00:56+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1698,12 +1397,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "0aeed94d8a7a6f995b853d840dbdd83d14563585"
+                "reference": "8005847cb107b9925203605488688c3622a33b55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/0aeed94d8a7a6f995b853d840dbdd83d14563585",
-                "reference": "0aeed94d8a7a6f995b853d840dbdd83d14563585",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/8005847cb107b9925203605488688c3622a33b55",
+                "reference": "8005847cb107b9925203605488688c3622a33b55",
                 "shasum": ""
             },
             "require": {
@@ -1766,7 +1465,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2019-08-22T13:18:41+00:00"
+            "time": "2019-08-26T09:00:56+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -1831,12 +1530,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "160c545e985edd27b7d134809c6308f599226e92"
+                "reference": "b6371344599673fce199435803bc0c4425a4aab1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/160c545e985edd27b7d134809c6308f599226e92",
-                "reference": "160c545e985edd27b7d134809c6308f599226e92",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/b6371344599673fce199435803bc0c4425a4aab1",
+                "reference": "b6371344599673fce199435803bc0c4425a4aab1",
                 "shasum": ""
             },
             "require": {
@@ -1899,7 +1598,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2019-08-23T08:37:16+00:00"
+            "time": "2019-08-26T09:00:56+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -2025,6 +1724,49 @@
     ],
     "packages-dev": [
         {
+            "name": "evenement/evenement",
+            "version": "v3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/igorw/evenement.git",
+                "reference": "531bfb9d15f8aa57454f5f0285b18bec903b8fb7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/igorw/evenement/zipball/531bfb9d15f8aa57454f5f0285b18bec903b8fb7",
+                "reference": "531bfb9d15f8aa57454f5f0285b18bec903b8fb7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Evenement": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch"
+                }
+            ],
+            "description": "Événement is a very simple event dispatching library for PHP",
+            "keywords": [
+                "event-dispatcher",
+                "event-emitter"
+            ],
+            "time": "2017-07-23T21:35:13+00:00"
+        },
+        {
             "name": "filp/whoops",
             "version": "2.5.0",
             "source": {
@@ -2084,6 +1826,54 @@
                 "whoops"
             ],
             "time": "2019-08-07T09:00:00+00:00"
+        },
+        {
+            "name": "hamcrest/hamcrest-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hamcrest/hamcrest-php.git",
+                "reference": "c0436bf63689fc334f67ccaa5e17458af9700b42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/c0436bf63689fc334f67ccaa5e17458af9700b42",
+                "reference": "c0436bf63689fc334f67ccaa5e17458af9700b42",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3|^7.0"
+            },
+            "replace": {
+                "cordoval/hamcrest-php": "*",
+                "davedevelopment/hamcrest-php": "*",
+                "kodova/hamcrest-php": "*"
+            },
+            "require-dev": {
+                "phpunit/php-file-iterator": "^1.4",
+                "phpunit/phpunit": "^4.8.36 || ^5.7 || ^6.5 || ^7.0",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "hamcrest"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "This is the PHP port of Hamcrest Matchers",
+            "keywords": [
+                "test"
+            ],
+            "time": "2019-04-18T04:49:30+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -2299,6 +2089,216 @@
             "time": "2018-10-12T11:42:23+00:00"
         },
         {
+            "name": "mockery/mockery",
+            "version": "1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mockery/mockery.git",
+                "reference": "4eff936d83eb809bde2c57a3cea0ee9643769031"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/4eff936d83eb809bde2c57a3cea0ee9643769031",
+                "reference": "4eff936d83eb809bde2c57a3cea0ee9643769031",
+                "shasum": ""
+            },
+            "require": {
+                "hamcrest/hamcrest-php": "~2.0",
+                "lib-pcre": ">=7.0",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.7.10|~6.5|~7.0|~8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Mockery": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Pádraic Brady",
+                    "email": "padraic.brady@gmail.com",
+                    "homepage": "http://blog.astrumfutura.com"
+                },
+                {
+                    "name": "Dave Marshall",
+                    "email": "dave.marshall@atstsolutions.co.uk",
+                    "homepage": "http://davedevelopment.co.uk"
+                }
+            ],
+            "description": "Mockery is a simple yet flexible PHP mock object framework",
+            "homepage": "https://github.com/mockery/mockery",
+            "keywords": [
+                "BDD",
+                "TDD",
+                "library",
+                "mock",
+                "mock objects",
+                "mockery",
+                "stub",
+                "test",
+                "test double",
+                "testing"
+            ],
+            "time": "2019-08-07T15:01:07+00:00"
+        },
+        {
+            "name": "peridot-php/peridot",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/peridot-php/peridot.git",
+                "reference": "7e4f1ffe55226fb353362be99fd33f49befcdd6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/peridot-php/peridot/zipball/7e4f1ffe55226fb353362be99fd33f49befcdd6c",
+                "reference": "7e4f1ffe55226fb353362be99fd33f49befcdd6c",
+                "shasum": ""
+            },
+            "require": {
+                "evenement/evenement": "^3.0 || ^2.0",
+                "peridot-php/peridot-scope": "^1",
+                "php": ">=7.1",
+                "phpunit/php-timer": "^2",
+                "symfony/console": "^4"
+            },
+            "require-dev": {
+                "consolidation/robo": "^0.4",
+                "phpunit/php-code-coverage": "^6"
+            },
+            "bin": [
+                "bin/peridot"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Peridot\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Austin Morris",
+                    "email": "austin.morris@gmail.com"
+                },
+                {
+                    "name": "Brian Scaturro",
+                    "email": "scaturrob@gmail.com"
+                }
+            ],
+            "description": "Event driven BDD test framework for PHP 7.1+",
+            "keywords": [
+                "BDD",
+                "TDD",
+                "php",
+                "testing"
+            ],
+            "time": "2019-05-17T22:45:01+00:00"
+        },
+        {
+            "name": "peridot-php/peridot-scope",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/peridot-php/peridot-scope.git",
+                "reference": "b5cc7ac35b2116d0f495b326218e7e93a823ab8e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/peridot-php/peridot-scope/zipball/b5cc7ac35b2116d0f495b326218e7e93a823ab8e",
+                "reference": "b5cc7ac35b2116d0f495b326218e7e93a823ab8e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "peridot-php/peridot-jumpstart": "~1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Peridot\\Scope\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Scaturro",
+                    "email": "scaturrob@gmail.com"
+                }
+            ],
+            "description": "Scopes for function binding and mixins",
+            "time": "2016-02-22T13:27:54+00:00"
+        },
+        {
+            "name": "phpunit/php-timer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/php-timer.git",
+                "reference": "37d2894f3650acccb6e57207e63eb9699c1a82a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/37d2894f3650acccb6e57207e63eb9699c1a82a6",
+                "reference": "37d2894f3650acccb6e57207e63eb9699c1a82a6",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
+                }
+            ],
+            "description": "Utility class for timing",
+            "homepage": "https://github.com/sebastianbergmann/php-timer/",
+            "keywords": [
+                "timer"
+            ],
+            "time": "2019-07-02T07:42:03+00:00"
+        },
+        {
             "name": "psr/log",
             "version": "dev-master",
             "source": {
@@ -2353,10 +2353,11 @@
         "nikic/fast-route": 0,
         "relay/relay": 20,
         "zendframework/zend-httphandlerrunner": 0,
-        "peridot-php/peridot": 20,
-        "mockery/mockery": 20,
+        "hamcrest/hamcrest-php": 20,
         "middlewares/debugbar": 20,
-        "middlewares/whoops": 20
+        "middlewares/whoops": 20,
+        "mockery/mockery": 20,
+        "peridot-php/peridot": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
