@@ -16,35 +16,38 @@ class tester
     
     function add ( string $feature, string $description, closure $test )
     {
-        $this->tests [ ] = new testcase ( $feature, $description, $test );
+        $this->tests [ $feature ] [ ] = new testcase ( $feature, $description, $test );
     }
 
     function run ( )
     {
-        foreach ( $this->tests as $test )
-            $this->convert ( $test );
+        foreach ( $this->tests as $feature => $testcases )
+            $this->convert ( $feature, $testcases );
     }
 
-    function convert ( testcase $testcase )
+    private function convert ( string $feature, array $testcases )
     {
         $app = $this->app;
 
-        describe ( $testcase->feature, function ( ) use ( $app, $testcase )
+        describe ( $feature, function ( ) use ( $app, $testcases )
         {
             beforeEach ( function ( ) use ( $app )
             {
                 $this->app = $app;
             } );
 
-            it ( $testcase->description, function ( ) use ( $testcase )
+            foreach ( $testcases as $testcase )
             {
-                try {
-                    $this->app->call ( $testcase->test );
-                } catch ( \exception $e ) {
-                    // shorten long stack trace on failure
-                    throw new \exception ( $e->getMessage ( ) );
-                }
-            } );
+                it ( $testcase->description, function ( ) use ( $testcase )
+                {
+                    try {
+                        $this->app->call ( $testcase->test );
+                    } catch ( \exception $e ) {
+                        // shorten long stack trace on failure
+                        throw new \exception ( $e->getMessage ( ) );
+                    }
+                } );
+            }
         } );
     }
 }
