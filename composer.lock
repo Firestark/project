@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "16f3f0b2d691205d20ee99d32023c8b9",
+    "content-hash": "1ff1ee3824ab878de6087ba2bf4d9997",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -183,8 +183,8 @@
             "authors": [
                 {
                     "name": "Aron Wouters",
-                    "role": "Developer",
-                    "email": "firestark@mail.com"
+                    "email": "firestark@mail.com",
+                    "role": "Developer"
                 }
             ],
             "description": "Small wrapper around illuminate ioc container.",
@@ -347,12 +347,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "a2205e98eec136752e8845ca47ce249a8429fa03"
+                "reference": "41a1d0c76548c6d2384923ecdd09dffcd9ccf3f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/a2205e98eec136752e8845ca47ce249a8429fa03",
-                "reference": "a2205e98eec136752e8845ca47ce249a8429fa03",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/41a1d0c76548c6d2384923ecdd09dffcd9ccf3f4",
+                "reference": "41a1d0c76548c6d2384923ecdd09dffcd9ccf3f4",
                 "shasum": ""
             },
             "require": {
@@ -400,7 +400,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2019-08-26T13:40:14+00:00"
+            "time": "2019-08-27T13:23:17+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -492,16 +492,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.24.0-beta.1",
+            "version": "2.24.0-beta.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "c4bf16abadc2a7df9f7231e59acda304f5170748"
+                "reference": "c400dc08679651bd7c5b795224e96259e5de0447"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/c4bf16abadc2a7df9f7231e59acda304f5170748",
-                "reference": "c4bf16abadc2a7df9f7231e59acda304f5170748",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/c400dc08679651bd7c5b795224e96259e5de0447",
+                "reference": "c400dc08679651bd7c5b795224e96259e5de0447",
                 "shasum": ""
             },
             "require": {
@@ -555,7 +555,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-08-23T06:11:49+00:00"
+            "time": "2019-08-27T13:28:22+00:00"
         },
         {
             "name": "nikic/fast-route",
