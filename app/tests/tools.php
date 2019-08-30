@@ -33,3 +33,25 @@ class testcase
         collector::add ( testing::$currentFeature, $description, $test );
     }
 }
+
+function testing ( string $feature, array $tests, $app )
+{
+    describe ( $feature, function ( ) use ( $app, $tests )
+    {
+        beforeEach ( function ( ) 
+        {
+            including ( __DIR__ . '/bindings' );
+        } );
+
+        foreach ( $tests as $description => $test )
+            it ( $description, function ( ) use ( $test, $app )
+            {
+                $test ( $app );
+            } );
+
+        afterEach ( function ( ) 
+        {
+            mockery::close ( );
+        } );
+    } );
+}
