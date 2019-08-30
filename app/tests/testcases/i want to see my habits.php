@@ -4,6 +4,8 @@ testing::feature ( 'i want to see my habits', function ( )
 {    
     testcase::add ( 'registered user', function ( $app )
     {
+        $app [ 'habit manager all for' ];
+
         list ( $status ) = $app->make ( 'i want to see my habits', [
             'habitManager' => $app [ 'habit manager' ],
             'user' => $app [ 'registered user' ],

@@ -1,8 +1,6 @@
 <?php
 
-use Mockery as mockery;
-
-app::share ( 'unregistered user', function ( $app )
+app::assumption ( 'unregistered user', function ( $app )
 {    
     $app [ 'user manager' ]
         ->shouldReceive ( 'registered' )

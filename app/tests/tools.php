@@ -38,8 +38,9 @@ function testing ( string $feature, array $tests, $app )
 {
     describe ( $feature, function ( ) use ( $app, $tests )
     {
-        beforeEach ( function ( ) 
+        beforeEach ( function ( ) use ( $app )
         {
+            including ( __DIR__ . '/../procedures' );
             including ( __DIR__ . '/bindings' );
         } );
 
@@ -49,9 +50,10 @@ function testing ( string $feature, array $tests, $app )
                 $test ( $app );
             } );
 
-        afterEach ( function ( ) 
+        afterEach ( function ( ) use ( $app )
         {
             mockery::close ( );
+            $app->flush ( );
         } );
     } );
 }
