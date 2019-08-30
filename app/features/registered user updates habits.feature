@@ -4,21 +4,21 @@ Feature: Registered user updates habits
     I need to be able to update my habits
 
     Rules:
-        - I cannot update another users habits
+        - I cannot update another user's habits
 
 
-    Scenario: Registered user
+    Scenario: Updating habit
         Given i am a registered user
-        And i have a habit with title "Exercise"
-        And i do not have a habit with title "Fitness"
+        And i have added a habit with title "Exercise"
+        And i have not added a habit with title "Fitness"
         When i update my habit with title "Exercise" to "Fitness"
         Then i should no longer see a habit with title "Exercise"
         And i should see a habit with title "Fitness"
 
     Scenario: Updated title exists
         Given i am a registered user
-        And i have a habit with title "Exercise"
-        And i have a habit with title "Training"
+        And i have added a habit with title "Exercise"
+        And i have added a habit with title "Training"
         When i update my habit with title "Exercise" to "Fitness"
         Then i should see that a habit with title "Fitness" already exists
 

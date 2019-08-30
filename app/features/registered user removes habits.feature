@@ -4,15 +4,15 @@ Feature: Registered user removes habits
     I need to be able to remove habits
 
     Rules:
-        - I cannot remove another users habits
+        - I cannot remove another user's habits
 
-    Scenario: Registered
+    Scenario: Removing habit
         Given i am a registered user
-        And i have registered a habit with title "Exercise"
+        And i have added a habit with title "Exercise"
         When i remove a habit with title "Exercise"
         Then i should no longer see a habit with title "Exercise"
 
-    Scenario: Unregistered
+    Scenario: Unregistered user
         Given i am unregistered
         When i request to remove a habit
         Then i should see that i am unauthorized
