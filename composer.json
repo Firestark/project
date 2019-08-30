@@ -26,11 +26,10 @@
         "psy/psysh": "*",
         "relay/relay": "2.x-dev",
         "zendframework/zend-diactoros": "^2.1",
-        "zendframework/zend-httphandlerrunner": "^1.1@stable"
+        "zendframework/zend-httphandlerrunner": "^1.1@stable",
+        "peridot-php/peridot": "dev-master"
 	},
     "require-dev": {
-        "behat/behat": "^3.5@dev",
-        "behat/mink": "^1.7@dev",
         "hamcrest/hamcrest-php": "^2.0@dev",
         "middlewares/debugbar": "dev-master",
         "middlewares/whoops": "dev-master",
@@ -42,13 +41,16 @@
 			"firestark\\": "tools"
  	 	},
         "files": [
-            "./tools/readability.php"
+            
         ]
 	},
     "autoload-dev": {
         "psr-4": {
 
-        }
+        },
+        "files": [
+            "./vendor/hamcrest/hamcrest-php/hamcrest/Hamcrest.php"
+        ]
     },
     "config": {
         "preferred-install": "dist"
