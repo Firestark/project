@@ -13,8 +13,8 @@ $app->instance ( 'app', $app );
 facade::setFacadeApplication ( $app );
 
 
-// including ( __DIR__ . '/../procedures' );
-// including ( __DIR__ . '/bindings' );
+including ( __DIR__ . '/../procedures' );
+including ( __DIR__ . '/bindings' );
 including ( __DIR__ . '/testcases' );
 
 

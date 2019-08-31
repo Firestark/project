@@ -40,8 +40,7 @@ function testing ( string $feature, array $tests, $app )
     {
         beforeEach ( function ( ) use ( $app )
         {
-            including ( __DIR__ . '/../procedures' );
-            including ( __DIR__ . '/bindings' );
+            
         } );
 
         foreach ( $tests as $description => $test )
@@ -53,7 +52,6 @@ function testing ( string $feature, array $tests, $app )
         afterEach ( function ( ) use ( $app )
         {
             mockery::close ( );
-            $app->flush ( );
         } );
     } );
 }
