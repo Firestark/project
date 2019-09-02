@@ -1,13 +1,11 @@
 <?php
 
-use function compact as with;
-
 when ( 'i want to see my habits', then ( apply ( a ( 
     
-function ( habit\manager $habitManager, user $user, user\manager $userManager )
+function ( user $user, guard $guard, habit\manager $habitManager )
 {
-    if ( ! $userManager->registered ( $user ) )
-        return [ 0, with ( 'user' ) ];
+    if ( ! $guard->authenticate ( $user ) )
+        return [ 0, [ ] ];
 
-    return [ 1000, [ 'habits' => $habitManager->allFor ( $user ) ] ];
+    return [ 1000, [ 'habits' => $habitManager->all ( ) ] ];
 } ) ) ) );

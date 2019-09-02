@@ -8,7 +8,7 @@ Feature: Registered user updates habits
 
 
     Scenario: Updating habit
-        Given i am a registered user
+        Given i am authenticated
         And i have added a habit with title "Exercise"
         And i have not added a habit with title "Fitness"
         When i update my habit with title "Exercise" to "Fitness"
@@ -16,13 +16,13 @@ Feature: Registered user updates habits
         And i should see a habit with title "Fitness"
 
     Scenario: Updated title exists
-        Given i am a registered user
+        Given i am authenticated
         And i have added a habit with title "Exercise"
         And i have added a habit with title "Training"
         When i update my habit with title "Exercise" to "Fitness"
         Then i should see that a habit with title "Fitness" already exists
 
     Scenario: Unregistered
-        Given i am unregistered
+        Given i am not authenticated
         When i request to update a habit
         Then i should see that i am unauthorized

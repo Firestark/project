@@ -7,12 +7,12 @@ Feature: Registered user removes habits
         - I cannot remove another user's habits
 
     Scenario: Removing habit
-        Given i am a registered user
+        Given i am authenticated
         And i have added a habit with title "Exercise"
         When i remove a habit with title "Exercise"
         Then i should no longer see a habit with title "Exercise"
 
     Scenario: Unregistered user
-        Given i am unregistered
+        Given i am not authenticated
         When i request to remove a habit
         Then i should see that i am unauthorized

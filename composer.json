@@ -27,7 +27,8 @@
         "relay/relay": "2.x-dev",
         "zendframework/zend-diactoros": "^2.1",
         "zendframework/zend-httphandlerrunner": "^1.1@stable",
-        "peridot-php/peridot": "dev-master"
+        "peridot-php/peridot": "dev-master",
+        "behat/behat": "^3.5@dev"
 	},
     "require-dev": {
         "hamcrest/hamcrest-php": "^2.0@dev",
