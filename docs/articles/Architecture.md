@@ -8,21 +8,41 @@ In his presentation: [architecture the lost years](https://www.youtube.com/watch
 
 The second point Robert C. Martin suggests about application architecture is that it allows for major decisions to be deferred. Big choices like what database to choose and what delivery mechanism to use must be deferred for as long as possible. Deferral of big choices has some major benefits. First of all you don't have to concern yourself with the big choices right away and therefor you can focus on implementing the most important part first: The business logic. Second of all, you'll create more flexible code because of two reasons. A: You don't rely on exclusive features that a particular component offers to you. B: You won't be able to mix code from a particular component into your business logic. Components like databases and delivery mechanisms become like plug-ins to the business logic and these plug-ins can easily be swapped out later if needed. Third of all you'll be able to make better decisions on what components to actually use. If you have deferred major decisions and have implemented the business logic of your application you will have a better understanding of what components work most optimal with that business logic. For example: It will be much easier to decide whether to choose for a NOSQL document store or a relational database.
 
-## A word about Model View Controller (MVC)
+## Model View Controller (MVC)
 
-A Popular application architecture for object oriented programming languages is Model View Controller (MVC). MVC structures applications into triads of models, views and controllers which each have their own responsibilities. 
+Model View Controller (MVC) originates at small talk and is developed to structure out small components, like for example a radio button or a checkbox, into triads of models, views and controllers. Each of these models, views and controllers has their own responsibility. The model keeps data related to the component and knows about some basic (business) rules to manipulate that data. The view consist of code to render the component on the screen based on the data from the model. The view listens for changes in the model and changes it's representation on the screen when the model's data changes. The controller listens for user input and commands the model to update it's state based on the input that the controller gets. To illustrate a button on the screen could have an MVC triplet:
 
+-  A controller that listens for user input that corresponds to the button
+- A model with some data and basic (business) rules that has something to do with that button
+- A corresponding view that makes up the button on the screen based on the model
 
-
-Models manage the data that resides in your application. The model stores and retrieves data used by the application and apply (business) rules to storing and retrieving that data. Example of such rules are: A user-name may only occur once in the application and: Only a gold pass user may overdraw currency on his bank-account. The view takes the data from the model and displays this in some way to the end user. In web applications this usually means that the data is presented using HTML. The view registers with the model to watch for changes in the data of the model. Whenever the data in the model changes the view changes as well to display the new data to the user. The controller watches for input events from the user, typically from the mouse or keyboard, and uses those input events to sent commands to the model to update its data. MVC separates the concerns of: 1. input to the controller 2. processing to the model and 3. output to the view. 
-
-
-
-The view is also the point where actions of the user are captured. This happens for example when a user submits a form or clicks a button. When such an action occurs the view triggers an action in a controller. The controller takes the data that a user submits and passes that data in the appropriate way on to the model. 
+ When for example the user clicks on that button the controller receives a click event. The controller takes this click event and tells the model to update it's data. The view sees that the model has updated it's data and in response updates it's view of that data on the screen.
 
 
 
-... The idea behind MVC was small, the size of a button. One screen would have hundreds of models, views and controllers. 
+<img src="./MVC/MVC.png" width="500" align="center" vertical-align="top">
+
+
+
+
+
+
+
+### MVC as application architecture
+
+Some frameworks discovered that MVC was a good way to split up an entire application into triads of logic. These frameworks started to implement MVC as an application architecture. All the application logic is separated into models, views and controllers. The model stores and retrieves data used by the application and applies (business) rules to storing and retrieving that data. Example of such (business) rules are: A user-name may only occur once in the application and: Only a gold pass user may overdraw currency on his bank-account. The view takes data from the models and displays this in some way to the end user. The controller takes in a user request and commands the model to update its state.
+
+There are however some differences with the traditional MVC pattern. The first difference is that in the framework MVC a controller acts as a bridge between the model and a view. The controller takes some user request, commands a model to update it's state, receives the updated state and then commands the view to render with that state. The second difference is that a view no longer is one small component like a button but instead is the entire screen. The view being the entire screen also means that there are multiple models being used to show that screen. So in conclusion we end up with a controller that talks to multiple models to receive some updated data and then passes that updated data into a view which is the entire screen.
+
+
+
+#### Cons of using MVC as an application architecture
+
+
+
+
+
+
 
 
 
@@ -38,6 +58,11 @@ This looks like a very solid application architecture, at least until we apply t
 - With MVC your business logic becomes part of technical implementations like the IO channel (web) and the database. Technical implementations should be plug-ins to the business logic.
 - Models hold your business logic, models also read and write to persistence, models may even include tasks related to data management, such as networking and data validation. This couples your business logic to all sorts of tasks it shouldn't be connected to
 - View must only know how to present data to the user. They don't know or understand *what* they are presenting.
+- ... Some logic doesn't clearly fit in either the model, view or controller. The result is that that code ends up in the controller.
+
+
+
+<img src="./MVC/MVC mess.jpg" width="800" align="center" vertical-align="top">
 
 
 
