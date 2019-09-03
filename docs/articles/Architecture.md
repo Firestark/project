@@ -1,4 +1,4 @@
-# My journey to excellence in application architecture
+# Excellence in application architecture
 
 
 
@@ -10,7 +10,7 @@ The second point Robert C. Martin suggests about application architecture is tha
 
 ## Model View Controller (MVC)
 
-A popular application architecture nowadays is Model, View, Controller (MVC). Originally MVC is not meant to be an application architecture. MVC is first invented as a UI related pattern that separates out user input, data and view into their own components. In MVC the model is not allowed to know where it gets it input from, the model is not allowed to know what device is delivering the input, that is the job of the controller. Also the model is not allowed to know anything about the format that is used to deliver the data to the end user, that is the job of the view. With this separation the model is a reusable piece of code that can be used no matter what IO device is being used. 
+A popular application architecture nowadays is Model, View, Controller (MVC). Originally MVC is not meant to be an application architecture. MVC is first invented as a UI related pattern that separates out user input, data and view into their own components. In MVC the model is not allowed to know where it gets it input from, in other words the model is not allowed to know what device is delivering the input, that is the job of the controller. Also the model is not allowed to know anything about the format that is used to deliver the data to the end user, that is the job of the view. With this separation the model is a reusable piece of code that can be used no matter what IO device is being used. 
 
 MVC originates at small talk and is developed to structure out small components, like for example a radio button or a check-box, into triads of models, views and controllers. Each of these models, views and controllers has their own responsibility. The model keeps data related to the component and knows about some basic (business) rules to manipulate that data. The view consist of code to render the component on the screen based on the data from the model. The view listens for changes in the model and changes it's representation on the screen when the model's data changes. The controller listens for user input and translate those inputs into commands for the model with which the model can change it's data if applicable. To illustrate a button on the screen could have an MVC triplet:
 
@@ -30,11 +30,7 @@ MVC originates at small talk and is developed to structure out small components,
 
 ### MVC as application architecture
 
-MVC is a great pattern for what it is originally meant to do, namely separating data from input and view
-
-Some frameworks discovered that MVC was a good way to split up an entire application into triads of logic. These frameworks started to implement MVC as an application architecture. All the application logic is separated into models, views and controllers. The model stores and retrieves data used by the application and applies (business) rules to storing and retrieving that data. Example of such (business) rules are: A user-name may only occur once in the application and: Only a gold pass user may overdraw currency on his bank-account. The view takes data from the models and displays this in some way to the end user. The controller takes in a user request and commands the model to update its state.
-
-There are however some differences with the traditional MVC pattern. The first difference is that in the framework MVC a controller acts as a bridge between the model and a view. The controller takes some user request, then commands a model to update it's state, receives the updated state from that model and then commands the view to render with that state. The second difference is that a view no longer is one small component like a button or a check-box but instead is the entire screen. The view being the entire screen also means that there are multiple models being used to show that screen. So in conclusion we end up with a controller that talks to multiple models to receive some updated data and then passes that updated data into a view which is the entire screen.
+MVC is a great pattern for what it is originally meant to do, namely separating data from input and output. Because MVC excelled so much  at what it did some developers started to think that MVC would also be a good fit to use as application architecture. Frameworks started to implement MVC as an overarching application architecture. All the application logic is separated into models, views and controllers. The model stores and retrieves data used by the application and applies (business) rules to storing and retrieving that data.  The view takes data from the models and displays this in some way to the end user. The controller takes in a user request and commands the model to update its state based on that request. There are however some differences when compared to the traditional MVC pattern. The first difference is that a controller acts as a bridge between the model and a view. The controller takes some user request, gathers all the data from that user request, then commands a model to update it's state using that gathered data, receives the updated state from that model and then commands the view to render with that updated state. The second difference is that a view no longer is one small component like a button or a check-box but instead is the entire screen. The view being the entire screen also means that there are multiple models being used to show that screen. So in conclusion we end up with a controller that talks to multiple models to receive some updated data and then passes that updated data into a view which is the entire screen.
 
 
 
@@ -55,6 +51,10 @@ A fourth downside of MVC as application architecture is that boundaries between 
 Drafts
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+`Example of such (business) rules are: A user-name may only occur once in the application and: Only a gold pass user may overdraw currency on his bank-account.`
 
 
 
