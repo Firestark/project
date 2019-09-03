@@ -1,4 +1,4 @@
-# Application architecture
+# My journey to excellence in application architecture
 
 
 
@@ -10,7 +10,9 @@ The second point Robert C. Martin suggests about application architecture is tha
 
 ## Model View Controller (MVC)
 
-Model View Controller (MVC) originates at small talk and is developed to structure out small components, like for example a radio button or a checkbox, into triads of models, views and controllers. Each of these models, views and controllers has their own responsibility. The model keeps data related to the component and knows about some basic (business) rules to manipulate that data. The view consist of code to render the component on the screen based on the data from the model. The view listens for changes in the model and changes it's representation on the screen when the model's data changes. The controller listens for user input and commands the model to update it's state based on the input that the controller gets. To illustrate a button on the screen could have an MVC triplet:
+A popular application architecture nowadays is Model, View, Controller (MVC). Originally MVC is not meant to be an application architecture. MVC is first invented as a UI related pattern that separates out user input, data and view into their own components. In MVC the model is not allowed to know where it gets it input from, the model is not allowed to know what device is delivering the input, that is the job of the controller. Also the model is not allowed to know anything about the format that is used to deliver the data to the end user, that is the job of the view. With this separation the model is a reusable piece of code that can be used no matter what IO device is being used. 
+
+MVC originates at small talk and is developed to structure out small components, like for example a radio button or a check-box, into triads of models, views and controllers. Each of these models, views and controllers has their own responsibility. The model keeps data related to the component and knows about some basic (business) rules to manipulate that data. The view consist of code to render the component on the screen based on the data from the model. The view listens for changes in the model and changes it's representation on the screen when the model's data changes. The controller listens for user input and translate those inputs into commands for the model with which the model can change it's data if applicable. To illustrate a button on the screen could have an MVC triplet:
 
 -  A controller that listens for user input that corresponds to the button
 - A model with some data and basic (business) rules that has something to do with that button
@@ -26,27 +28,37 @@ Model View Controller (MVC) originates at small talk and is developed to structu
 
 
 
-
-
 ### MVC as application architecture
+
+MVC is a great pattern for what it is originally meant to do, namely separating data from input and view
 
 Some frameworks discovered that MVC was a good way to split up an entire application into triads of logic. These frameworks started to implement MVC as an application architecture. All the application logic is separated into models, views and controllers. The model stores and retrieves data used by the application and applies (business) rules to storing and retrieving that data. Example of such (business) rules are: A user-name may only occur once in the application and: Only a gold pass user may overdraw currency on his bank-account. The view takes data from the models and displays this in some way to the end user. The controller takes in a user request and commands the model to update its state.
 
-There are however some differences with the traditional MVC pattern. The first difference is that in the framework MVC a controller acts as a bridge between the model and a view. The controller takes some user request, commands a model to update it's state, receives the updated state and then commands the view to render with that state. The second difference is that a view no longer is one small component like a button but instead is the entire screen. The view being the entire screen also means that there are multiple models being used to show that screen. So in conclusion we end up with a controller that talks to multiple models to receive some updated data and then passes that updated data into a view which is the entire screen.
+There are however some differences with the traditional MVC pattern. The first difference is that in the framework MVC a controller acts as a bridge between the model and a view. The controller takes some user request, then commands a model to update it's state, receives the updated state from that model and then commands the view to render with that state. The second difference is that a view no longer is one small component like a button or a check-box but instead is the entire screen. The view being the entire screen also means that there are multiple models being used to show that screen. So in conclusion we end up with a controller that talks to multiple models to receive some updated data and then passes that updated data into a view which is the entire screen.
 
 
 
 #### Cons of using MVC as an application architecture
 
+One of the major downsides of using MVC as an application architecture is not clearly showing application intent. When using MVC as application architecture you will see 3 directories in your application's project namely: models, views and controllers. This setup shows you that the application is build with the MVC architecture but tells you nothing about what the application is intended to do. 
+
+Another downside of MVC as application architecture is the tendency to get large controllers. Controllers group different actions for one specific resource together. To illustrate: You could have a `TodoController`. That controller keeps all sorts of different actions about to-dos. Listing to-dos, creating to-dos, updating to-dos, viewing to-dos and deleting to-dos all are grouped together in this one controller.
+
+A third con of using MVC as application architecture is that models group business logic together with implementation logic to persist application state. Models usually communicate via an ORM to a database or other persistence mechanism. Models are also the place to put business rules for that application state. With this setup your business rules are very tightly coupled to the technical persistence implementation.
+
+A fourth downside of MVC as application architecture is that boundaries between models, views and controllers are not well enough defined. Controllers and views both want to call methods on the models. Because the models live so closely to the controllers and the view, it becomes very easy to write controller and view logic into the models. It's difficult to keep the separation right.
+
+ 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Drafts
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
-
-
-
-
-
-This looks like a very solid application architecture, at least until we apply the rules of Robert C Martin. Mr. Robert C Martin came along. In his famous presentation: [architecture the lost years](https://www.youtube.com/watch?v=NeXQEJNWO5w) Robert C Martin explains what a good architecture actually is. Mr. Martin explains that one of the major purposes of a good application architecture is immediately showing the application's intent. MVC lacks in showing an application's intent. Whenever you look into the main folder of an MVC application all you can see are the model, view and controller directories. Nothing tells you what the application actually does.
+The model is not allowed to know where it gets it input from, the model is not allowed to know what device is delivering the input, that is the job of the controller.
 
 
 
@@ -57,12 +69,19 @@ This looks like a very solid application architecture, at least until we apply t
 - The controllers group multiple actions together which can make controllers quite big
 - With MVC your business logic becomes part of technical implementations like the IO channel (web) and the database. Technical implementations should be plug-ins to the business logic.
 - Models hold your business logic, models also read and write to persistence, models may even include tasks related to data management, such as networking and data validation. This couples your business logic to all sorts of tasks it shouldn't be connected to
+- Business procedures are better modeled using closures instead of objects
 - View must only know how to present data to the user. They don't know or understand *what* they are presenting.
 - ... Some logic doesn't clearly fit in either the model, view or controller. The result is that that code ends up in the controller.
+- ... The boundaries between Business logic and Technical / Implementation logic are not well enough defined to keep the business logic separated from the Technical / Implementation logic
+- The controller has a lot of responsibilities:
+  - Unpack all the parameters that came from a request
+  - Find the right model and pass the found parameters to the model
+  - Take the models response and call the right view with the right parameters
+  - Group all related actions on a resource together
+- Not focused on the business logic
+- No code reuse
 
 
-
-<img src="./MVC/MVC mess.jpg" width="800" align="center" vertical-align="top">
 
 
 
@@ -92,3 +111,17 @@ An example of this methodology can be seen in the firestark framework...
 - Architecture is about intent
 - The web should be a plugin to the business rules
 - A good architecture allows for (major) decisions to be deferred.
+
+
+
+## References
+
+Robert C. Martin. (Software engineer, Software Instructor). (2018). [architecture the lost years](https://www.youtube.com/watch?v=NeXQEJNWO5w)
+
+
+
+https://cocoacasts.com/what-is-wrong-with-model-view-controller
+
+
+
+[RegisFrey](https://commons.wikimedia.org/wiki/User:RegisFrey). (Designer). (2010).  *The model, view, and controller (MVC) pattern relative to the user.* [Digital image]. Retrieved from https://commons.wikimedia.org/wiki/File:MVC-Process.svg
