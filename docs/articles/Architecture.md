@@ -22,7 +22,7 @@ Model View Controller (MVC) originates at small talk and is developed to structu
 
 <img src="./MVC/MVC.png" width="500" align="center" vertical-align="top">
 
-
+> [RegisFrey](https://commons.wikimedia.org/wiki/User:RegisFrey). (Designer). (2010).  *The model, view, and controller (MVC) pattern relative to the user.* [Digital image]. Retrieved from https://commons.wikimedia.org/wiki/File:MVC-Process.svg
 
 
 
