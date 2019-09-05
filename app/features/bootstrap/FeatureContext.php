@@ -81,11 +81,16 @@ class FeatureContext implements Context
     public function iAddAHabitWithTitle ( string $title )
     {
         $habit = mockery::mock ( habit::class, [ $title ] );
+
+        $this->habitManager
+            ->shouldReceive ( 'add' )
+            ->with ( $habit )
+            ->once ( );
         
         $this->habitManager
             ->shouldReceive ( 'all' )
             ->once ( )
-            ->andReturn ( $this->addedHabits );
+            ->andReturn ( array_merge ( $this->addedHabits, [ $habit ] ) );
 
         list ( $status, $payload ) = app::make ( 'i want to add a habit', [
             'user' => $this->user,
