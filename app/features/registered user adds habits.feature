@@ -6,11 +6,18 @@ Feature: Registered user adds habits
     Rules:
         - I cannot add habits for another user
 
-
-    Scenario: Registered
+    @testing
+    Scenario Outline: Registered
         Given i am authenticated
-        When i add a habit with title "Exercise"
-        Then i should see a habit with title "Exercise"
+        And i already added a habit with title <registered>
+        When i add a habit with title <title>
+        Then i should see a habit with title <title>
+        And i should see a habit with title <registered>
+
+        Examples:
+            | title       | registered   |
+            | "Exercise"  | "Psychology" |
+            | "Handstand" | "Psychology" |
 
     Scenario: Habbit title exists
         Given i am authenticated

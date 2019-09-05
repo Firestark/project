@@ -67,11 +67,34 @@ class FeatureContext implements Context
     }
 
     /**
-     * @When i add a habit with title :arg1
+     * @Given i already added a habit with title :title
      */
-    public function iAddAHabitWithTitle($arg1)
+    public function iAlreadyAddedAHabitWithTitle ( string $title )
     {
-        throw new PendingException();
+        $habit = mockery::mock ( habit::class, [ $title ] );
+        $this->addedHabits [ ] = $habit;
+    }
+
+    /**
+     * @When i add a habit with title :title
+     */
+    public function iAddAHabitWithTitle ( string $title )
+    {
+        $habit = mockery::mock ( habit::class, [ $title ] );
+        
+        $this->habitManager
+            ->shouldReceive ( 'all' )
+            ->once ( )
+            ->andReturn ( $this->addedHabits );
+
+        list ( $status, $payload ) = app::make ( 'i want to add a habit', [
+            'user' => $this->user,
+            'guard' => $this->guard,
+            'habit' => $habit,
+            'habitManager' => $this->habitManager
+        ] );
+        
+        $this->payload = $payload;
     }
 
     /**
