@@ -6,8 +6,6 @@ use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Mockery as mockery;
 
-require __DIR__ . '/start.php';
-
 /**
  * Defines application features from the specific context.
  */

@@ -50,6 +50,7 @@
 
         },
         "files": [
+            "./app/features/bootstrap/start.php",
             "./vendor/hamcrest/hamcrest-php/hamcrest/Hamcrest.php"
         ]
     },
