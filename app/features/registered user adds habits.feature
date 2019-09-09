@@ -6,7 +6,6 @@ Feature: Registered user adds habits
     Rules:
         - I cannot add habits for another user
 
-    @testing
     Scenario Outline: Registered
         Given i am authenticated
         And i already added a habit with title <registered>

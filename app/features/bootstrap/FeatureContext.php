@@ -15,8 +15,8 @@ class FeatureContext implements Context
     private $guard = null;
     private $addedHabits = [ ];
 
-    private $payload = [ ];
-    private $status = -1;
+    private $payload = null;
+    private $status = null;
 
     function __construct ( )
     {
@@ -59,11 +59,11 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Given i have not added a habit with title :arg1
+     * @Given i have not added a habit with title :title
      */
-    public function iHaveNotAddedAHabitWithTitle($arg1)
+    public function iHaveNotAddedAHabitWithTitle ( string $title )
     {
-        throw new PendingException();
+        // no code required
     }
 
     /**
@@ -83,6 +83,12 @@ class FeatureContext implements Context
         $habit = mockery::mock ( habit::class, [ $title ] );
 
         $this->habitManager
+            ->shouldReceive ( 'has' )
+            ->with ( $habit )
+            ->once ( )
+            ->andReturn ( false );
+
+        $this->habitManager
             ->shouldReceive ( 'add' )
             ->with ( $habit )
             ->once ( );
@@ -99,15 +105,32 @@ class FeatureContext implements Context
             'habitManager' => $this->habitManager
         ] );
         
+        $this->status = $status;
         $this->payload = $payload;
     }
 
     /**
-     * @When i try to add a habit with title :arg1
+     * @When i try to add a habit with title :title
      */
-    public function iTryToAddAHabitWithTitle($arg1)
+    public function iTryToAddAHabitWithTitle ( string $title )
     {
-        throw new PendingException();
+        $habit = mockery::mock ( habit::class, [ $title ] );
+        
+        $this->habitManager
+            ->shouldReceive ( 'has' )
+            ->with ( $habit )
+            ->once ( )
+            ->andReturn ( true );
+        
+        list ( $status, $payload ) = app::make ( 'i want to add a habit', [
+            'user' => $this->user,
+            'guard' => $this->guard,
+            'habit' => $habit,
+            'habitManager' => $this->habitManager
+        ] );
+
+        $this->status = $status;
+        $this->payload = $payload;
     }
 
     /**
@@ -115,7 +138,17 @@ class FeatureContext implements Context
      */
     public function iTryToAddAHabit()
     {
-        throw new PendingException();
+        $habit = mockery::mock ( habit::class, [ 'Some habit title' ] );
+
+        list ( $status, $payload ) = app::make ( 'i want to add a habit', [
+            'user' => $this->user,
+            'guard' => $this->guard,
+            'habit' => $habit,
+            'habitManager' => $this->habitManager
+        ] );
+
+        $this->status = $status;
+        $this->payload = $payload;
     }
 
     /**
@@ -170,11 +203,36 @@ class FeatureContext implements Context
     }
 
     /**
-     * @When i update my habit with title :arg1 to :arg2
+     * @When i update my habit with title :pervious to :to
      */
-    public function iUpdateMyHabitWithTitleTo($arg1, $arg2)
+    public function iUpdateMyHabitWithTitleTo ( string $previous, string $to )
     {
-        throw new PendingException();
+        // add id to habit then find habit id using title
+        
+        $old = $this->find ( $previous );
+        $new = mockery::mock ( habit::class, [ $to ] );
+
+        $this->habitManager
+            ->shouldReceive ( 'update' )
+            ->with ( $old, $new )
+            ->once ( );
+
+        $this->habitManager
+            ->shouldReceive ( 'all' )
+            ->once ( )
+            ->andReturn ( [ $new ] );
+
+
+        list ( $status, $payload ) = app::make ( 'i want to update a habit', [
+            'user' => $this->user,
+            'guard' => $this->guard,
+            'old' => $old,
+            'new' => $new,
+            'habitManager' => $this->habitManager
+        ] );
+
+        $this->status = $status;
+        $this->payload = $payload;
     }
 
     /**
@@ -198,11 +256,12 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Then i should see that a habit with title :arg1 already exists
+     * @Then i should see that a habit with title :title already exists
      */
-    public function iShouldSeeThatAHabitWithTitleAlreadyExists($arg1)
+    public function iShouldSeeThatAHabitWithTitleAlreadyExists ( string $title )
     {
-        throw new PendingException();
+        assertThat ( $this->status, is ( 2000 ) );
+        assertThat ( $this->payload [ 'habit' ]->title, is ( $title ) );
     }
 
     /**
@@ -210,6 +269,7 @@ class FeatureContext implements Context
      */
     public function iShouldSeeThatIAmUnauthorized ( )
     {
+        assertThat ( $this->status, is ( 0 ) );
         assertThat ( $this->payload, is ( emptyArray ( ) ) );
     }
 
@@ -230,11 +290,13 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Then i should no longer see a habit with title :arg1
+     * @Then i should no longer see a habit with title :title
      */
-    public function iShouldNoLongerSeeAHabitWithTitle($arg1)
+    public function iShouldNoLongerSeeAHabitWithTitle ( string $title )
     {
-        throw new PendingException();
+        foreach ( $this->payload [ 'habits' ] as $habit )
+            if ( $habit->title === $title )
+                throw new exception ( "I can still see a habit with title: {$title}." );
     }
 
     /** @AfterScenario */
@@ -242,4 +304,13 @@ class FeatureContext implements Context
     {
         mockery::close ( );
     }
+
+    private function find ( string $title ) : habit
+    {
+        foreach ( $this->addedHabits as $habit )
+            if ( $habit->title === $title )
+                return $habit;
+
+        throw new exception ( "Can't find a habit with title {$title}." );
+    } 
 }

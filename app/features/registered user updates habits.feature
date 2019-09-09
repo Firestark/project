@@ -6,14 +6,19 @@ Feature: Registered user updates habits
     Rules:
         - I cannot update another user's habits
 
-
-    Scenario: Updating habit
+    @testing
+    Scenario Outline: Updating habit
         Given i am authenticated
-        And i have added a habit with title "Exercise"
-        And i have not added a habit with title "Fitness"
-        When i update my habit with title "Exercise" to "Fitness"
-        Then i should no longer see a habit with title "Exercise"
-        And i should see a habit with title "Fitness"
+        And i have added a habit with title <registered>
+        And i have not added a habit with title <unregistered>
+        When i update my habit with title <registered> to <unregistered>
+        Then i should no longer see a habit with title <registered>
+        And i should see a habit with title <unregistered>
+
+        Examples:
+            | registered  | unregistered |
+            | "Exercise"  | "Fitness" |
+            | "Handstand" | "Training" |
 
     Scenario: Updated title exists
         Given i am authenticated
