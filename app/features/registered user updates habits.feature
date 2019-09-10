@@ -24,8 +24,8 @@ Feature: Registered user updates habits
         Given i am authenticated
         And i have added a habit with title "Exercise"
         And i have added a habit with title "Training"
-        When i update my habit with title "Exercise" to "Fitness"
-        Then i should see that a habit with title "Fitness" already exists
+        When i update my habit with title "Exercise" to "Training"
+        Then i should see that a habit with title "Training" already exists
 
     Scenario: Unregistered
         Given i am not authenticated

@@ -206,22 +206,28 @@ class FeatureContext implements Context
      * @When i update my habit with title :pervious to :to
      */
     public function iUpdateMyHabitWithTitleTo ( string $previous, string $to )
-    {
-        // add id to habit then find habit id using title
-        
+    {        
         $old = $this->find ( $previous );
         $new = mockery::mock ( habit::class, [ $to ] );
 
         $this->habitManager
-            ->shouldReceive ( 'update' )
-            ->with ( $old, $new )
-            ->once ( );
-
-        $this->habitManager
-            ->shouldReceive ( 'all' )
+            ->shouldReceive ( 'has' )
+            ->with ( $new )
             ->once ( )
-            ->andReturn ( [ $new ] );
+            ->andReturn ( $this->has ( $new ) );
 
+        if ( ! $this->has ( $new ) )
+        {
+            $this->habitManager
+                ->shouldReceive ( 'update' )
+                ->with ( $old, $new )
+                ->once ( );
+
+            $this->habitManager
+                ->shouldReceive ( 'all' )
+                ->once ( )
+                ->andReturn ( [ $new ] );
+        }
 
         list ( $status, $payload ) = app::make ( 'i want to update a habit', [
             'user' => $this->user,
@@ -238,9 +244,21 @@ class FeatureContext implements Context
     /**
      * @When i request to update a habit
      */
-    public function iRequestToUpdateAHabit()
+    public function iRequestToUpdateAHabit ( )
     {
-        throw new PendingException();
+        $old = mockery::mock ( habit::class, [ 'old' ] );
+        $new = mockery::mock ( habit::class, [ 'new' ] );
+
+        list ( $status, $payload ) = app::make ( 'i want to update a habit', [
+            'user' => $this->user,
+            'guard' => $this->guard,
+            'old' => $old,
+            'new' => $new,
+            'habitManager' => $this->habitManager
+        ] );
+
+        $this->status = $status;
+        $this->payload = $payload;
     }
 
     /**
@@ -269,7 +287,7 @@ class FeatureContext implements Context
      */
     public function iShouldSeeThatIAmUnauthorized ( )
     {
-        assertThat ( $this->status, is ( 0 ) );
+        assertThat ( $this->status, is ( identicalTo ( 0 ) ) );
         assertThat ( $this->payload, is ( emptyArray ( ) ) );
     }
 
@@ -312,5 +330,14 @@ class FeatureContext implements Context
                 return $habit;
 
         throw new exception ( "Can't find a habit with title {$title}." );
-    } 
+    }
+
+    private function has ( habit $habit ) : bool
+    {
+        foreach ( $this->addedHabits as $registered )
+            if ( $habit->title === $registered->title )
+                return true;
+
+        return false;
+    }
 }
