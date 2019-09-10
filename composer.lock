@@ -437,8 +437,8 @@
             "authors": [
                 {
                     "name": "Aron Wouters",
-                    "role": "Developer",
-                    "email": "firestark@mail.com"
+                    "email": "firestark@mail.com",
+                    "role": "Developer"
                 }
             ],
             "description": "Small wrapper around illuminate ioc container.",
@@ -512,12 +512,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
-                "reference": "99604c2f12e5d0da71153e94d54a1e9737c5a8ec"
+                "reference": "ec6d38022dfd67a28cec80f00e1d8af67460c5f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/container/zipball/99604c2f12e5d0da71153e94d54a1e9737c5a8ec",
-                "reference": "99604c2f12e5d0da71153e94d54a1e9737c5a8ec",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/ec6d38022dfd67a28cec80f00e1d8af67460c5f9",
+                "reference": "ec6d38022dfd67a28cec80f00e1d8af67460c5f9",
                 "shasum": ""
             },
             "require": {
@@ -549,7 +549,7 @@
             ],
             "description": "The Illuminate Container package.",
             "homepage": "https://laravel.com",
-            "time": "2019-08-23T13:52:19+00:00"
+            "time": "2019-09-10T15:23:32+00:00"
         },
         {
             "name": "illuminate/contracts",
@@ -601,12 +601,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "11a3123d54f50d30420068a219afdc87956da47e"
+                "reference": "f9a71025c4f30b0eeda33becb34d4db452c08d9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/11a3123d54f50d30420068a219afdc87956da47e",
-                "reference": "11a3123d54f50d30420068a219afdc87956da47e",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/f9a71025c4f30b0eeda33becb34d4db452c08d9c",
+                "reference": "f9a71025c4f30b0eeda33becb34d4db452c08d9c",
                 "shasum": ""
             },
             "require": {
@@ -654,7 +654,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2019-09-03T18:08:01+00:00"
+            "time": "2019-09-10T15:24:51+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -746,16 +746,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.24.0",
+            "version": "2.25.0-beta.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "934459c5ac0658bc765ad1e53512c7c77adcac29"
+                "reference": "a333fc82bf1ebfc0f90e359fec7d2d4eac7f4a18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/934459c5ac0658bc765ad1e53512c7c77adcac29",
-                "reference": "934459c5ac0658bc765ad1e53512c7c77adcac29",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/a333fc82bf1ebfc0f90e359fec7d2d4eac7f4a18",
+                "reference": "a333fc82bf1ebfc0f90e359fec7d2d4eac7f4a18",
                 "shasum": ""
             },
             "require": {
@@ -802,14 +802,14 @@
                     "homepage": "http://github.com/kylekatarnls"
                 }
             ],
-            "description": "A API extension for DateTime that supports 281 different languages.",
+            "description": "An API extension for DateTime that supports 281 different languages.",
             "homepage": "http://carbon.nesbot.com",
             "keywords": [
                 "date",
                 "datetime",
                 "time"
             ],
-            "time": "2019-08-31T16:37:55+00:00"
+            "time": "2019-09-09T15:56:37+00:00"
         },
         {
             "name": "nikic/fast-route",
@@ -1042,8 +1042,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Utility class for timing",
@@ -1490,12 +1490,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "b3c3c3791a5486cc96dc4c2c9a5c1dfe35b540c7"
+                "reference": "ead427378d553ede6adcd0f5c35f6869b85d3317"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/b3c3c3791a5486cc96dc4c2c9a5c1dfe35b540c7",
-                "reference": "b3c3c3791a5486cc96dc4c2c9a5c1dfe35b540c7",
+                "url": "https://api.github.com/repos/symfony/config/zipball/ead427378d553ede6adcd0f5c35f6869b85d3317",
+                "reference": "ead427378d553ede6adcd0f5c35f6869b85d3317",
                 "shasum": ""
             },
             "require": {
@@ -1546,7 +1546,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2019-09-08T10:38:38+00:00"
+            "time": "2019-09-10T11:27:29+00:00"
         },
         {
             "name": "symfony/console",
@@ -1630,12 +1630,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "ff7c180fb1e59a4ce2a37bb961c35d4944d9784a"
+                "reference": "1b24306e08d04b5d5b00ccc2c9b064620c0e9a4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/ff7c180fb1e59a4ce2a37bb961c35d4944d9784a",
-                "reference": "ff7c180fb1e59a4ce2a37bb961c35d4944d9784a",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/1b24306e08d04b5d5b00ccc2c9b064620c0e9a4d",
+                "reference": "1b24306e08d04b5d5b00ccc2c9b064620c0e9a4d",
                 "shasum": ""
             },
             "require": {
@@ -1695,7 +1695,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2019-09-08T19:37:35+00:00"
+            "time": "2019-09-10T17:54:02+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -2169,12 +2169,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "41c2218dd95dd17afecfab3e2056626f3b9fc95f"
+                "reference": "86ae792518d2d7c0b21de1ab3d49465748baa17b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/41c2218dd95dd17afecfab3e2056626f3b9fc95f",
-                "reference": "41c2218dd95dd17afecfab3e2056626f3b9fc95f",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/86ae792518d2d7c0b21de1ab3d49465748baa17b",
+                "reference": "86ae792518d2d7c0b21de1ab3d49465748baa17b",
                 "shasum": ""
             },
             "require": {
@@ -2237,7 +2237,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2019-09-08T10:38:38+00:00"
+            "time": "2019-09-09T06:40:31+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -2302,12 +2302,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "feec20ee2b7b27c60296f2d760332bdeeea433a1"
+                "reference": "5a40a86069ddb9126c6cb53c0abd8619f0cca649"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/feec20ee2b7b27c60296f2d760332bdeeea433a1",
-                "reference": "feec20ee2b7b27c60296f2d760332bdeeea433a1",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/5a40a86069ddb9126c6cb53c0abd8619f0cca649",
+                "reference": "5a40a86069ddb9126c6cb53c0abd8619f0cca649",
                 "shasum": ""
             },
             "require": {
@@ -2370,7 +2370,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2019-09-07T11:31:53+00:00"
+            "time": "2019-09-10T11:27:29+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -2378,12 +2378,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "6b1d00be9d7f3bcf822a85b8b358d9c4d4cae83c"
+                "reference": "40ff940b73abdc88aecd54c43974c53fd8b8faba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/6b1d00be9d7f3bcf822a85b8b358d9c4d4cae83c",
-                "reference": "6b1d00be9d7f3bcf822a85b8b358d9c4d4cae83c",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/40ff940b73abdc88aecd54c43974c53fd8b8faba",
+                "reference": "40ff940b73abdc88aecd54c43974c53fd8b8faba",
                 "shasum": ""
             },
             "require": {
@@ -2429,7 +2429,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2019-09-07T13:00:46+00:00"
+            "time": "2019-09-10T16:53:10+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
