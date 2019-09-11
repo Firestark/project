@@ -152,19 +152,60 @@ class FeatureContext implements Context
     }
 
     /**
-     * @When i complete a habit with title :arg1
+     * @When i complete a habit with title :title
      */
-    public function iCompleteAHabitWithTitle($arg1)
+    public function iCompleteAHabitWithTitle ( string $title )
     {
-        throw new PendingException();
+        try {
+            $habit = $this->find ( $title );
+
+            $this->habitManager
+                ->shouldReceive ( 'complete' )
+                ->with ( $habit )
+                ->once ( );
+
+            $found = true;
+
+        } catch ( exception $e ) {
+            $habit = mockery::mock ( habit::class );
+            $found = false;
+        }
+
+        $this->habitManager
+            ->shouldReceive ( 'has' )
+            ->with ( $habit )
+            ->once ( )
+            ->andReturn ( $found );
+
+        
+
+        list ( $status, $payload ) = app::make ( 'i want to complete a habit', [
+            'user' => $this->user,
+            'guard' => $this->guard,
+            'habit' => $habit,
+            'habitManager' => $this->habitManager
+        ] );
+
+        $this->status = $status;
+        $this->payload = $payload;
     }
 
     /**
      * @When i request to complete a habit
      */
-    public function iRequestToCompleteAHabit()
+    public function iRequestToCompleteAHabit ( )
     {
-        throw new PendingException();
+        $habit = mockery::mock ( habit::class );
+
+        list ( $status, $payload ) = app::make ( 'i want to complete a habit', [
+            'user' => $this->user,
+            'guard' => $this->guard,
+            'habit' => $habit,
+            'habitManager' => $this->habitManager
+        ] );
+
+        $this->status = $status;
+        $this->payload = $payload;
     }
 
     /**
@@ -187,11 +228,26 @@ class FeatureContext implements Context
     }
 
     /**
-     * @When i remove a habit with title :arg1
+     * @When i remove a habit with title :title
      */
-    public function iRemoveAHabitWithTitle($arg1)
+    public function iRemoveAHabitWithTitle ( string $title )
     {
-        throw new PendingException();
+        $habit = mockery::mock ( habit::class, [ $title ] );
+
+        $this->habitManager
+            ->shouldReceive ( 'remove' )
+            ->with ( $habit )
+            ->once ( );
+
+        list ( $status, $payload ) = app::make ( 'i want to remove a habit', [
+            'user' => $this->user,
+            'guard' => $this->guard,
+            'habit' => $habit,
+            'habitManager' => $this->habitManager
+        ] );
+
+        $this->status = $status;
+        $this->payload = $payload;
     }
 
     /**
@@ -199,7 +255,17 @@ class FeatureContext implements Context
      */
     public function iRequestToRemoveAHabit()
     {
-        throw new PendingException();
+        $habit = mockery::mock ( habit::class );
+
+        list ( $status, $payload ) = app::make ( 'i want to remove a habit', [
+            'user' => $this->user,
+            'guard' => $this->guard,
+            'habit' => $habit,
+            'habitManager' => $this->habitManager
+        ] );
+
+        $this->status = $status;
+        $this->payload = $payload;
     }
 
     /**
@@ -292,19 +358,19 @@ class FeatureContext implements Context
     }
 
     /**
-     * @Then i should see habit with title :arg1 completed
+     * @Then i should see habit with title :title completed
      */
-    public function iShouldSeeHabitWithTitleCompleted($arg1)
+    public function iShouldSeeHabitWithTitleCompleted ( string $title )
     {
-        throw new PendingException();
+        assertThat ( $this->status, is ( identicalTo ( 1002 ) ) );
     }
 
     /**
-     * @Then i should see that a habit with title :arg1 does not exist
+     * @Then i should see that a habit with title :title does not exist
      */
-    public function iShouldSeeThatAHabitWithTitleDoesNotExist($arg1)
+    public function iShouldSeeThatAHabitWithTitleDoesNotExist ( string $title )
     {
-        throw new PendingException();
+        assertThat ( $this->status, is ( identicalTo ( 2001 ) ) );
     }
 
     /**

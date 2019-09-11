@@ -6,7 +6,6 @@ Feature: Registered user updates habits
     Rules:
         - I cannot update another user's habits
 
-    @testing
     Scenario Outline: Updating habit
         Given i am authenticated
         And i have added a habit with title <registered>
