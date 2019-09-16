@@ -8,8 +8,8 @@ Feature: Security manager secures habits
         Given a registered user with username "admin" and password "admin"
         And a registered user with username "henk" and password "henk"
         And "admin" has registered a habit with title "Exercise"
-        When henk requests for a list of habits
-        Then henk should see an empty habit list
+        When "henk" requests for a list of habits
+        Then "henk" should see an empty habit list
 
     Scenario: Adding user habits
         Given a registered user with username "admin" and password "admin"

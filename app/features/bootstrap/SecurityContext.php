@@ -11,36 +11,70 @@ use Mockery as mockery;
  */
 class SecurityContext implements Context
 {
-    /**
-     * @Given a registered user with username :arg1 and password :arg2
-     */
-    public function aRegisteredUserWithUsernameAndPassword($arg1, $arg2)
+    private $registeredUsers = [ ];
+    private $habitManager = null;
+    private $habits = [ ];
+
+    private $payload = null;
+    private $status = null;
+
+    function __construct ( )
     {
-        throw new PendingException();
+        $this->guard = mockery::mock ( guard::class );
+        $this->habitManager = mockery::mock ( habit\manager::class );
     }
 
     /**
-     * @Given :arg1 has registered a habit with title :arg2
+     * @Given a registered user with username :username and password :password
      */
-    public function hasRegisteredAHabitWithTitle($arg1, $arg2)
+    public function aRegisteredUserWithUsernameAndPassword ( string $username, string $password )
     {
-        throw new PendingException();
+        $user = mockery::mock ( user::class, [ $username, $password ] );
+        $this->registeredUsers [ $username ] = $user;
     }
 
     /**
-     * @When henk requests for a list of habits
+     * @Given :username has registered a habit with title :title
      */
-    public function henkRequestsForAListOfHabits()
+    public function hasRegisteredAHabitWithTitle ( string $username, string $title )
     {
-        throw new PendingException();
+        $habit = mockery::mock ( habit::class, [ $title ] );
+        $this->habits [ $username ] = $habit;
     }
 
     /**
-     * @Then henk should see an empty habit list
+     * @When :username requests for a list of habits
      */
-    public function henkShouldSeeAnEmptyHabitList()
+    public function henkRequestsForAListOfHabits ( string $username )
+    {       
+        $user = $this->registeredUsers [ $username ];
+        $this->guard
+            ->shouldReceive ( 'authenticate' )
+            ->with ( $user )
+            ->once ( )
+            ->andReturn ( true );
+
+        $this->habitManager
+            ->shouldReceive ( 'all' )
+            ->once ( )
+            ->andReturn ( $this->habits [ $username ] ?? [ ] );
+
+        list ( $status, $payload ) = app::make ( 'i want to see my habits', [
+            'user' => $user, 
+            'guard' => $this->guard, 
+            'habitManager' => $this->habitManager
+        ] );
+
+        $this->status = $status;
+        $this->payload = $payload;
+    }
+
+    /**
+     * @Then :username should see an empty habit list
+     */
+    public function henkShouldSeeAnEmptyHabitList ( string $username )
     {
-        throw new PendingException();
+        assertThat ( $this->payload [ 'habits' ], is ( emptyArray ( ) ) );
     }
 
     /**

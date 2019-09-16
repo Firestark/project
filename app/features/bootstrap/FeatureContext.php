@@ -13,6 +13,7 @@ class FeatureContext implements Context
 {
     private $user = null;
     private $guard = null;
+    private $habitManager = null;
     private $addedHabits = [ ];
 
     private $payload = null;
