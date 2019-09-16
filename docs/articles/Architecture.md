@@ -4,13 +4,13 @@
 
 ## A good application architecture
 
-In his presentation: [architecture the lost years](https://www.youtube.com/watch?v=NeXQEJNWO5w) Robert C Martin explains what a good application architecture is. First Martin explains that one of the major purposes of a good application architecture is immediately showing the application's intent. An application's intent can be seen by looking at it's use-cases. For that reason, the best way of clearly showing an application's intent is by placing the use-cases in their own directory at one of the top directories of that application. One of the advantages of an application that clearly shows it's intent is that it is easy to know what the application does. To illustrate, a new software engineer can join the team, look at the use-cases of the application and should immediately have a good idea of what the application does. Another advantage of clearly showing application intent becomes apparent when communicating the application's requirements to stakeholders. Because the use-cases are made very clear, you can easily check if the application does what the stakeholders expected it to do. A final advantage is that it is easier to locate where the use-cases do not enforce the needed requirements. This make it easy to correct the application when needed.
+In his presentation: [architecture the lost years](https://www.youtube.com/watch?v=NeXQEJNWO5w) Robert C Martin explains what a good application architecture is. First Martin explains that one of the major purposes of a good application architecture is immediately showing the application's intent. An application's intent can be seen by looking at it's use-cases. For that reason, the best way of clearly showing an application's intent is by placing the use-cases in their own directory at one of the top directories of that application. One of the advantages of an application that clearly shows it's intent is that it is easy to know what the application does. To illustrate, a new software engineer can join the team, look at the use-cases of the application and should immediately have a good idea of what the application does. Another advantage of clearly showing application intent becomes apparent when communicating the application's requirements to stakeholders. Because the use-cases are made very clear, you can easily check if the application does what the stakeholders expected it to do. A final advantage is that it is easier to locate where the use-cases do not enforce the needed business requirements. This make it easy to correct the application when needed.
 
-A second point Robert C. Martin suggests about application architecture is that it allows for major decisions to be deferred. Big choices like what database to choose and what framework to use must be deferred for as long as possible. Deferral of big choices has some major benefits. First of all you don't have to concern yourself with the big choices right away and therefor you can focus on implementing the most important part first: The business logic. Second of all, you'll create more flexible and easier to understand code because of two reasons. A: You don't rely on exclusive features that a particular component offers to you. B: You won't be able to mix code from a particular component or package into your business logic. Components like databases and delivery mechanisms become like plug-ins to the business logic and these plug-ins can easily be swapped out later if needed. Third of all you'll be able to make better decisions on what components to actually use. If you have deferred major decisions and have implemented the business logic of your application you will have a better understanding of what components work most optimal with that business logic. For example: It will be much easier to decide whether to choose for a NOSQL document store or a relational database.
+Second Robert C. Martin suggests that application architecture should give the ability to defer major decisions. Big choices like what database to choose and what framework to use must be deferred for as long as possible. Deferral of big choices has some major benefits. First of all you don't have to concern yourself with the big choices right away and therefor you can focus on implementing the most important part first: The business logic. Second of all, you'll create more flexible and easier to understand code because of two reasons. A: You don't rely on exclusive functionality that a particular component offers to you. B: You won't be able to mix code from a particular component, package or framework into your business logic. Databases, delivery mechanisms and even frameworks become like plug-ins to the business logic and these plug-ins can easily be swapped out later if needed. Third of all you'll be able to make better decisions on what components, packages or frameworks to actually use. If you have deferred major decisions and have implemented the business logic of your application you will have a better understanding of what components, packages or frameworks work most optimal with that business logic. 
 
 ## Model View Controller (MVC)
 
-A popular application architecture nowadays is Model, View, Controller (MVC). Originally MVC is not meant to be an application architecture but is first invented as a UI related pattern that separates user input, data and output into their own components. MVC originates at small talk and is developed to structure small components, like for example a radio button or a check-box, into triads of models, views and controllers. The model, view and controller each have their own responsibility. The model holds data related to the component, knows about some basic (business) rules to manipulate that data and knows how to persist that data. The view consist of code to format the data from the model into something the Input Output (IO) device can understand and render on the screen. The view listens for changes in the model and changes it's output (making the rendered view change) when the model's data changes. The controller listens for user input and translate those inputs into commands for the model with which the model can change it's data if applicable. To illustrate, a button on the screen could have an MVC triplet:
+A popular application architecture nowadays is model, view, controller (MVC). Originally MVC is not meant to be an application architecture but is first invented as a UI related pattern that separates user input, data and output into their own components. MVC originates at small talk and is developed to structure small components, like for example a radio button or a check-box, into triads of models, views and controllers. The model, view and controller each have their own responsibility. The model holds data related to the component, knows about some basic (business) rules to manipulate that data and knows how to persist that data. The view consist of code to format the data from the model into something the input output (IO) device can understand and render on the screen. The view listens for changes in the model and changes it's output (making the rendered view change) when the model's data changes. The controller listens for user input and translate those inputs into commands for the model with which the model can change it's data if applicable. To illustrate, a button on the screen could have an MVC triplet:
 
 -  A controller that listens for user input that corresponds to the button
 - A model with some data and basic (business) rules that has something to do with that button
@@ -38,7 +38,7 @@ MVC is a great pattern for what it is originally meant to do, namely separating 
 
 #### Pros of using MVC as an application architecture
 
-Even though there are some differences when compared to the traditional MVC pattern, MVC as an application architecture has some benefits. The first benefit is that MVC gives you a general structure to split up the gross of your application code. Your application is divided into 3 separate tasks, namely: model, view and controller. Because of this generic structure you, and other developers that work with your code, will have a general understanding of how your application is build. The second benefit is that MVC is very widely used as an application architecture. A lot of frameworks chose to implement MVC as their application architecture. Because of this a lot of people will understand how your application is architect-ed. A third advantage of MVC is that it is easier to collaborate with multiple developers working on the same project. Because of the separation of model, view and controller a front-end developer can work on the view without being bothered by a back-end developer who works on the model and controller and vice-versa.
+Even though there are some differences when compared to the traditional MVC pattern, MVC as an application architecture has some benefits. The first benefit is that MVC gives you a general structure to split up the gross of your application code. Your application is divided into 3 separate tasks, namely: model, view and controller. Because of this generic structure you, and other developers that work with your code, will have a general understanding of how your application is build. The second benefit is that MVC is very widely used as an application architecture. A lot of frameworks chose to implement MVC as their application architecture. Because of this a lot of people will understand how your application is build. A third advantage of MVC is that it is easier to collaborate with multiple developers working on the same project. Because of the separation of model, view and controller a front-end developer can work on the view without being bothered by a back-end developer who works on the model and controller and vice-versa.
 
 
 
@@ -52,15 +52,35 @@ A third con of using MVC as application architecture is that models group busine
 
 A fourth downside of MVC as application architecture is that boundaries between models, views and controllers are not well enough defined. Controllers and views both want to call methods on the models. Because the models live so closely to the controllers and the view, it becomes very easy to write controller and view logic into the models, which clutter the business logic with even more technical code. It's difficult to keep the separation right.
 
+
+
+## A business driven application architecture
+
+An easy to make mistake, when starting up a new application, is to start building right away. To illustrate: The first step that would be on your mind is gathering the tools you need to kickstart your application. It is at this moment that you'll likely debate on what framework and database to use. In your decisions you'll weigh off some technical considerations, for example if you are building a web application, you'll pick a web framework or if you're building an API, you'll pick a framework focused on building API's. However, all these decisions and technical considerations are distractions. They distract you from the real important thing which are the application requirements. The first thing you should do when starting a new project is gathering all the minimal needed requirements to create a minimum viable product (MVP). 
+
+When you have gathered all the minimal needed requirements you'll have a good idea of what the application is going to do and then you're ready for the second step. The second step is translating the requirements into business logic. In  other words you are going translate use-cases into code. An example of such a use-case is: create order 
+
+
+
+and business rules. Examples of such (business) rules are: Items that drop below a minimum amount in stock must be ordered and: Only a gold pass user may overdraw currency on his bank-account. It is important to keep this business logic as dependency free as possible. Ideally you want to code all the business logic using only the chosen programming language and thus not include third party packages and libraries. This means that this layer doesn't know anything about data persistence, IO channels and any other technical implementations.
+
+The last step is coding all the technical requirements needed to create a working application. Until now the business logic is kind of like pseudo code. On it's own it doesn't deliver any value to your end users because they cannot use it without any technical knowledge. In this last step you will bridge that gap and create a user interface as well as a persistence mechanism that implement the business logic to create a working application. This is the point where you can decide on what framework and database to use. The wisest decision you can make here is choosing a framework and database that is easiest to implement the business logic with. Whenever you need some more sophisticated tools you can easily replace them later because they are plugins to the business logic.
+
+
+
  
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------
 
 Drafts
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------
 
 it is possible to build a good application using the MVC architecture, but you need a lot of disciplined engineers. It'd better if we choose for an architecture that 'hard separates' business logic from technical implementation.
+
+
+
+**Knowing when your done with the application (requirements).**
 
 
 
@@ -93,15 +113,41 @@ The model is not allowed to know where it gets it input from, the model is not a
 
 
 
+You can gather these requirements by creating user-stories, user scenarios and use-cases.
 
 
-## A business driven application architecture
+
+Business rules need to be flexible, business people and law change and when they change, the business rules change and so does our code that encapsulate business rules
+
+
+
+With a clear separation between business rules and technical implementation it becomes easier to port the application into an entire other programming language. The [programming language](https://en.wikipedia.org/wiki/Programming_language) would be different. The [source code](https://en.wikipedia.org/wiki/Source_code) would be entirely different. The tools ([IDE](https://en.wikipedia.org/wiki/Integrated_development_environment)s, [compilers](https://en.wikipedia.org/wiki/Compiler), and such) might be entirely different. The [user interface](https://en.m.wikipedia.org/wiki/User_interface) might be entirely re-organized or have a different [look-and-feel](https://en.wikipedia.org/wiki/Look-and-feel). The [documentation](https://en.m.wikipedia.org/wiki/Documentation) would probably be different. But the purpose of the two projects, the end results of work performed / goals accomplished, would be the same, the business logic stays the same.
+
+
+
+Way too often developers want to start coding on a project right away. Without paying too much attention to what the application's requirements are these developers start gathering their dependencies. First they decide what framework to use. Looking through the most popular to date frameworks they pick one they were interested in and install it. Second they decide to use a particular database. Hmm MYSQL seems like a fine option, it served me well in the past so it will serve me for this application as well. And off they go, writing business code mixed with framework and MYSQL code. This violates all the rules we have specified for a good application architecture. Major decisions are immediately taken at the cost of flexibility and clearly separated business rules. The intent of the application get's lost in the abundance of technical decisions that take over the application's architecture. We can do this better.
+
+
+
+A nice way of gathering requirements is using feature files. Feature files are written in a structured human readable language called gherkin. 
+
+
+
+Or we even decide that this application is for the web, and start coding and testing this application in a web driven environment. But at the beginning stages of development the web is a distraction (from the business logic).
+
+
+
+A good way to start is by figuring out the application's requirements. First figure out what the application is supposed to do. Is it a large or a small application? What business rules are involved with this application?
+
+
+
+
 
 ... talk about how to setup a business driven application architecture
 
 
 
-... Way too often you here lets choose this database, lets use this framework
+... Way too often you hear lets choose this database, lets use this framework
 
 ... instead lets focus on the business requirements first
 
@@ -112,6 +158,16 @@ The model is not allowed to know where it gets it input from, the model is not a
 
 
 An example of this methodology can be seen in the firestark framework...
+
+
+
+Hard to make changes because there is no documentation in place
+
+use-cases are great documentation
+
+use-cases are what developers can use to build from, testers can use to test from and tells the stakeholders what the system is doing for them.
+
+use-cases help you changing an existing system by showing you what new things get added and what effects that has on current functionalities. 
 
 
 
@@ -130,9 +186,19 @@ An example of this methodology can be seen in the firestark framework...
 
 Robert C. Martin. (Software engineer, Software Instructor). (2018). [architecture the lost years](https://www.youtube.com/watch?v=NeXQEJNWO5w)
 
+https://www.youtube.com/watch?v=CEHbId7Icng
+
+https://medium.com/@smartgamma/user-scenarios-user-stories-use-cases-what-s-the-difference-75bf75d4bb60
+
 
 
 https://cocoacasts.com/what-is-wrong-with-model-view-controller
+
+
+
+https://www.youtube.com/watch?v=Y1WknmP0HEk
+
+https://www.youtube.com/watch?v=RHdGn7WMWos
 
 
 
