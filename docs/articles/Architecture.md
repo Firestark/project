@@ -1,12 +1,22 @@
 # Excellence in application architecture
 
+This article should give you a good idea of what a good application architecture is and is supposed to achieve.
 
 
-## A good application architecture
 
-In his presentation: [architecture the lost years](https://www.youtube.com/watch?v=NeXQEJNWO5w) Robert C Martin explains what a good application architecture is. First Martin explains that one of the major purposes of a good application architecture is immediately showing the application's intent. An application's intent can be seen by looking at it's use-cases. For that reason, the best way of clearly showing an application's intent is by placing the use-cases in their own directory at one of the top directories of that application. One of the advantages of an application that clearly shows it's intent is that it is easy to know what the application does. To illustrate, a new software engineer can join the team, look at the use-cases of the application and should immediately have a good idea of what the application does. Another advantage of clearly showing application intent becomes apparent when communicating the application's requirements to stakeholders. Because the use-cases are made very clear, you can easily check if the application does what the stakeholders expected it to do. A final advantage is that it is easier to locate where the use-cases do not enforce the needed business requirements. This make it easy to correct the application when needed.
+## Key principles of a good application architecture
 
-Second Robert C. Martin suggests that application architecture should give the ability to defer major decisions. Big choices like what database to choose and what framework to use must be deferred for as long as possible. Deferral of big choices has some major benefits. First of all you don't have to concern yourself with the big choices right away and therefor you can focus on implementing the most important part first: The business logic. Second of all, you'll create more flexible and easier to understand code because of two reasons. A: You don't rely on exclusive functionality that a particular component offers to you. B: You won't be able to mix code from a particular component, package or framework into your business logic. Databases, delivery mechanisms and even frameworks become like plug-ins to the business logic and these plug-ins can easily be swapped out later if needed. Third of all you'll be able to make better decisions on what components, packages or frameworks to actually use. If you have deferred major decisions and have implemented the business logic of your application you will have a better understanding of what components, packages or frameworks work most optimal with that business logic. 
+In his presentation: [architecture the lost years](https://www.youtube.com/watch?v=NeXQEJNWO5w) Robert C Martin explains what a good application architecture is. First Martin explains that one of the major purposes of application architecture is immediately showing the application's intent. In other words the application should clearly show what it is supposed to do. One of the advantages of an application that clearly shows application intent is that it is easy for new software engineers to know what the application does. This will help new software engineers a tremendous amount in understanding the business of the application and the company to an extend. This understanding makes it easier for the new software engineers to work on the application. Another advantage of clearly showing application intent becomes apparent when communicating the application's requirements to stakeholders. It is not always the case that the expected requirements from the stakeholders is perfectly understood by the engineers that are building the application. Because the use-cases of the application are made very clear, the engineers can easily explain to the stakeholders what the application does. The stakeholders in turn can give the engineers accurate feedback on were the functionality differs from what they expected. With this feedback the software engineers can correct the functionality of the application. A final advantage is that the application requirements become easier to reason about. Maybe there are some requirements that don't make sense. Maybe there are requirements that conflict with each other. An architecture that clearly shows application intent is an architecture that allows that intent to be evaluated. Software engineers become more than just 'code builders', they understand the business and think with the business to create the best possible application.
+
+
+
+Second Robert C. Martin suggests that application architecture should give the ability to defer major decisions. Big choices like what database to choose and what framework to use must be deferred for as long as possible. Deferral of big choices has some major benefits. First of all you don't have to concern yourself with the big choices right away and therefor you can focus on implementing the most important part first: The business logic. Second of all, you'll create more flexible and easier to understand code because of two reasons. A: You don't rely on exclusive functionality that a particular component offers to you. B: You won't be able to mix code from a particular component, package or framework into your business logic. Databases, delivery mechanisms and even frameworks become like plug-ins to the business logic and these plug-ins can easily be swapped out later if needed. Third of all you'll be able to make better decisions on what components, packages or frameworks to actually use. If you have deferred major decisions and have implemented the business logic of your application you will have a better understanding of what components, packages or frameworks work most optimal with that business logic.
+
+
+
+Following the previous two noted points you will end up with a flexible application architecture that separates business logic from technical logic. This flexible application architecture allows you to adapt to quickly changing application requirements. Whether it's the stakeholders that change the requirements to act on a change in the market or some changes in law regulations that force the application to change, the application is ready to adapt.
+
+
 
 ## Model View Controller (MVC)
 
@@ -54,9 +64,9 @@ A fourth downside of MVC as application architecture is that boundaries between 
 
 
 
-## A business driven application architecture
+## A business driven application architecture (Guidelines to implement a good application architecture)
 
-An easy to make mistake, when starting up a new application, is to start building right away. To illustrate: The first step that would be on your mind is gathering the tools you need to kickstart your application. It is at this moment that you'll likely debate on what framework and database to use. In your decisions you'll weigh off some technical considerations, for example if you are building a web application, you'll pick a web framework or if you're building an API, you'll pick a framework focused on building API's. However, all these decisions and technical considerations are distractions. They distract you from the real important thing which are the application requirements. The first thing you should do when starting a new project is gathering all the minimal needed requirements to create a minimum viable product (MVP). 
+An easy to make mistake, when starting up a new application, is to start building right away. To illustrate: The first step that would be on your mind is gathering the tools you need to kick-start your application. It is at this moment that you'll likely debate on what framework and database to use. In your decisions you'll weigh off some technical considerations, for example if you are building a web application, you'll pick a web framework or if you're building an API, you'll pick a framework focused on building API's. However, all these decisions and technical considerations are distractions. They distract you from the real important thing which are the application requirements. The first thing you should do when starting a new project is gathering all the minimal needed requirements to create a minimum viable product (MVP). 
 
 When you have gathered all the minimal needed requirements you'll have a good idea of what the application is going to do and then you're ready for the second step. The second step is translating the requirements into business logic. In  other words you are going translate use-cases into code. An example of such a use-case is: create order 
 
@@ -77,6 +87,10 @@ Drafts
 ------
 
 it is possible to build a good application using the MVC architecture, but you need a lot of disciplined engineers. It'd better if we choose for an architecture that 'hard separates' business logic from technical implementation.
+
+
+
+An application's intent can be seen by looking at it's use-cases. For that reason, the best way of clearly showing an application's intent is by placing the use-cases in their own directory at one of the top directories of that application.
 
 
 
@@ -186,7 +200,7 @@ use-cases help you changing an existing system by showing you what new things ge
 
 Robert C. Martin. (Software engineer, Software Instructor). (2018). [architecture the lost years](https://www.youtube.com/watch?v=NeXQEJNWO5w)
 
-https://www.youtube.com/watch?v=CEHbId7Icng
+(Business Rules) https://www.youtube.com/watch?v=CEHbId7Icng
 
 https://medium.com/@smartgamma/user-scenarios-user-stories-use-cases-what-s-the-difference-75bf75d4bb60
 
