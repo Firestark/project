@@ -39,7 +39,7 @@ class SecurityContext implements Context
     public function hasRegisteredAHabitWithTitle ( string $username, string $title )
     {
         $habit = mockery::mock ( habit::class, [ $title ] );
-        $this->habits [ $username ] = $habit;
+        $this->habits [ $username ] [ ] = $habit;
     }
 
     /**
@@ -78,73 +78,168 @@ class SecurityContext implements Context
     }
 
     /**
-     * @When henk requests to add a habit with title :arg1
+     * @When :username requests to add a habit with title :title
      */
-    public function henkRequestsToAddAHabitWithTitle($arg1)
+    public function userRequestsToAddAHabitWithTitle ( string $username, string $title )
+    {
+        $user = $this->registeredUsers [ $username ];
+        $this->guard
+            ->shouldReceive ( 'authenticate' )
+            ->with ( $user )
+            ->once ( )
+            ->andReturn ( true );
+
+        $habit = mockery::mock ( habit::class, [ $title ] );
+
+        $this->habitManager
+            ->shouldReceive ( 'has' )
+            ->with ( $habit )
+            ->once ( )
+            ->andReturn ( false );
+
+        $this->habitManager
+            ->shouldReceive ( 'add' )
+            ->with ( $habit )
+            ->once ( );
+
+        $this->habitManager
+            ->shouldReceive ( 'all' )
+            ->once ( )
+            ->andReturn ( [ $habit ] );
+
+        list ( $status, $payload ) = app::make ( 'i want to add a habit', [
+            'user' => $user,
+            'guard' => $this->guard,
+            'habit' => $habit,
+            'habitManager' => $this->habitManager
+        ] );
+
+        $this->habits [ $username ] = $payload [ 'habits' ];
+    }
+
+    /**
+     * @Then :username should have a habit with title :title
+     */
+    public function userShouldHaveAHabitWithTitle ( string $username, string $title )
+    {
+        $user = $this->registeredUsers [ $username ];
+        
+        $this->guard
+            ->shouldReceive ( 'authenticate' )
+            ->with ( $user )
+            ->once ( )
+            ->andReturn ( true );
+
+        $this->habitManager
+            ->shouldReceive ( 'all' )
+            ->once ( )
+            ->andReturn ( $this->habits [ $username ] );
+
+        list ( $status, $payload ) = app::make ( 'i want to see my habits', [
+            'user' => $user,
+            'guard' => $this->guard,
+            'habitManager' => $this->habitManager
+        ] );
+
+        foreach ( $payload [ 'habits'] as $habit )
+            if ( $habit->title === $title )
+                return true;
+
+        throw new exception ( "I cannot see a habit with title: {$title}." );
+    }
+
+    /**
+     * @When :username requests to update a habit with title :from to :to
+     */
+    public function userRequestsToUpdateAHabitWithTitleTo ( string $username, string $from, string $to )
+    {
+        $user = $this->registeredUsers [ $username ];
+        
+        $old = mockery::mock ( habit::class, [ $from ] );
+        $new = mockery::mock ( habit::class, [ $to ] );
+
+        $this->guard
+            ->shouldReceive ( 'authenticate' )
+            ->with ( $user )
+            ->once ( )
+            ->andReturn ( true );
+
+        $this->habitManager
+            ->shouldReceive ( 'has' )
+            ->with ( $new )
+            ->once ( )
+            ->andReturn ( false );
+
+        $this->habitManager
+            ->shouldReceive ( 'update' )
+            ->with ( $old, $new )
+            ->once ( );
+
+        $this->habitManager
+            ->shouldReceive ( 'all' )
+            ->once ( )
+            ->andReturn ( [ $new ] );
+
+        list ( $status, $payload ) = app::make ( 'i want to update a habit', [
+            'user' => $user,
+            'guard' => $this->guard,
+            'old' => $old,
+            'new' => $new,
+            'habitManager' => $this->habitManager
+        ] );
+
+        $this->habits [ $username ] = $payload [ 'habits' ];
+    }
+
+    /**
+     * @When :username requests to remove a habit with title :title
+     */
+    public function userRequestsToRemoveAHabitWithTitle ( string $username, string $title )
+    {
+        $user = $this->registeredUsers [ $username ];
+        $habit = mockery::mock ( habit::class, [ $title ] );
+
+        $this->guard
+            ->shouldReceive ( 'authenticate' )
+            ->with ( $user )
+            ->once ( )
+            ->andReturn ( true );
+
+        $this->habitManager
+            ->shouldReceive ( 'remove' )
+            ->with ( $habit )
+            ->once ( );
+
+        list ( $status, $payload ) = app::make ( 'i want to remove a habit', [
+            'user' => $user,
+            'guard' => $this->guard,
+            'habit' => $habit,
+            'habitManager' => $this->habitManager
+        ] );
+
+        $this->payload = $payload;
+    }
+
+    /**
+     * @When :username requests to complete a habit with title :title
+     */
+    public function userRequestsToCompleteAHabitWithTitle ( string $username, string $title )
     {
         throw new PendingException();
     }
 
     /**
-     * @Then admin should a habit with title :arg1
+     * @Then :username should see a completed habit with title :title
      */
-    public function adminShouldAHabitWithTitle($arg1)
+    public function userShouldSeeACompletedHabitWithTitle ( string $username, string $title )
     {
         throw new PendingException();
     }
 
     /**
-     * @Then henk should a habit with title :arg1
+     * @Then :username should an uncompleted habit with title :title
      */
-    public function henkShouldAHabitWithTitle($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Given henk has registered a habit with title :arg1
-     */
-    public function henkHasRegisteredAHabitWithTitle($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @When henk requests to update a habit with title :arg1 to :arg2
-     */
-    public function henkRequestsToUpdateAHabitWithTitleTo($arg1, $arg2)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @When henk requests to remove a habit with title :arg1
-     */
-    public function henkRequestsToRemoveAHabitWithTitle($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @When henk requests to complete a habit with title :arg1
-     */
-    public function henkRequestsToCompleteAHabitWithTitle($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then admin should an uncompleted habit with title :arg1
-     */
-    public function adminShouldAnUncompletedHabitWithTitle($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then henk should see a completed habit with title :arg1
-     */
-    public function henkShouldSeeACompletedHabitWithTitle($arg1)
+    public function shouldAnUncompletedHabitWithTitle ( string $username, string $title )
     {
         throw new PendingException();
     }
