@@ -225,7 +225,37 @@ class SecurityContext implements Context
      */
     public function userRequestsToCompleteAHabitWithTitle ( string $username, string $title )
     {
-        throw new PendingException();
+        $user = $this->registeredUsers [ $username ];
+        $habit = mockery::mock ( habit::class, [ $title ] );
+
+        $this->guard
+            ->shouldReceive ( 'authenticate' )
+            ->with ( $user )
+            ->once ( )
+            ->andReturn ( true );
+
+        $this->habitManager
+            ->shouldReceive ( 'has' )
+            ->with ( $habit )
+            ->once ( )
+            ->andReturn ( true );
+
+        $this->habitManager
+            ->shouldReceive ( 'complete' )
+            ->with ( $habit )
+            ->once ( );
+
+        list ( $status, $payload ) = app::make ( 'i want to complete a habit', [
+            'user' => $user,
+            'guard' => $this->guard,
+            'habit' => $habit,
+            'habitManager' => $this->habitManager
+        ] );
+
+        $habit = $payload [ 'habit' ];
+        $habit->completed = true;
+
+        $this->replace ( $username, $habit );
     }
 
     /**
@@ -233,20 +263,41 @@ class SecurityContext implements Context
      */
     public function userShouldSeeACompletedHabitWithTitle ( string $username, string $title )
     {
-        throw new PendingException();
+        foreach ( $this->habits [ $username ] as $habit )
+            if ( $habit->title === $title )
+                if ( $habit->completed !== true )
+                    throw new exception ( "I see that my habit with title: {$title} is not completed." );
+                else
+                    return true;
+
+        throw new exception ( "I can't see a habit with title: {$title}." );
     }
 
     /**
-     * @Then :username should an uncompleted habit with title :title
+     * @Then :username should have an uncompleted habit with title :title
      */
     public function shouldAnUncompletedHabitWithTitle ( string $username, string $title )
     {
-        throw new PendingException();
+        foreach ( $this->habits [ $username ] as $habit )
+            if ( $habit->title === $title )
+                if ( $habit->completed !== false )
+                    throw new exception ( "I see that my habit with title: {$title} is completed." );
+                else
+                    return true;
+
+        throw new exception ( "I can't see a habit with title: {$title}." );
     }
 
     /** @AfterScenario */
     public function after ( $event )
     {
         mockery::close ( );
+    }
+
+    private function replace ( string $username, habit $habit )
+    {
+        foreach ( $this->habits [ $username ] as $key => $stored )
+            if ( $habit->title === $stored->title )
+                $this->habits [ $username ] [ $key ] = $habit;
     }
 }

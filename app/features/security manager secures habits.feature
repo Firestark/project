@@ -43,5 +43,5 @@ Feature: Security manager secures habits
         And "admin" has registered a habit with title "Exercise"
         And "henk" has registered a habit with title "Exercise"
         When "henk" requests to complete a habit with title "Exercise"
-        Then "admin" should an uncompleted habit with title "Exercise"
+        Then "admin" should have an uncompleted habit with title "Exercise"
         And "henk" should see a completed habit with title "Exercise"
