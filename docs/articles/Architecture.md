@@ -1,12 +1,12 @@
 # Excellence in application architecture
 
-This article should give you a good idea of what a good application architecture is and is supposed to achieve.
+This article should give you a good idea of what an application architecture is and is supposed to achieve.
 
 
 
-## Key principles of a good application architecture
+## Key principles of application architecture
 
-In his presentation: [architecture the lost years](https://www.youtube.com/watch?v=NeXQEJNWO5w) Robert C Martin explains what a good application architecture is. First Martin explains that one of the major purposes of application architecture is immediately showing the application's intent. In other words the application should clearly show what it is supposed to do. One of the advantages of an application that clearly shows application intent is that it is easy for new software engineers to know what the application does. This will help new software engineers a tremendous amount in understanding the business of the application and the company to an extend. This understanding makes it easier for the new software engineers to work on the application. Another advantage of clearly showing application intent becomes apparent when communicating the application's requirements to stakeholders. It is not always the case that the expected requirements from the stakeholders is perfectly understood by the engineers that are building the application. Because the use-cases of the application are made very clear, the engineers can easily explain to the stakeholders what the application does. The stakeholders in turn can give the engineers accurate feedback on were the functionality differs from what they expected. With this feedback the software engineers can correct the functionality of the application. A final advantage is that the application requirements become easier to reason about. Maybe there are some requirements that don't make sense. Maybe there are requirements that conflict with each other. An architecture that clearly shows application intent is an architecture that allows that intent to be evaluated. Software engineers become more than just 'code builders', they understand the business and think with the business to create the best possible application.
+In his presentation: [architecture the lost years](https://www.youtube.com/watch?v=NeXQEJNWO5w) Robert C Martin explains what an application architecture is supposed to achieve. First Martin explains that one of the major purposes of application architecture is immediately showing the application's intent. In other words the application should clearly show what it is supposed to do. One of the advantages of an application that clearly shows application intent is that it is easy for new software engineers to know what the application does. This will help new software engineers a tremendous amount in understanding the business of the application and the company to an extend. This understanding makes it easier for the new software engineers to work on the application. Another advantage of clearly showing application intent becomes apparent when communicating the application's requirements to stakeholders. It is not always the case that the expected requirements from the stakeholders is perfectly understood by the engineers that are building the application. This mismatch of understanding in requirements can be overcome with the help of an application that clearly shows it's intent. To illustrate: Because the use-cases of the application are made very clear, the engineers can easily explain to the stakeholders what the application does. The stakeholders in turn can give the engineers accurate feedback on were the functionality differs from what they expected. With this feedback the software engineers can correct the functionality of the application. A final advantage is that the application requirements become easier to reason about. Maybe there are some requirements that don't make sense. Maybe there are requirements that conflict with each other. An architecture that clearly shows application intent is an architecture that allows that intent to be evaluated. Software engineers become more than just 'code builders', they understand the business and think with the business to create the best possible application.
 
 
 
@@ -48,7 +48,7 @@ MVC is a great pattern for what it is originally meant to do, namely separating 
 
 #### Pros of using MVC as an application architecture
 
-Even though there are some differences when compared to the traditional MVC pattern, MVC as an application architecture has some benefits. The first benefit is that MVC gives you a general structure to split up the gross of your application code. Your application is divided into 3 separate tasks, namely: model, view and controller. Because of this generic structure you, and other developers that work with your code, will have a general understanding of how your application is build. The second benefit is that MVC is very widely used as an application architecture. A lot of frameworks chose to implement MVC as their application architecture. Because of this a lot of people will understand how your application is build. A third advantage of MVC is that it is easier to collaborate with multiple developers working on the same project. Because of the separation of model, view and controller a front-end developer can work on the view without being bothered by a back-end developer who works on the model and controller and vice-versa.
+Even though there are some differences when compared to the traditional MVC pattern, MVC as an application architecture has some benefits. The first benefit is that MVC gives you a general structure to split up a large part of your application code. Your application is divided into 3 separate tasks, namely: model, view and controller. Because of this generic structure you, and other developers that work with your code, will have a general understanding of how your application is build. The second benefit is that MVC is very widely used as an application architecture. A lot of frameworks chose to implement MVC as their application architecture. Because of the popularity of MVC a lot of people will understand how your application is build. A third advantage of MVC is that it is easier to collaborate with multiple developers working on the same project. Because of the separation of model, view and controller a front-end developer can work on the view without being bothered by a back-end developer who works on the model and controller and vice-versa.
 
 
 
@@ -58,9 +58,9 @@ One of the major downsides of using MVC as an application architecture is not cl
 
 Another downside of MVC as application architecture is the tendency to get large controllers. Controllers group different actions for one specific resource together. To illustrate: You could have a `TodoController`. That controller keeps all sorts of different actions about to-dos. Listing to-dos, creating to-dos, updating to-dos, viewing to-dos and deleting to-dos all are grouped together in this one controller.
 
-A third con of using MVC as application architecture is that models group business logic together with implementation logic to persist application state. Models usually communicate via an Object Relational Mapping (ORM) to a database or other persistence mechanism. Models are also the place to put business rules for that application state. With this setup your business rules are very tightly coupled to the technical persistence implementation which is the ORM.
+A third con of using MVC as application architecture is that models group business logic together with implementation logic to persist application state. Models usually communicate via an Object Relational Mapping (ORM) to a database or other persistence mechanism. Models are also the place to put business rules for that application state. With this setup your business rules are very tightly coupled to the technical persistence implementation.
 
-A fourth downside of MVC as application architecture is that boundaries between models, views and controllers are not well enough defined. Controllers and views both want to call methods on the models. Because the models live so closely to the controllers and the view, it becomes very easy to write controller and view logic into the models, which clutter the business logic with even more technical code. It's difficult to keep the separation right.
+A fourth downside of MVC as application architecture is that boundaries between models, views and controllers are not well enough defined. Controllers and views both want to call methods on the models. Because the models live so closely to the controllers and the view, it becomes very easy to write controller and view logic into the models, which clutter the business logic with even more technical code. It's difficult to keep the separations between model, view and controller right.
 
 
 
@@ -68,13 +68,60 @@ A fourth downside of MVC as application architecture is that boundaries between 
 
 An easy to make mistake, when starting up a new application, is to start building right away. To illustrate: The first step that would be on your mind is gathering the tools you need to kick-start your application. It is at this moment that you'll likely debate on what framework and database to use. In your decisions you'll weigh off some technical considerations, for example if you are building a web application, you'll pick a web framework or if you're building an API, you'll pick a framework focused on building API's. However, all these decisions and technical considerations are distractions. They distract you from the real important thing which are the application requirements. The first thing you should do when starting a new project is gathering all the minimal needed requirements to create a minimum viable product (MVP). 
 
-When you have gathered all the minimal needed requirements you'll have a good idea of what the application is going to do and then you're ready for the second step. The second step is translating the requirements into business logic. In  other words you are going translate use-cases into code. An example of such a use-case is: create order 
+
+
+When you have gathered all the minimal needed requirements you'll have a good idea of what the application is going to do and then you're ready for the second step. The second step is translating the requirements into code. The requirements will give you some use-cases that the application needs to fulfill. An example of such a use-case is create order:
+
+---------------
 
 
 
-and business rules. Examples of such (business) rules are: Items that drop below a minimum amount in stock must be ordered and: Only a gold pass user may overdraw currency on his bank-account. It is important to keep this business logic as dependency free as possible. Ideally you want to code all the business logic using only the chosen programming language and thus not include third party packages and libraries. This means that this layer doesn't know anything about data persistence, IO channels and any other technical implementations.
+
+
+# Create order
+
+## Data
+
+<Customer-id>,												<Customer-contact-info>,
+<Shipment-destination>,					<Shipment-mechanism>
+<Payment-information>,
+
+
+
+## Primary course
+
+1. Order clerk issues "Create order" command with above data
+2. System validates all data
+3. System creates order and determines order-id
+4. System delivers order-id to clerk
+
+
+
+## Exception course
+
+1. System delivers error message to clerk
+
+
+
+
+
+--------------
+
+
+
+Within these use-cases there are likely to be some business rules. Business rules tell what you may, may not do or must do. Examples of such (business) rules are: Items that drop below a minimum amount in stock must be ordered and: Only a gold pass user may overdraw currency on his account. all these use-cases and business rules form the business logic of your application. 
+
+
+
+It is important to keep this business logic as dependency free as possible. Ideally you want to code all the business logic using only the chosen programming language and thus not include third party packages, libraries and frameworks. This means that this layer doesn't know anything about data persistence, IO channels and any other technical implementations.
+
+
 
 The last step is coding all the technical requirements needed to create a working application. Until now the business logic is kind of like pseudo code. On it's own it doesn't deliver any value to your end users because they cannot use it without any technical knowledge. In this last step you will bridge that gap and create a user interface as well as a persistence mechanism that implement the business logic to create a working application. This is the point where you can decide on what framework and database to use. The wisest decision you can make here is choosing a framework and database that is easiest to implement the business logic with. Whenever you need some more sophisticated tools you can easily replace them later because they are plugins to the business logic.
+
+
+
+`Some of these technical requirements will have to do with speed, yet others with consistency or way of delivery to the end user`
 
 
 
@@ -203,6 +250,12 @@ Robert C. Martin. (Software engineer, Software Instructor). (2018). [architectur
 (Business Rules) https://www.youtube.com/watch?v=CEHbId7Icng
 
 https://medium.com/@smartgamma/user-scenarios-user-stories-use-cases-what-s-the-difference-75bf75d4bb60
+
+
+
+
+
+(Business rule vs business requirement)http://www.requirementsnetwork.com/rule-requirements.htm
 
 
 
