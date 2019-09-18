@@ -31,6 +31,11 @@ class SecurityContext implements Context
     {
         $user = mockery::mock ( user::class, [ $username, $password ] );
         $this->registeredUsers [ $username ] = $user;
+        
+        $this->guard
+            ->shouldReceive ( 'authenticate' )
+            ->with ( $user )
+            ->andReturn ( true );
     }
 
     /**
@@ -46,21 +51,14 @@ class SecurityContext implements Context
      * @When :username requests for a list of habits
      */
     public function henkRequestsForAListOfHabits ( string $username )
-    {       
-        $user = $this->registeredUsers [ $username ];
-        $this->guard
-            ->shouldReceive ( 'authenticate' )
-            ->with ( $user )
-            ->once ( )
-            ->andReturn ( true );
-
+    {               
         $this->habitManager
             ->shouldReceive ( 'all' )
             ->once ( )
             ->andReturn ( $this->habits [ $username ] ?? [ ] );
 
         list ( $status, $payload ) = app::make ( 'i want to see my habits', [
-            'user' => $user, 
+            'user' => $this->registeredUsers [ $username ], 
             'guard' => $this->guard, 
             'habitManager' => $this->habitManager
         ] );
@@ -82,13 +80,6 @@ class SecurityContext implements Context
      */
     public function userRequestsToAddAHabitWithTitle ( string $username, string $title )
     {
-        $user = $this->registeredUsers [ $username ];
-        $this->guard
-            ->shouldReceive ( 'authenticate' )
-            ->with ( $user )
-            ->once ( )
-            ->andReturn ( true );
-
         $habit = mockery::mock ( habit::class, [ $title ] );
 
         $this->habitManager
@@ -108,7 +99,7 @@ class SecurityContext implements Context
             ->andReturn ( [ $habit ] );
 
         list ( $status, $payload ) = app::make ( 'i want to add a habit', [
-            'user' => $user,
+            'user' => $this->registeredUsers [ $username ],
             'guard' => $this->guard,
             'habit' => $habit,
             'habitManager' => $this->habitManager
@@ -122,21 +113,13 @@ class SecurityContext implements Context
      */
     public function userShouldHaveAHabitWithTitle ( string $username, string $title )
     {
-        $user = $this->registeredUsers [ $username ];
-        
-        $this->guard
-            ->shouldReceive ( 'authenticate' )
-            ->with ( $user )
-            ->once ( )
-            ->andReturn ( true );
-
         $this->habitManager
             ->shouldReceive ( 'all' )
             ->once ( )
             ->andReturn ( $this->habits [ $username ] );
 
         list ( $status, $payload ) = app::make ( 'i want to see my habits', [
-            'user' => $user,
+            'user' => $this->registeredUsers [ $username ],
             'guard' => $this->guard,
             'habitManager' => $this->habitManager
         ] );
@@ -152,17 +135,9 @@ class SecurityContext implements Context
      * @When :username requests to update a habit with title :from to :to
      */
     public function userRequestsToUpdateAHabitWithTitleTo ( string $username, string $from, string $to )
-    {
-        $user = $this->registeredUsers [ $username ];
-        
+    {        
         $old = mockery::mock ( habit::class, [ $from ] );
         $new = mockery::mock ( habit::class, [ $to ] );
-
-        $this->guard
-            ->shouldReceive ( 'authenticate' )
-            ->with ( $user )
-            ->once ( )
-            ->andReturn ( true );
 
         $this->habitManager
             ->shouldReceive ( 'has' )
@@ -181,7 +156,7 @@ class SecurityContext implements Context
             ->andReturn ( [ $new ] );
 
         list ( $status, $payload ) = app::make ( 'i want to update a habit', [
-            'user' => $user,
+            'user' => $this->registeredUsers [ $username ],
             'guard' => $this->guard,
             'old' => $old,
             'new' => $new,
@@ -196,14 +171,7 @@ class SecurityContext implements Context
      */
     public function userRequestsToRemoveAHabitWithTitle ( string $username, string $title )
     {
-        $user = $this->registeredUsers [ $username ];
         $habit = mockery::mock ( habit::class, [ $title ] );
-
-        $this->guard
-            ->shouldReceive ( 'authenticate' )
-            ->with ( $user )
-            ->once ( )
-            ->andReturn ( true );
 
         $this->habitManager
             ->shouldReceive ( 'remove' )
@@ -211,7 +179,7 @@ class SecurityContext implements Context
             ->once ( );
 
         list ( $status, $payload ) = app::make ( 'i want to remove a habit', [
-            'user' => $user,
+            'user' => $this->registeredUsers [ $username ],
             'guard' => $this->guard,
             'habit' => $habit,
             'habitManager' => $this->habitManager
@@ -225,14 +193,7 @@ class SecurityContext implements Context
      */
     public function userRequestsToCompleteAHabitWithTitle ( string $username, string $title )
     {
-        $user = $this->registeredUsers [ $username ];
         $habit = mockery::mock ( habit::class, [ $title ] );
-
-        $this->guard
-            ->shouldReceive ( 'authenticate' )
-            ->with ( $user )
-            ->once ( )
-            ->andReturn ( true );
 
         $this->habitManager
             ->shouldReceive ( 'has' )
@@ -246,7 +207,7 @@ class SecurityContext implements Context
             ->once ( );
 
         list ( $status, $payload ) = app::make ( 'i want to complete a habit', [
-            'user' => $user,
+            'user' => $this->registeredUsers [ $username ],
             'guard' => $this->guard,
             'habit' => $habit,
             'habitManager' => $this->habitManager
