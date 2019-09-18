@@ -137,7 +137,7 @@ class FeatureContext implements Context
     /**
      * @When i try to add a habit
      */
-    public function iTryToAddAHabit()
+    public function iTryToAddAHabit ( )
     {
         $habit = mockery::mock ( habit::class, [ 'Some habit title' ] );
 
@@ -177,8 +177,6 @@ class FeatureContext implements Context
             ->with ( $habit )
             ->once ( )
             ->andReturn ( $found );
-
-        
 
         list ( $status, $payload ) = app::make ( 'i want to complete a habit', [
             'user' => $this->user,
@@ -254,7 +252,7 @@ class FeatureContext implements Context
     /**
      * @When i request to remove a habit
      */
-    public function iRequestToRemoveAHabit()
+    public function iRequestToRemoveAHabit ( )
     {
         $habit = mockery::mock ( habit::class );
 
