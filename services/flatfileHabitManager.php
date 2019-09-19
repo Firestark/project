@@ -3,10 +3,12 @@
 class flatfileHabitManager implements habit\manager
 {
     public $habits = [ ];
+    private $file = '';
 
-    function __construct ( array $habits )
+    function __construct ( array $habits, string $file )
     {
         $this->habits = $habits;
+        $this->file = $file;
     }
 
     function has ( habit $habit ) : bool
@@ -17,6 +19,7 @@ class flatfileHabitManager implements habit\manager
     function add ( habit $habit )
     {
         $this->habits [ ] = $habit;
+        $this->write ( );
     }
 
     function all ( ) : array
@@ -32,5 +35,10 @@ class flatfileHabitManager implements habit\manager
     function remove ( habit $habit )
     {
         unset ( $this->habits [ $habit->title ] );
+    }
+
+    private function write ( )
+    {
+        file_put_contents ( $this->file, serialize ( $this->habits ) );
     }
 }

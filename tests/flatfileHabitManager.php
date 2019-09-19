@@ -10,7 +10,7 @@ describe ( 'flatfileHabitManager', function ( )
         $this->habits [ 'Exercise' ] = mockery::mock ( habit::class, [ 'Exercise' ] );
         $this->habits [ 'Handstand' ] = mockery::mock ( habit::class, [ 'Handstand' ] );
 
-        $this->habitManager = new flatfileHabitManager ( $this->habits );
+        $this->habitManager = new flatfileHabitManager ( $this->habits, '' );
     } );
 
     describe ( 'add', function ( ) 
@@ -19,7 +19,6 @@ describe ( 'flatfileHabitManager', function ( )
         {
             $habit = mockery::mock ( habit::class );
             $this->habitManager->add ( $habit );
-
             assertThat ( $this->habitManager->habits, hasItemInArray ( $habit ) );
         } );
     } );
@@ -62,5 +61,10 @@ describe ( 'flatfileHabitManager', function ( )
             $this->habitManager->complete ( $this->habits [ 'Exercise' ] );
             assertThat ( $this->habits [ 'Exercise' ]->completed, is ( true ) );
         } );
+    } );
+
+    afterEach ( function ( ) 
+    {
+        mockery::close ( );
     } );
 } );
