@@ -1,6 +1,8 @@
 <?php
 
-use Mockery as mockery;
+use Mockery as mockery,
+    org\bovigo\vfs\vfsStream,
+    org\bovigo\vfs\vfsStreamDirectory;
 
 describe ( 'flatfileHabitManager', function ( ) 
 {
@@ -10,7 +12,11 @@ describe ( 'flatfileHabitManager', function ( )
         $this->habits [ 'Exercise' ] = mockery::mock ( habit::class, [ 'Exercise' ] );
         $this->habits [ 'Handstand' ] = mockery::mock ( habit::class, [ 'Handstand' ] );
 
-        $this->habitManager = new flatfileHabitManager ( $this->habits, '' );
+        $this->root = vfsStream::setup ( 'home' );
+        vfsStream::newFile ( 'habits.data' )->at ( $this->root );
+        $this->file = 'vfs://home/habits.data';
+
+        $this->habitManager = new flatfileHabitManager ( $this->habits, $this->file );
     } );
 
     describe ( 'add', function ( ) 
@@ -20,6 +26,14 @@ describe ( 'flatfileHabitManager', function ( )
             $habit = mockery::mock ( habit::class );
             $this->habitManager->add ( $habit );
             assertThat ( $this->habitManager->habits, hasItemInArray ( $habit ) );
+        } );
+
+        it ( 'should save habits to a file', function ( ) 
+        {
+            $this->habits [ 'Psychology' ] = mockery::mock ( habit::class, [ 'Psychology' ] );
+            $this->habitManager->add ( $this->habits [ 'Psychology' ] );
+
+            assertThat ( file_get_contents ( $this->file ), is ( identicalTo ( serialize ( $this->habits ) ) ) );
         } );
     } );
 
@@ -52,6 +66,12 @@ describe ( 'flatfileHabitManager', function ( )
             $this->habitManager->remove ( $this->habits [ 'Exercise' ] );
             assertThat ( $this->habitManager->all ( ), is ( arrayContainingInAnyOrder ( $this->habits [ 'Handstand' ] ) ) );
         } );
+
+        it ( 'should save habits to a file', function ( ) 
+        {
+            $this->habitManager->remove ( $this->habits [ 'Exercise' ] );
+            assertThat ( file_get_contents ( $this->file ), is ( identicalTo ( serialize ( [ 'Handstand' => $this->habits [ 'Handstand' ] ] ) ) ) );
+        } );
     } );
 
     describe ( 'complete', function ( ) 
@@ -60,6 +80,12 @@ describe ( 'flatfileHabitManager', function ( )
         {
             $this->habitManager->complete ( $this->habits [ 'Exercise' ] );
             assertThat ( $this->habits [ 'Exercise' ]->completed, is ( true ) );
+        } );
+
+        it ( 'should save habits to a file', function ( ) 
+        {
+            $this->habitManager->complete ( $this->habits [ 'Exercise' ] );
+            assertThat ( file_get_contents ( $this->file ), is ( identicalTo ( serialize ( $this->habits ) ) ) );
         } );
     } );
 

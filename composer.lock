@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0751d0a23ab6113e7ce969401f32761e",
+    "content-hash": "e85252a8ffcb6aac60fa02e2a0a99fa8",
     "packages": [
         {
             "name": "behat/behat",
@@ -512,12 +512,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
-                "reference": "ec6d38022dfd67a28cec80f00e1d8af67460c5f9"
+                "reference": "f804d816dfb5b408b8ed8e422b892f25d193779b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/container/zipball/ec6d38022dfd67a28cec80f00e1d8af67460c5f9",
-                "reference": "ec6d38022dfd67a28cec80f00e1d8af67460c5f9",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/f804d816dfb5b408b8ed8e422b892f25d193779b",
+                "reference": "f804d816dfb5b408b8ed8e422b892f25d193779b",
                 "shasum": ""
             },
             "require": {
@@ -549,7 +549,7 @@
             ],
             "description": "The Illuminate Container package.",
             "homepage": "https://laravel.com",
-            "time": "2019-09-10T15:23:32+00:00"
+            "time": "2019-09-17T20:37:47+00:00"
         },
         {
             "name": "illuminate/contracts",
@@ -557,12 +557,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "aed9b5cb63024ab4777e89f590c5001675145948"
+                "reference": "382e9bde2374c824c050580e72b9472889733072"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/aed9b5cb63024ab4777e89f590c5001675145948",
-                "reference": "aed9b5cb63024ab4777e89f590c5001675145948",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/382e9bde2374c824c050580e72b9472889733072",
+                "reference": "382e9bde2374c824c050580e72b9472889733072",
                 "shasum": ""
             },
             "require": {
@@ -593,7 +593,7 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2019-09-03T12:57:48+00:00"
+            "time": "2019-09-17T12:45:18+00:00"
         },
         {
             "name": "illuminate/support",
@@ -601,12 +601,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "1911249a416132cd06ed1af34b21d404a87436b9"
+                "reference": "786d5b1fce30452fe0d2dee27a562a192639f53f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/1911249a416132cd06ed1af34b21d404a87436b9",
-                "reference": "1911249a416132cd06ed1af34b21d404a87436b9",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/786d5b1fce30452fe0d2dee27a562a192639f53f",
+                "reference": "786d5b1fce30452fe0d2dee27a562a192639f53f",
                 "shasum": ""
             },
             "require": {
@@ -655,7 +655,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2019-09-11T12:11:26+00:00"
+            "time": "2019-09-17T20:37:47+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -864,12 +864,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "97e59c7a16464196a8b9c77c47df68e4a39a45c4"
+                "reference": "603203177e8483205f1f8b8cf31a41ec20a6c880"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/97e59c7a16464196a8b9c77c47df68e4a39a45c4",
-                "reference": "97e59c7a16464196a8b9c77c47df68e4a39a45c4",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/603203177e8483205f1f8b8cf31a41ec20a6c880",
+                "reference": "603203177e8483205f1f8b8cf31a41ec20a6c880",
                 "shasum": ""
             },
             "require": {
@@ -907,7 +907,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2019-09-01T07:51:21+00:00"
+            "time": "2019-09-18T09:25:40+00:00"
         },
         {
             "name": "peridot-php/peridot",
@@ -1491,12 +1491,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "94ac09861124e085796b134a4d2f50dee3a9fc40"
+                "reference": "bf5b7abbcd234ff19c4605b9bac7ec6509ea7dc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/94ac09861124e085796b134a4d2f50dee3a9fc40",
-                "reference": "94ac09861124e085796b134a4d2f50dee3a9fc40",
+                "url": "https://api.github.com/repos/symfony/config/zipball/bf5b7abbcd234ff19c4605b9bac7ec6509ea7dc7",
+                "reference": "bf5b7abbcd234ff19c4605b9bac7ec6509ea7dc7",
                 "shasum": ""
             },
             "require": {
@@ -1547,7 +1547,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2019-09-16T08:12:51+00:00"
+            "time": "2019-09-19T15:56:27+00:00"
         },
         {
             "name": "symfony/console",
@@ -1555,12 +1555,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "c35a2fc5bd760385b234aee5d231aeb90d7f3741"
+                "reference": "8057f7314068c8d045feb2700a5069ed4f69e553"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/c35a2fc5bd760385b234aee5d231aeb90d7f3741",
-                "reference": "c35a2fc5bd760385b234aee5d231aeb90d7f3741",
+                "url": "https://api.github.com/repos/symfony/console/zipball/8057f7314068c8d045feb2700a5069ed4f69e553",
+                "reference": "8057f7314068c8d045feb2700a5069ed4f69e553",
                 "shasum": ""
             },
             "require": {
@@ -1623,7 +1623,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-09-16T08:12:51+00:00"
+            "time": "2019-09-17T14:59:18+00:00"
         },
         {
             "name": "symfony/dependency-injection",
@@ -1631,12 +1631,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "2b39ff341403a1002c9356f0fc58ec2466c0a2fe"
+                "reference": "14ee5e7cd5fa3fbe09ae2240162c2eed1641865c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/2b39ff341403a1002c9356f0fc58ec2466c0a2fe",
-                "reference": "2b39ff341403a1002c9356f0fc58ec2466c0a2fe",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/14ee5e7cd5fa3fbe09ae2240162c2eed1641865c",
+                "reference": "14ee5e7cd5fa3fbe09ae2240162c2eed1641865c",
                 "shasum": ""
             },
             "require": {
@@ -1696,7 +1696,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2019-09-16T08:12:51+00:00"
+            "time": "2019-09-19T15:56:27+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1774,12 +1774,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher-contracts.git",
-                "reference": "6dd7d743cb4141e634a5ec6082ef8f59ad90e4bb"
+                "reference": "c43ab685673fb6c8d84220c77897b1d6cdbe1d18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher-contracts/zipball/6dd7d743cb4141e634a5ec6082ef8f59ad90e4bb",
-                "reference": "6dd7d743cb4141e634a5ec6082ef8f59ad90e4bb",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher-contracts/zipball/c43ab685673fb6c8d84220c77897b1d6cdbe1d18",
+                "reference": "c43ab685673fb6c8d84220c77897b1d6cdbe1d18",
                 "shasum": ""
             },
             "require": {
@@ -1824,7 +1824,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-05-30T22:41:44+00:00"
+            "time": "2019-09-17T09:54:03+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -1940,12 +1940,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17"
+                "reference": "a874bbf9135bd76175baa2c26d14312c9ef25543"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/b42a2f66e8f1b15ccf25652c3424265923eb4f17",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/a874bbf9135bd76175baa2c26d14312c9ef25543",
+                "reference": "a874bbf9135bd76175baa2c26d14312c9ef25543",
                 "shasum": ""
             },
             "require": {
@@ -1991,7 +1991,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-09-17T10:46:08+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
@@ -2112,12 +2112,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "7a28d2d6271de8b11a623d0f4ce36405f7e0dcc4"
+                "reference": "ffcde9615dc5bb4825b9f6aed07716f1f57faae0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/7a28d2d6271de8b11a623d0f4ce36405f7e0dcc4",
-                "reference": "7a28d2d6271de8b11a623d0f4ce36405f7e0dcc4",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/ffcde9615dc5bb4825b9f6aed07716f1f57faae0",
+                "reference": "ffcde9615dc5bb4825b9f6aed07716f1f57faae0",
                 "shasum": ""
             },
             "require": {
@@ -2162,7 +2162,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-09-11T08:38:59+00:00"
+            "time": "2019-09-17T11:12:18+00:00"
         },
         {
             "name": "symfony/translation",
@@ -2170,12 +2170,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "3c41b6be9f4d1140b6ede9fb7052121fa5f9542f"
+                "reference": "a88232cf7a02e66e3377ff3fc1859d88797da1b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/3c41b6be9f4d1140b6ede9fb7052121fa5f9542f",
-                "reference": "3c41b6be9f4d1140b6ede9fb7052121fa5f9542f",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/a88232cf7a02e66e3377ff3fc1859d88797da1b0",
+                "reference": "a88232cf7a02e66e3377ff3fc1859d88797da1b0",
                 "shasum": ""
             },
             "require": {
@@ -2238,7 +2238,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2019-09-16T08:12:51+00:00"
+            "time": "2019-09-19T15:56:27+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -2246,12 +2246,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation-contracts.git",
-                "reference": "4508c9eff3a1eb53c3007ac819730652c5526d14"
+                "reference": "364518c132c95642e530d9b2d217acbc2ccac3e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/4508c9eff3a1eb53c3007ac819730652c5526d14",
-                "reference": "4508c9eff3a1eb53c3007ac819730652c5526d14",
+                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/364518c132c95642e530d9b2d217acbc2ccac3e6",
+                "reference": "364518c132c95642e530d9b2d217acbc2ccac3e6",
                 "shasum": ""
             },
             "require": {
@@ -2295,7 +2295,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-09-03T12:18:35+00:00"
+            "time": "2019-09-17T11:12:18+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -2379,12 +2379,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "79800cc42e2316bdc0330bbd2ae34fb51ee06e68"
+                "reference": "2bc5687bc7b754cceffc53a09c0c804886d2e282"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/79800cc42e2316bdc0330bbd2ae34fb51ee06e68",
-                "reference": "79800cc42e2316bdc0330bbd2ae34fb51ee06e68",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/2bc5687bc7b754cceffc53a09c0c804886d2e282",
+                "reference": "2bc5687bc7b754cceffc53a09c0c804886d2e282",
                 "shasum": ""
             },
             "require": {
@@ -2430,7 +2430,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2019-09-16T08:15:34+00:00"
+            "time": "2019-09-18T12:09:11+00:00"
         },
         {
             "name": "voku/portable-ascii",
@@ -2925,6 +2925,57 @@
                 "whoops"
             ],
             "time": "2018-10-12T11:42:23+00:00"
+        },
+        {
+            "name": "mikey179/vfsstream",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bovigo/vfsStream.git",
+                "reference": "5bed16c3163f23300c5d1ee604bd66a0e4c7b496"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bovigo/vfsStream/zipball/5bed16c3163f23300c5d1ee604bd66a0e4c7b496",
+                "reference": "5bed16c3163f23300c5d1ee604bd66a0e4c7b496",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "bovigo/assert": "^5.0",
+                "bovigo/callmap": "^5.0",
+                "phpstan/phpstan": "^0.11.5",
+                "phpstan/phpstan-deprecation-rules": "^0.11.0",
+                "phpstan/phpstan-phpunit": "^0.11.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "org\\bovigo\\vfs\\": "src/main/php/org/bovigo/vfs"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Frank Kleine",
+                    "homepage": "http://frankkleine.de/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Virtual file system to mock the real file system in unit tests.",
+            "homepage": "http://vfs.bovigo.org/",
+            "time": "2019-08-11T23:10:20+00:00"
         },
         {
             "name": "mockery/mockery",
