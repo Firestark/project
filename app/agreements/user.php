@@ -2,6 +2,9 @@
 
 class user
 {
+    public $username = '';
+    public $password = '';
+
     function __construct ( string $username, string $password )
     {
         $this->username = $username;
