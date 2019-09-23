@@ -1,6 +1,9 @@
 <?php
 
-use Mockery as mockery;
+use Mockery as mockery,
+    org\bovigo\vfs\vfsStream,
+    org\bovigo\vfs\vfsStreamDirectory;
+
 
 describe ( 'flatfileHabitManager', function ( ) 
 {
@@ -9,7 +12,12 @@ describe ( 'flatfileHabitManager', function ( )
         $this->users = [ ];
         $this->users [ 'user1' ] = mockery::mock ( user::class, [ 'user1', '' ] );
         $this->users [ 'user2' ] = mockery::mock ( user::class, [ 'user2', '' ] );
-        $this->userManager = new flatfileUserManager ( $this->users );
+
+        $this->root = vfsStream::setup ( 'home' );
+        vfsStream::newFile ( 'users.data' )->at ( $this->root );
+        $this->file = 'vfs://home/users.data';
+
+        $this->userManager = new flatfileUserManager ( $this->users, $this->file );
     } );
 
     describe ( 'add', function ( ) 
@@ -18,13 +26,26 @@ describe ( 'flatfileHabitManager', function ( )
         {
             $user = mockery::mock ( user::class );
             $this->userManager->add ( $user );
-            assertThat ( $this->userManager->users, is ( array_merge ( [ $user ], $this->users ) ) );
+            assertThat ( $this->userManager->users, is ( array_merge ( $this->users, [ '' => $user ] ) ) );
+        } );
+
+        it ( 'should store new users in a file', function ( ) 
+        {
+            $user = mockery::mock ( user::class );
+            $this->userManager->add ( $user );
+
+            assertThat ( file_get_contents ( $this->file ), is ( serialize ( array_merge ( $this->users, [ '' => $user ] ) ) ) );
         } );
 
         it ( 'should not add users with the same username', function ( ) 
         {
-            $this->userManager->add ( $this->users [ 'user1' ] );
-            assertThat ( $this->userManager->users, is ( $this->users ) );
+            try {
+                $this->userManager->add ( $this->users [ 'user1' ] );
+            } catch ( exception $e ) {
+                return;
+            }
+
+            throw new exception ( 'User with same username was added' );
         } );
     } );
 
@@ -34,6 +55,30 @@ describe ( 'flatfileHabitManager', function ( )
         {
             $this->userManager->remove ( $this->users [ 'user1' ] );
             assertThat ( $this->userManager->users, is ( arrayContainingInAnyOrder ( $this->users [ 'user2' ] ) ) );
+        } );
+
+        it ( 'should remove a users from a file', function ( ) 
+        {
+            $this->userManager->remove ( $this->users [ 'user1' ] );
+            unset ( $this->users [ 'user1' ] );
+
+            assertThat ( file_get_contents ( $this->file ), is ( serialize ( $this->users ) ) );
+        } );
+    } );
+
+    describe ( 'has', function ( ) 
+    {
+        it ( 'should return true for an existing user', function ( ) 
+        {
+            $has = $this->userManager->has ( $this->users [ 'user1' ] );
+            assertThat ( $has, is ( true ) );
+        } );
+
+        it ( 'should return false for a non existing user', function ( ) 
+        {
+            $user = mockery::mock ( user::class );
+            $has = $this->userManager->has ( $user );
+            assertThat ( $has, is ( false ) );
         } );
     } );
     
