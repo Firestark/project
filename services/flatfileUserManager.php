@@ -23,6 +23,13 @@ class flatfileUserManager implements user\manager
 
     function has ( user $user ) : bool
     {
+        return 
+            $this->registered ( $user ) and
+            $this->users [ $user->username ]->password === $user->password;
+    }
+
+    function registered ( user $user ) : bool
+    {
         return isset ( $this->users [ $user->username ] );
     }
 

@@ -68,7 +68,7 @@ describe ( 'flatfileHabitManager', function ( )
 
     describe ( 'has', function ( ) 
     {
-        it ( 'should return true for an existing user', function ( ) 
+        it ( 'should return true for an existing user with matching username and password', function ( ) 
         {
             $has = $this->userManager->has ( $this->users [ 'user1' ] );
             assertThat ( $has, is ( true ) );
@@ -78,6 +78,30 @@ describe ( 'flatfileHabitManager', function ( )
         {
             $user = mockery::mock ( user::class );
             $has = $this->userManager->has ( $user );
+            assertThat ( $has, is ( false ) );
+        } );
+
+        it ( 'should return false for an existing username but mismatching password', function ( ) 
+        {
+            $first = reset ( $this->users );
+            $user = mockery::mock ( user::class, [ $first->username, 'mismatching password' ] );
+            $has = $this->userManager->has ( $user );
+            assertThat ( $has, is ( false ) );
+        } );
+    } );
+
+    describe ( 'registered', function ( ) 
+    {
+        it ( 'should return true for an existing user', function ( ) 
+        {
+            $has = $this->userManager->registered ( $this->users [ 'user1' ] );
+            assertThat ( $has, is ( true ) );
+        } );
+
+        it ( 'should return false for a non existing user', function ( ) 
+        {
+            $user = mockery::mock ( user::class );
+            $has = $this->userManager->registered ( $user );
             assertThat ( $has, is ( false ) );
         } );
     } );
