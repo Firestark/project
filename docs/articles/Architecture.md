@@ -263,6 +263,12 @@ https://medium.com/@smartgamma/user-scenarios-user-stories-use-cases-what-s-the-
 
 
 
+Requirements gathering
+
+https://www.phase2technology.com/blog/successful-requirements-gathering
+
+
+
 
 
 (Business rule vs business requirement)http://www.requirementsnetwork.com/rule-requirements.htm
