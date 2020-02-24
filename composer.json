@@ -43,7 +43,7 @@
 			"firestark\\": "tools"
  	 	},
         "files": [
-            
+            "./tools/readability.php"
         ]
 	},
     "autoload-dev": {

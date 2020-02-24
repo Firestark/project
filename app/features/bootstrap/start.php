@@ -3,7 +3,6 @@
 use Mockery as mockery;
 
 require __DIR__ . '/../../../vendor/autoload.php';
-require __DIR__ . '/../../../tools/readability.php';
 
 
 $app = new firestark\app;

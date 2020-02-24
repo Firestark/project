@@ -5,7 +5,6 @@ use Zend\Diactoros\Response\JsonResponse as json;
 use Zend\Diactoros\ServerRequestFactory as request;
 
 require __DIR__ . '/../../vendor/autoload.php';
-require __DIR__ . '/../../tools/readability.php';
 
 $app = new firestark\app;
 $app->instance ( 'app', $app );

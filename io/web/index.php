@@ -6,8 +6,8 @@ use Zend\Diactoros\Response\HtmlResponse as html;
 use Zend\Diactoros\ServerRequestFactory as request;
 use Zend\Diactoros\ResponseFactory as responseFactory;
 
+
 require __DIR__ . '/../../vendor/autoload.php';
-require __DIR__ . '/../../tools/readability.php';
 
 $app = new firestark\app;
 $app->instance ( 'app', $app );
