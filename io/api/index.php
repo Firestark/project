@@ -1,8 +1,8 @@
 <?php
 
 use Relay\Relay;
-use Zend\Diactoros\Response\JsonResponse as json;
-use Zend\Diactoros\ServerRequestFactory as request;
+use Laminas\Diactoros\Response\JsonResponse as json;
+use Laminas\Diactoros\ServerRequestFactory as request;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
@@ -36,4 +36,4 @@ $relay = new Relay ( [
 
 
 $response = $relay->handle ( $app [ 'request' ] );
-( new Zend\HttpHandlerRunner\Emitter\SapiEmitter )->emit ( $response );
+( new Laminas\HttpHandlerRunner\Emitter\SapiEmitter )->emit ( $response );

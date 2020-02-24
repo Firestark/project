@@ -3,7 +3,7 @@
 namespace firestark\http;
 
 use Psr\Http\Message\ResponseInterface as response;
-use Zend\Diactoros\Response\RedirectResponse as redirectResponse;
+use Laminas\Diactoros\Response\RedirectResponse as redirectResponse;
 
 class redirector
 {

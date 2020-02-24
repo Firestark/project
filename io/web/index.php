@@ -1,10 +1,10 @@
 <?php
 
 use Relay\Relay;
-use Zend\Diactoros\Response as response;
-use Zend\Diactoros\Response\HtmlResponse as html;
-use Zend\Diactoros\ServerRequestFactory as request;
-use Zend\Diactoros\ResponseFactory as responseFactory;
+use Laminas\Diactoros\Response as response;
+use Laminas\Diactoros\Response\HtmlResponse as html;
+use Laminas\Diactoros\ServerRequestFactory as request;
+use Laminas\Diactoros\ResponseFactory as responseFactory;
 
 
 require __DIR__ . '/../../vendor/autoload.php';
@@ -28,12 +28,12 @@ including ( __DIR__ . '/../../app/procedures' );
 $dispatcher = new firestark\http\dispatcher ( $app [ 'router' ]->routes );
 
 $relay = new Relay ( [
-    ( new Middlewares\Debugbar ( ) )->responseFactory ( $app [ 'response' ] )->inline ( ),
-    ( new Middlewares\Whoops )->responseFactory ( $app [ 'response' ] )->catchErrors ( true ),
+    // ( new Middlewares\Debugbar ( ) )->responseFactory ( $app [ 'response' ] )->inline ( ),
+    // ( new Middlewares\Whoops )->responseFactory ( $app [ 'response' ] )->catchErrors ( true ),
     new \firestark\middlewares\redirect ( $app ),
     new \firestark\middlewares\input ( $app ),
     new \firestark\middlewares\requestHandler ( $dispatcher ),
 ] );
 
 $response = $relay->handle ( $app [ 'request' ] );
-( new Zend\HttpHandlerRunner\Emitter\SapiEmitter )->emit ( $response );
+( new Laminas\HttpHandlerRunner\Emitter\SapiEmitter )->emit ( $response );

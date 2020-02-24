@@ -3,8 +3,8 @@
 namespace firestark\http;
 
 use Psr\Http\Message\ResponseInterface as responseInterface;
-use Zend\Diactoros\ResponseFactory as responseFactory;
-use Zend\Diactoros\Response as r;
+use Laminas\Diactoros\ResponseFactory as responseFactory;
+use Laminas\Diactoros\Response as r;
 
 class response extends responseFactory
 {
