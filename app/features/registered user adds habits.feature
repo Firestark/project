@@ -8,7 +8,7 @@ Feature: Registered user adds habits
 
     Scenario Outline: Registered
         Given i am authenticated
-        And i already added a habit with title <registered>
+        And i have added a habit with title <registered>
         When i add a habit with title <title>
         Then i should see a habit with title <title>
         And i should see a habit with title <registered>

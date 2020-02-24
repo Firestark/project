@@ -64,16 +64,9 @@ class FeatureContext implements Context
      */
     public function iHaveNotAddedAHabitWithTitle ( string $title )
     {
-        // no code required
-    }
-
-    /**
-     * @Given i already added a habit with title :title
-     */
-    public function iAlreadyAddedAHabitWithTitle ( string $title )
-    {
-        $habit = mockery::mock ( habit::class, [ $title ] );
-        $this->addedHabits [ ] = $habit;
+        foreach ( $this->addedHabits as $index => $habit )
+            if ( $habit->title === $title )
+                unset ( $this->addedHabits [ $index ] );
     }
 
     /**
