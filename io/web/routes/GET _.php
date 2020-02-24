@@ -2,5 +2,5 @@
 
 route::get ( '/', function ( )
 {
-    return response::ok ( 'test' );
+    return response::ok ( 1, 'test' );
 } );
