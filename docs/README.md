@@ -1,4 +1,4 @@
-<img src="./logo.svg" width="250" align="center" vertical-align="top">
+<img src="../logo.svg" width="250" align="center" vertical-align="top">
 
 Firestark is a **non MVC PHP7 framework** which separates business logic from implementation logic. Firestark achieves this separation by giving you an application architecture that completely rids the business logic from outside dependencies. In firestark's application architecture the implementation logic is responsible for dependencies and speaks with the businesses logic to make a working application. This way the business logic is a very simple and readable layer to work in.
 
