@@ -1,39 +1,34 @@
 <?php
 
+use Firestark\Http\Router;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Relay\Relay;
-use Laminas\Diactoros\Response as response;
-use Laminas\Diactoros\Response\HtmlResponse as html;
-use Laminas\Diactoros\ServerRequestFactory as request;
-use Laminas\Diactoros\ResponseFactory as responseFactory;
-
 
 require __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/../../tools/helpers.php';
 
-$app = new firestark\app;
-$app->instance ( 'app', $app );
-$app->instance ( 'session', new firestark\session );
-$app->instance ( 'statuses', new firestark\statuses );
-$app->instance ( 'request', request::fromGlobals ( ) );
-$app->instance ( 'response', new firestark\http\response ( html::class ) );
-$app->instance ( 'router', new firestark\http\router );
+$app = new Firestark\App;
+$app->instance('app', $app);
+$app->instance('router', new Router);
+$app->instance('response', new Firestark\Http\Response(Laminas\Diactoros\Response\HtmlResponse::class));
+$app->instance('status', new Firestark\Status);
 
-facade::setFacadeApplication ( $app );
+Facade::setFacadeApplication($app);
 
-including ( __DIR__ . '/../../bindings' );
-including ( __DIR__ . '/bindings' );
-including ( __DIR__ . '/routes' );
-including ( __DIR__ . '/statuses' );
-including ( __DIR__ . '/../../app/procedures' );
 
-$dispatcher = new firestark\http\dispatcher ( $app [ 'router' ]->routes );
+including(__DIR__ . '/../../bindings');
+including(__DIR__ . '/bindings');
+including(__DIR__ . '/routes');
+including(__DIR__ . '/statuses');
+including(__DIR__ . '/../../app/procedures');
 
-$relay = new Relay ( [
-    // ( new Middlewares\Debugbar ( ) )->responseFactory ( $app [ 'response' ] )->inline ( ),
-    // ( new Middlewares\Whoops )->responseFactory ( $app [ 'response' ] )->catchErrors ( true ),
-    new \firestark\middlewares\redirect ( $app ),
-    new \firestark\middlewares\input ( $app ),
-    new \firestark\middlewares\requestHandler ( $dispatcher ),
-] );
 
-$response = $relay->handle ( $app [ 'request' ] );
-( new Laminas\HttpHandlerRunner\Emitter\SapiEmitter )->emit ( $response );
+$app->instance('request', Laminas\Diactoros\ServerRequestFactory::fromGlobals());
+
+$relay = new Relay([
+    new \Firestark\Middlewares\RequestHandler($app['router'], $app['status']),
+]);
+    
+$response = $relay->handle($app['request']);
+(new Laminas\HttpHandlerRunner\Emitter\SapiEmitter)->emit($response);

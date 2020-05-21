@@ -3,17 +3,17 @@
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-$app = new firestark\app;
-$app->instance ( 'app', $app );
-$app->instance ( 'statuses', new firestark\statuses );
+$app = new Firestark\App;
+$app->instance('app', $app);
+$app->instance('statuses', new Firestark\Status);
 
-facade::setFacadeApplication ( $app );
+facade::setFacadeApplication($app);
 
 
-including ( __DIR__ . '/../../bindings' );
-including ( __DIR__ . '/bindings' );
-including ( __DIR__ . '/statuses' );
-including ( __DIR__ . '/../../app/procedures' );
+including(__DIR__ . '/../../bindings');
+including(__DIR__ . '/bindings');
+including(__DIR__ . '/statuses');
+including(__DIR__ . '/../../app/procedures');
 
 
 $shell = new \Psy\Shell;

@@ -1,72 +1,61 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace firestark\http;
+namespace Firestark\Http;
 
-use closure;
-use FastRoute\DataGenerator\GroupCountBased as generator;
-use FastRoute\Dispatcher\GroupCountBased as base;
-use FastRoute\RouteCollector as router;
-use FastRoute\RouteParser\Std as parser;
+use FastRoute\Dispatcher as FastRoute;
+use League\Route\Route;
+use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 
-class dispatcher extends base
+class Dispatcher extends \League\Route\Dispatcher 
 {
-	private $router = null;
-
-	public function __construct ( array $routes )
-	{
-		$this->router = new router (
-		  	new parser,
-		  	new generator
-		);
-
-		foreach ( $this->sort ( $routes ) as $route )
-			$this->router->addRoute ( $route->method, $route->path, $route->task );
-
-		parent::__construct ( $this->router->getData ( ) );
-	}
-
-	public function match ( string $method, string $uri )
-	{
-		$result = parent::dispatch ( $method, $uri );
-		return $this->handle ( $result, $method, $uri );
-	}
-
-	protected function notFound ( string $method, string $path )
-	{
-		throw new exception ( 404, "`{$method} {$path}` can not be handled, there is no route defined for it. Did you forget to add a `/` at the end of the url?" );
-	}
-
-	protected function notAllowed ( string $method, string $path )
+    /**
+     * Dispatch the current route
+     *
+     * @param ServerRequestInterface $request
+     *
+     * @return ResponseInterface
+     */
+    public function dispatchRequest(ServerRequestInterface $request): ResponseInterface
     {
-        throw new exception ( 405, "`{$method}` is not allowed for `{$path}`." );
+        $httpMethod = $request->getMethod();
+        $uri        = $request->getUri()->getPath();
+        $match      = $this->dispatch($httpMethod, $uri);
+
+        foreach ($match[2] as $key => $value)
+            \Input::set($key, $value);
+
+        switch ($match[0]) {
+            case FastRoute::NOT_FOUND:
+                $this->setNotFoundDecoratorMiddleware();
+                break;
+            case FastRoute::METHOD_NOT_ALLOWED:
+                $allowed = (array) $match[1];
+                $this->setMethodNotAllowedDecoratorMiddleware($allowed);
+                break;
+            case FastRoute::FOUND:
+                $route = $this->ensureHandlerIsRoute($match[1], $httpMethod, $uri)->setVars($match[2]);
+                $this->setFoundMiddleware($route);
+                break;
+        }
+
+        return $this->handle($request);
     }
 
-	private function decoded ( array $arguments ) : array
+    /**
+     * Ensure handler is a Route, honoring the contract of dispatchRequest.
+     *
+     * @param Route|mixed $matchingHandler
+     * @param string      $httpMethod
+     * @param string      $uri
+     *
+     * @return Route
+     *
+     */
+    private function ensureHandlerIsRoute($matchingHandler, $httpMethod, $uri): Route
     {
-        foreach ( $arguments as $key => $value )
-            $return [ $key ] = urldecode ( $value );
-        return ( $return ) ?? [ ];
+        if (is_a($matchingHandler, Route::class)) {
+            return $matchingHandler;
+        }
+        return new Route($httpMethod, $uri, $matchingHandler);
     }
-
-	private function handle ( array $result, string $method, string $path ) : array
-	{
-		if ( $result [ 0 ] === 1 )
-			return [ $result [ 1 ], $this->decoded ( $result [ 2 ] ) ];
-
-		if ( $result [ 0 ] === 2 )
-			$this->notAllowed ( $method, $path );
-
-		if ( $result [ 0 ] === 0 )
-			$this->notFound ( $method, $path );
-	}
-
-	private function sort ( array $routes ) : array
-	{
-		usort ( $routes, function ( route $a, route $b )
-		{
-			return strcasecmp ( $a->uri , $b->uri ); 
-		} );
-		
-		return $routes;
-	}
 }

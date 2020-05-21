@@ -1,9 +1,9 @@
 <?php
 
-class status extends facade
+class Status extends facade
 {
-    public static function getFacadeAccessor ( )
+    public static function getFacadeAccessor()
     {
-        return 'statuses';
+        return 'status';
     }
 }

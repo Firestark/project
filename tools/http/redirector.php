@@ -1,26 +1,26 @@
 <?php
 
-namespace firestark\http;
+namespace Firestark\Http;
 
-use Psr\Http\Message\ResponseInterface as response;
-use Laminas\Diactoros\Response\RedirectResponse as redirectResponse;
+use Psr\Http\Message\ResponseInterface as Response;
+use Laminas\Diactoros\Response\RedirectResponse as RedirectResponse;
 
-class redirector
+class Redirector
 {
     private $previous = '/';
 
-    public function __construct ( string $previous )
+    public function __construct(string $previous)
     {
         $this->previous = $previous;
     }
 
-    public function to ( string $uri ) : response
+    public function to(string $uri): Response
     {
-        return new redirectResponse ( $uri );
+        return new RedirectResponse($uri);
     }
 
-    public function back ( ) : response
+    public function back() : Response
     {
-        return new redirectResponse ( $this->previous );
+        return new RedirectResponse($this->previous);
     }
 }

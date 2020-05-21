@@ -1,8 +1,8 @@
 <?php
 
-class request extends facade
+class Request extends Facade
 {
-    public static function getFacadeAccessor ( )
+    public static function getFacadeAccessor()
     {
         return 'request';
     }

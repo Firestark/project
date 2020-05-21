@@ -1,64 +1,62 @@
 <?php
 
-namespace firestark\http;
+namespace Firestark\Http;
 
-use Psr\Http\Message\ResponseInterface as responseInterface;
-use Laminas\Diactoros\ResponseFactory as responseFactory;
-use Laminas\Diactoros\Response as r;
+use Psr\Http\Message\ResponseInterface;
+use Laminas\Diactoros\ResponseFactory;
 
-class response extends responseFactory
+class Response extends ResponseFactory
 {
-	protected $headers =
-    [
+	protected $headers = [
         'Access-Control-Allow-Origin'       => '*',
-        'Access-Control-Allow-Headers'      => 'Origin, Accept, Content-Type, Authorization, X-Requested-With, Content-Range, Content-Disposition'
+		'Access-Control-Allow-Headers'      => 'Origin, Accept, Content-Type, Authorization, X-Requested-With, Content-Range, Content-Disposition',
+		'X-Firestark-Status'				=> 0
     ];
 
-	function __construct ( string $class )
+	public function __construct(string $class)
 	{
 		$this->response = $class;
     }
 
-    function status ( int $number )
+    public function status(int $number)
 	{
 		$this->headers [ 'X-Firestark-Status' ] = $number;
 	}
 
-	function createResponse ( int $code = 200, string $reasonPhrase = '' ) : responseInterface
+	function createResponse(int $code = 200, string $reasonPhrase = ''): ResponseInterface
     {
-        $response = ( new r ( ) )
-			->withStatus ( $code, $reasonPhrase );
+        $response = (new \Laminas\Diactoros\Response())
+			->withStatus($code, $reasonPhrase);
 
-		foreach ( $this->headers as $key => $value )
-			$response = $response->withHeader ( $key, $value );
+		foreach($this->headers as $key => $value)
+			$response = $response->withHeader($key, $value);
 
 		return $response;
     }
 	
-	function ok ( int $appStatus, $content ) : responseInterface
+	function ok($content): ResponseInterface
 	{
-		return $this->respond ( 200, $appStatus, $content );
+		return $this->respond(200, $content);
 	}
 
-	function created ( int $appStatus, $content ) : responseInterface
+	function created($content): ResponseInterface
 	{
-		return $this->respond ( 201, $appStatus, $content );
+		return $this->respond(201, $content);
 	}
 
-	function conflict ( int $appStatus, $content ) : responseInterface
+	function conflict($content): ResponseInterface
 	{
-		return $this->respond ( 409, $appStatus, $content );
+		return $this->respond(409, $content);
 	}
 
-	function unauthorized ( int $appStatus, $content = '' ) : responseInterface
+	function unauthorized($content = ''): ResponseInterface
 	{
-		return $this->respond ( 401, $appStatus, $content );
+		return $this->respond(401, $content);
 	}
 
-	protected function respond ( int $status, int $appStatus, $content ) : responseInterface
+	protected function respond(int $status, $content): ResponseInterface
 	{
 		$class = $this->response;
-		$response = new $class ( $content, $status, $this->headers );
-		return $response->withHeader ( 'X-Firestark-Status', $appStatus );
+		return new $class($content, $status, $this->headers);
 	}
 }

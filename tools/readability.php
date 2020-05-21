@@ -7,27 +7,27 @@
  */
 
 
-function when ( string $feature, closure $action )
+function when(string $feature, Closure $action)
 {
-	app::binding ( $feature, $action );
+	App::binding($feature, $action);
 }
 
-function then ( $a )
-{
-	return $a;
-}
-
-function apply ( $a )
+function then($a)
 {
 	return $a;
 }
 
-function a ( $a )
+function apply($a)
 {
 	return $a;
 }
 
-function readable ( $a )
+function a($a)
+{
+	return $a;
+}
+
+function readable($a)
 {
 	return $a;
 }

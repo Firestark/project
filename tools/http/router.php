@@ -1,42 +1,48 @@
 <?php
 
-namespace firestark\http;
+namespace Firestark\Http;
 
-use closure;
+use League\Route\Route;
+use League\Route\Strategy\ApplicationStrategy;
+use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 
-class router
-{
-	use \accessible;
-
-	protected $routes = [ ];
-
-    public function get ( string $uri, closure $task )
+class Router extends \League\Route\Router
+{	
+	/**
+     * {@inheritdoc}
+     */
+    public function dispatch(ServerRequestInterface $request): ResponseInterface
     {
-        $this->add ( new route ( 'GET ' . $uri, $task ) );
+		$this->routes = $this->sort($this->routes);
+
+        if ($this->getStrategy() === null) {
+            $this->setStrategy(new ApplicationStrategy);
+        }
+
+        $this->prepRoutes($request);
+
+        /** @var Dispatcher $dispatcher */
+        $dispatcher = (new Dispatcher($this->getData()))->setStrategy($this->getStrategy());
+
+        foreach ($this->getMiddlewareStack() as $middleware) {
+            if (is_string($middleware)) {
+                $dispatcher->lazyMiddleware($middleware);
+                continue;
+            }
+
+            $dispatcher->middleware($middleware);
+        }
+
+        return $dispatcher->dispatchRequest($request);
     }
 
-    public function post ( string $uri, closure $task )
-    {
-        $this->add ( new route ( 'POST ' . $uri, $task ) );
-    }
-
-    public function put ( string $uri, closure $task )
-    {
-        $this->add ( new route ( 'PUT ' . $uri, $task ) );
-    }
-
-    public function delete ( string $uri, closure $task )
-    {
-        $this->add ( new route ( 'DELETE '. $uri, $task ) );
-    }
-
-	public function add ( route $route )
+    private function sort(array $routes): array
 	{
-        $this->routes [ $route->uri ] = $route;
-	}
-
-	public function has ( string $uri ) : bool
-	{
-		return array_key_exists ( $uri, $this->routes );
+		usort($routes, function(Route $a, Route $b)
+		{
+			return strcasecmp($a->getPath() , $b->getPath()); 
+		});
+		
+		return $routes;
 	}
 }

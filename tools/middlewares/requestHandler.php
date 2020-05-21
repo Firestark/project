@@ -1,30 +1,29 @@
 <?php
 
-namespace firestark\middlewares;
+namespace Firestark\Middlewares;
 
-use firestark\http\dispatcher;
-use Psr\Http\Message\ResponseInterface as response;
-use Psr\Http\Message\ServerRequestInterface as request;
-use Psr\Http\Server\RequestHandlerInterface as handler;
-use Psr\Http\Server\MiddlewareInterface as middleware;
+use Firestark\Http\Router;
+use Firestark\Status;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\RequestHandlerInterface as Handler;
+use Psr\Http\Server\MiddlewareInterface as Middleware;
 
-class requestHandler implements middleware
+class RequestHandler implements Middleware
 {
-    private $dispatcher = null;
+    private $router, $status = null;
     
-    public function __construct ( dispatcher $dispatcher )
+    public function __construct(Router $router, Status $status)
     {
-        $this->dispatcher = $dispatcher;
+        $this->router = $router;
+        $this->status = $status;
     }
     
-    public function process ( request $request, handler $handler ) : response
+    public function process(Request $request, Handler $handler): Response
     {
-        list ( $task, $arguments ) = $this->dispatcher->match ( 
-            $request->getMethod ( ), 
-            $request->getUri ( )->getPath ( ) 
-        );
-
-        return call_user_func_array ( $task, $arguments );
+        $response = $this->router->dispatch($request);
+        $status = $this->status->matched();
+        return $response->withHeader('X-Firestark-Status', $status);
     }
 }
 

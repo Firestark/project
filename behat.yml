@@ -1,9 +1,0 @@
-default:
-    autoload:
-        '': "%paths.base%/app/features/bootstrap"
-    suites:
-      default:
-        paths:
-          - "%paths.base%/app/features"
-        contexts: [FeatureContext, SecurityContext ]
-            
